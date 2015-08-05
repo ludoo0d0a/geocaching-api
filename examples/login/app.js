@@ -116,9 +116,8 @@ app.get('/test', ensureAuthenticated, function(req, res){
     var tests = {
       test1: {}
     };
-    api.getYourUserProfile({}, function(o , data, response){
-      console.log(data);
-      tests.test1 = {};
+    api.getYourUserProfile({}, function(err , data){
+      tests.test1 = {user: data.profile.User};
       res.render('test', { user: req.user, token: req.token || (req.user && req.user.token) || '?', tests: JSON.stringify(tests) });
     });
   }
