@@ -1,0 +1,27 @@
+{
+  "name": "geocaching-client",
+  "version": "1.0.0",
+  "description": "Geocaching API client library for node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha test/* -t 70000 -R spec --bail --globals domain,_events,_maxListeners"
+  },
+  "keywords": [
+    "geocaching",
+    "live",
+    "gc",
+    "geoking",
+    "pitaso"
+  ],
+  "author": "Ludovic Valente <ludovic.valente@gmail.com> (http://www.pitaso.com)",
+  "license": "MIT",
+  "dependencies": {
+    "base64": "^2.1.0",
+    "lodash": "^3.10.1",
+    "passport-geocaching": "^0.1.1",
+    "request": "^2.60.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.5"
+  }
+}
