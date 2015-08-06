@@ -1,7 +1,7 @@
 {
   "name": "geocaching-client",
   "version": "1.0.0",
-  "description": "Geocaching API client library for node.js",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha test/* -t 70000 -R spec --bail --globals domain,_events,_maxListeners"

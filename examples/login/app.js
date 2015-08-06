@@ -9,7 +9,7 @@ var express = require('express')
   , cookieParser = require('cookie-parser')
   , methodOverride = require('method-override')
   , expressLayouts=require('express-ejs-layouts')
-  , config1 = require('../../config1');
+  , config1 = require('../../config2');
 
 var port = process.env.PORT || 3000;
 var GEOCACHING_APP_ID = "--insert-geocaching-app-id-here--"
@@ -45,38 +45,53 @@ passport.deserializeUser(function(obj, done) {
 //   credentials (in this case, an accessToken, refreshToken, and Facebook
 //   profile), and invoke a callback with a user object.
 
-var strategy = new GeocachingStrategy({
-    consumerKey: GEOCACHING_APP_ID,
-    consumerSecret: GEOCACHING_APP_SECRET,
-  
-    //You can skip profile request access
-    //skipUserProfile: true,
-    
-    callbackURL: callbackURL
-  },
-  function(token, tokenSecret, profile, done) {
-    
-    //returns accesstoken to be displayed
-    profile.token = token;
-    
-    api = new GeocachingApi({
+api = new GeocachingApi({
       consumer_key: GEOCACHING_APP_ID,
       consumer_secret: GEOCACHING_APP_SECRET,
-      oauth_token: token,
-      oauth_token_secret: tokenSecret,
-      strategy: strategy
-    });
-    
-    // asynchronous verification, for effect...
-    process.nextTick(function () {
-      
-      // To keep the example simple, the user's Facebook profile is returned to
-      // represent the logged-in user.  In a typical application, you would want
-      // to associate the Facebook account with a user record in your database,
-      // and return that user instead.
-      return done(null, profile);
-  });
+//     //You can skip profile request access
+//     //skipUserProfile: true,
+     callbackURL: callbackURL
 });
+
+var strategy = api.strategy;
+
+// var strategy = new GeocachingStrategy({
+//     consumerKey: GEOCACHING_APP_ID,
+//     consumerSecret: GEOCACHING_APP_SECRET,
+  
+//     //You can skip profile request access
+//     //skipUserProfile: true,
+    
+//     callbackURL: callbackURL
+//   },
+//   function(token, tokenSecret, profile, done) {
+    
+//     // //returns accesstoken to be displayed
+//     // profile.token = token;
+//     // profile.tokenSecret = tokenSecret;
+    
+//     api = new GeocachingApi({
+//       consumer_key: GEOCACHING_APP_ID,
+//       consumer_secret: GEOCACHING_APP_SECRET,
+//       oauth_token: token,
+//       oauth_token_secret: tokenSecret,
+//       strategy: strategy
+//     });
+//     api._tokens = {
+//       token: token,
+//       tokenSecret: tokenSecret
+//     };
+    
+//     // asynchronous verification, for effect...
+//     process.nextTick(function () {
+      
+//       // To keep the example simple, the user's Facebook profile is returned to
+//       // represent the logged-in user.  In a typical application, you would want
+//       // to associate the Facebook account with a user record in your database,
+//       // and return that user instead.
+//       return done(null, profile);
+//   });
+// });
   
 passport.use(strategy);
 
@@ -108,7 +123,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/account', ensureAuthenticated, function(req, res){
-  res.render('account', { user: req.user, token: req.token || (req.user && req.user.token) || '?' });
+  res.render('account', { user: req.user, oauth: api._tokens, token: req.token || (req.user && req.user.token) || '?' });
 });
 
 app.get('/test', ensureAuthenticated, function(req, res){
@@ -117,7 +132,7 @@ app.get('/test', ensureAuthenticated, function(req, res){
       test1: {}
     };
     api.getYourUserProfile({}, function(err , data){
-      tests.test1 = {user: data.profile.User};
+      tests.test1 = {user: data.Profile.User};
       res.render('test', { user: req.user, token: req.token || (req.user && req.user.token) || '?', tests: JSON.stringify(tests) });
     });
   }

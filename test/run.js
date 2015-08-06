@@ -1,5 +1,5 @@
 var Mocha = require('mocha'); 
 
 var mocha = new Mocha();
-mocha.addFile('api-test.js'); 
+mocha.addFile('single-test.js'); 
 mocha.run();
