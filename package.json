@@ -1,6 +1,6 @@
 {
-  "name": "geocaching-client",
-  "version": "1.0.1",
+  "name": "geocaching-api",
+  "version": "1.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -18,7 +18,7 @@
   "dependencies": {
     "base64": "^2.1.0",
     "lodash": "^3.10.1",
-    "passport-geocaching": "^0.1.x",
+    "passport-geocaching": "^0.1.4",
     "request": "^2.60.0"
   },
   "devDependencies": {

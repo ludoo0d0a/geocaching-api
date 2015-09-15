@@ -1,8 +1,8 @@
 var express = require('express')
   , passport = require('passport')
   , util = require('util')
-  , GeocachingStrategy = require('passport-geocaching').Strategy
   , GeocachingApi = require('../../lib/geocaching-api')
+  //, GeocachingApi = require('geocaching-api')
   , morgan = require('morgan')
   , session = require('express-session')
   , bodyParser = require('body-parser')
@@ -20,16 +20,16 @@ var callbackURL = 'http://localhost:'+port+'/auth/geocaching/callback';
 var api = null;
 
 if (config1){
-  GEOCACHING_APP_ID = config1.consumer_key;
-  GEOCACHING_APP_SECRET = config1.consumer_secret ;
-  callbackURL = config1.callbackURL; 
+  GEOCACHING_APP_ID = config1.consumerKey;
+  GEOCACHING_APP_SECRET = config1.consumerSecret;
+  callbackURL = config1.callbackURL;
 }
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
 //   serialize users into and deserialize users out of the session.  Typically,
 //   this will be as simple as storing the user ID when serializing, and finding
 //   the user by ID when deserializing.  However, since this example does not
-//   have a database of user records, the complete Facebook profile is serialized
+//   have a database of user records, the complete Geocaching profile is serialized
 //   and deserialized.
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -40,60 +40,14 @@ passport.deserializeUser(function(obj, done) {
 });
 
 
-// Use the GeocachingStrategy within Passport.
-//   Strategies in Passport require a `verify` function, which accept
-//   credentials (in this case, an accessToken, refreshToken, and Facebook
-//   profile), and invoke a callback with a user object.
-
+// Use the GeocachingStrategy within GeocachingApi for Passsport.
 api = new GeocachingApi({
-      consumer_key: GEOCACHING_APP_ID,
-      consumer_secret: GEOCACHING_APP_SECRET,
-//     //You can skip profile request access
-//     //skipUserProfile: true,
-     callbackURL: callbackURL
+      consumerKey: GEOCACHING_APP_ID,
+      consumerSecret: GEOCACHING_APP_SECRET,
+      callbackURL: callbackURL
 });
 
-var strategy = api.strategy;
-
-// var strategy = new GeocachingStrategy({
-//     consumerKey: GEOCACHING_APP_ID,
-//     consumerSecret: GEOCACHING_APP_SECRET,
-  
-//     //You can skip profile request access
-//     //skipUserProfile: true,
-    
-//     callbackURL: callbackURL
-//   },
-//   function(token, tokenSecret, profile, done) {
-    
-//     // //returns accesstoken to be displayed
-//     // profile.token = token;
-//     // profile.tokenSecret = tokenSecret;
-    
-//     api = new GeocachingApi({
-//       consumer_key: GEOCACHING_APP_ID,
-//       consumer_secret: GEOCACHING_APP_SECRET,
-//       oauth_token: token,
-//       oauth_token_secret: tokenSecret,
-//       strategy: strategy
-//     });
-//     api._tokens = {
-//       token: token,
-//       tokenSecret: tokenSecret
-//     };
-    
-//     // asynchronous verification, for effect...
-//     process.nextTick(function () {
-      
-//       // To keep the example simple, the user's Facebook profile is returned to
-//       // represent the logged-in user.  In a typical application, you would want
-//       // to associate the Facebook account with a user record in your database,
-//       // and return that user instead.
-//       return done(null, profile);
-//   });
-// });
-  
-passport.use(strategy);
+passport.use(api.strategy);
 
 var app = express();
 
@@ -101,6 +55,7 @@ var app = express();
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
+app.set('layout', 'layout');
 app.use(morgan('combined'))
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -119,7 +74,8 @@ app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res){
-  res.render('index', { user: req.user, token:'' });
+  var data='', error='', token = api.oauth_token || '{Undefined}';
+  res.render('index', { user: req.user, token: token });
 });
 
 app.get('/account', ensureAuthenticated, function(req, res){
@@ -128,12 +84,14 @@ app.get('/account', ensureAuthenticated, function(req, res){
 
 app.get('/test', ensureAuthenticated, function(req, res){
   if (api){
-    var tests = {
-      test1: {}
-    };
-    api.getYourUserProfile({}, function(err , data){
-      tests.test1 = {user: data.Profile.User};
-      res.render('test', { user: req.user, token: req.token || (req.user && req.user.token) || '?', tests: JSON.stringify(tests) });
+    var data='', error='', token = api.oauth_token || '{Undefined}';
+    api.getYourUserProfile({}, function(err, o){
+      if (err){
+        error= JSON.stringify(err);
+      }else{
+        data = JSON.stringify({user: o.Profile && o.Profile.User});
+      }
+      res.render('test', { user: req.user, token: token, data: data, error: error });
     });
   }
 });
@@ -144,13 +102,13 @@ app.get('/login', function(req, res){
 
 // GET /auth/geocaching
 //   Use passport.authenticate() as route middleware to authenticate the
-//   request.  The first step in Facebook authentication will involve
-//   redirecting the user to geocaching.com.  After authorization, Facebook will
+//   request.  The first step in Geocaching authentication will involve
+//   redirecting the user to geocaching.com.  After authorization, Geocaching will
 //   redirect the user back to this application at /auth/geocaching/callback
 app.get('/auth/geocaching',
   passport.authenticate('geocaching'),
   function(req, res){
-    // The request will be redirected to Facebook for authentication, so this
+    // The request will be redirected to Geocaching for authentication, so this
     // function will not be called.
   });
 
@@ -170,7 +128,9 @@ app.get('/logout', function(req, res){
   res.redirect('/');
 });
 
-app.listen(port);
+app.listen(port, function () {
+  console.log('Example app for geocaching-api is listening');
+});
 
 
 // Simple route middleware to ensure user is authenticated.
