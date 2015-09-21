@@ -2,7 +2,7 @@
   "name": "geocaching-api",
   "version": "1.0.3",
   "description": "",
-  "main": "index.js",
+  "main": "lib/geocaching-api.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha test/* -t 70000 -R spec --bail --globals domain,_events,_maxListeners"
   },
