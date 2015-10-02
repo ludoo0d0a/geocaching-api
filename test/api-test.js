@@ -2,7 +2,8 @@
 var assert = require('assert')
   , GeocachingApi = require('../lib/geocaching-api')
   , _ = require('lodash')
-  , config1 = require('../config2')
+  , config = require('../config2')
+  , tokens = require('../config-tokens')
   , DATA = require('./data.js');
 
 describe('api', function () {
@@ -61,8 +62,9 @@ describe('methods', function () {
   this.timeout(6*10000); //10s
   
   var api;
-  beforeEach(function () {
-    api = new GeocachingApi(config1)
+  before(function () {
+    api = new GeocachingApi(config)
+    api.setAuth(tokens.token, tokens.tokensecret);
   })
   
   //Map from methods from API https://staging.api.groundspeak.com/Live/V6Beta/geocaching.svc/help
@@ -392,14 +394,14 @@ describe('methods', function () {
     // GetAnotherUsersProfile
     it('should get another user\'s profile', function (done) {
       api.getAnotherUsersProfile({
-      	"UserID": DATA.UserID,
-      	"ProfileOptions":{
-      		"ChallengesData":true,
-      		"FavoritePointsData":true,
-      		"GeocacheData":true,
-      		"PublicProfileData":true,
-      		"SouvenirData":true,
-      		"TrackableData":true
+      	UserID: DATA.UserID,
+      	ProfileOptions:{
+      		ChallengesData:true,
+      		FavoritePointsData:true,
+      		GeocacheData:true,
+      		PublicProfileData:true,
+      		SouvenirData:true,
+      		TrackableData:true
       	}
       }, function (err, user) {
         assert(!err, err);
@@ -490,12 +492,12 @@ describe('methods', function () {
     // GeocodeString
     it('should GeocodeString', function (done) {
       api.geocodeString({
-        GeocodeString: '1600 Amphitheatre Parkway, Mountain View, CA'
+        GeocodeString: DATA.address
      }, function (err, cache) {
         assert(!err, err);
         assert(cache);
-        assert(cache.Latitude===37.42203);
-        assert(cache.Longitude===-122.08433);
+        assert(cache.Latitude===DATA.address_result.lat);
+        assert(cache.Longitude===DATA.address_result.lng);
         done();
       })
     })
@@ -518,8 +520,36 @@ describe('methods', function () {
     })
     
     // SearchForGeocaches
+    it('should SearchForGeocaches', function (done) {
+      api.SearchForGeocaches(DATA.search,function (err, o) {
+        assert(!err, err);
+        assert(o);
+        assert(o.Geocaches.length>0);
+        if (o.Geocaches.length>0){
+          assert(o.Geocaches[0].ListID);
+          assert(o.Geocaches[0].ListName);
+          assert(o.Geocaches[0].NumberOfItems);
+        }
+        done();
+      })
+    })
+    
     // GetMoreGeocaches
-  
+    it('should GetMoreGeocaches', function (done) {
+      api.GetMoreGeocaches({
+        tileGuid: DATA.UserID
+      },function (err, o) {
+        assert(!err, err);
+        assert(o);
+        assert(o.Geocaches.length>0);
+        if (o.Geocaches.length>0){
+          assert(o.Geocaches[0].ListID);
+          assert(o.Geocaches[0].ListName);
+          assert(o.Geocaches[0].NumberOfItems);
+        }
+        done();
+      })
+    })
   });
   
   describe('log', function(){
