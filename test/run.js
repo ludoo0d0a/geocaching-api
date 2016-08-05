@@ -1,6 +1,6 @@
 var Mocha = require('mocha'); 
 
 var mocha = new Mocha();
-//mocha.addFile('test/single-test.js');
-mocha.addFile('test/api-search.js'); 
+//mocha.addFile('single-test.js');
+mocha.addFile('api-search.js'); 
 mocha.run();
