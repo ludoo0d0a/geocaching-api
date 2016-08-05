@@ -1,7 +1,7 @@
 /* global describe, it, beforeEach */
 var assert = require('assert')
   , GeocachingApi = require('../lib/geocaching-api')
-  , config = require('../config2')
+  , config = require('../config-api')
   , DATA = require('./data.js');
 
 describe('methods', function () {

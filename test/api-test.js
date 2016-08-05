@@ -2,7 +2,7 @@
 var assert = require('assert')
   , GeocachingApi = require('../lib/geocaching-api')
   , _ = require('lodash')
-  , config = require('../config2')
+  , config = require('../config-api')
   , tokens = require('../config-tokens')
   , DATA = require('./data.js');
 
