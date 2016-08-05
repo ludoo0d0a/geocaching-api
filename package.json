@@ -13,15 +13,25 @@
     "geoking",
     "pitaso"
   ],
-  "author": "Ludovic Valente <ludovic.valente@gmail.com> (http://www.pitaso.com)",
-  "license": "MIT",
+  "author": {
+    "name": "Ludovic Valente",
+    "email": "ludovic.valente@gmail.com",
+    "url": "http://www.pitaso.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ludoo0d0a/geocaching-api.git"
+  },
+  "bugs": {
+    "url": "http://github.com/ludoo0d0a/geocaching-api/issues"
+  },
+  "license": "ISC", 
   "dependencies": {
-    "base64": "^2.1.0",
-    "lodash": "^3.10.1",
+    "lodash": "^4.14.1",
     "passport-geocaching": "^0.1.x",
-    "request": "^2.60.0"
+    "request": "^2.x"
   },
   "devDependencies": {
-    "mocha": "^2.2.5"
+    "mocha": "^3.x"
   }
 }
