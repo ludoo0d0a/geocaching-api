@@ -1,6 +1,6 @@
 {
   "name": "geocaching-api",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "",
   "main": "lib/geocaching-api.js",
   "scripts": {
@@ -33,5 +33,6 @@
   },
   "devDependencies": {
     "mocha": "^3.x"
+    "chai": "*"
   }
 }

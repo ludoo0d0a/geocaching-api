@@ -1,15 +1,16 @@
 /* global describe, it, beforeEach */
 var assert = require('assert')
   , GeocachingApi = require('../lib/geocaching-api')
-  , config1 = require('../config2')
+  , config = require('../config2')
   , DATA = require('./data.js');
 
 describe('methods', function () {
-  this.timeout(6*10000); //10s
+  this.timeout(2*60*1000); //2*60s
   
   var api;
-  beforeEach(function () {
-    api = new GeocachingApi(config1)
+  before(function () {
+    api = new GeocachingApi(config)
+    api.setAuth(config.oauth_token, config.oauth_token_secret);
   })
   
   //Map from methods from API https://staging.api.groundspeak.com/Live/V6Beta/geocaching.svc/help
@@ -23,17 +24,26 @@ describe('methods', function () {
 //     })
 //   })
   
-// GetUsersWhoFavoritedCache
-    it('should GetUsersWhoFavoritedCache', function (done) {
-      api.getUsersWhoFavoritedCache({
-        cacheCode: DATA.code
-      },function (err, o) {
+    // it('should GetUsersWhoFavoritedCache', function (done) {
+    //   api.getUsersWhoFavoritedCache({
+    //     cacheCode: DATA.code
+    //   },function (err, o) {
+    //     assert(!err, err);
+    //     assert(o);
+    //     console.log(o);
+    //     done();
+    //   })
+    // })
+    
+    it('should searchForGeocaches', function (done) {
+      api.searchForGeocaches(DATA.search,function (err, o) {
         assert(!err, err);
         assert(o);
         console.log(o);
         done();
       })
     })
+
   
 // var gets= ['ping','getAPILimits','getAttributeTypesData','getBookmarkListsForUser','getCacheIdsFavoritedByUser',
 // 'getCachesFavoritedByUser','getGeocacheTypes','getMembershipTypes','getPocketQueryList','getSiteStats','getStatusMessages',
