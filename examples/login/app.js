@@ -9,21 +9,19 @@ var express = require('express')
   , cookieParser = require('cookie-parser')
   , methodOverride = require('method-override')
   , expressLayouts=require('express-ejs-layouts')
-  , config1 = require('../../config2');
+  , config = require('../../config-api');
 
 var port = process.env.PORT || 3000;
-var GEOCACHING_APP_ID = "--insert-geocaching-app-id-here--"
-var GEOCACHING_APP_SECRET = "--insert-geocaching-app-secret-here--";
-
-var callbackURL = 'http://localhost:'+port+'/auth/geocaching/callback';
-
 var api = null;
 
-if (config1){
-  GEOCACHING_APP_ID = config1.consumerKey;
-  GEOCACHING_APP_SECRET = config1.consumerSecret;
-  callbackURL = config1.callbackURL;
+/*
+var config = {
+      consumerKey: "--insert-geocaching-app-id-here--",
+      consumerSecret: "--insert-geocaching-app-secret-here--";,
+      callbackURL: 'http://localhost:'+port+'/auth/geocaching/callback'
 }
+*/
+
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
 //   serialize users into and deserialize users out of the session.  Typically,
@@ -41,11 +39,7 @@ passport.deserializeUser(function(obj, done) {
 
 
 // Use the GeocachingStrategy within GeocachingApi for Passsport.
-api = new GeocachingApi({
-      consumerKey: GEOCACHING_APP_ID,
-      consumerSecret: GEOCACHING_APP_SECRET,
-      callbackURL: callbackURL
-});
+api = new GeocachingApi(config);
 
 passport.use(api.strategy);
 
@@ -79,7 +73,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/account', ensureAuthenticated, function(req, res){
-  res.render('account', { user: req.user, oauth: api._tokens, token: req.token || (req.user && req.user.token) || '?' });
+  res.render('account', { user: req.user, api:api, oauth: api._tokens || {}, token: req.token || (req.user && req.user.token) || '?' });
 });
 
 app.get('/test', ensureAuthenticated, function(req, res){
@@ -119,6 +113,10 @@ app.get('/auth/geocaching',
 //   which, in this example, will redirect the user to the home page.
 app.get('/auth/geocaching/callback', 
   passport.authenticate('geocaching', { failureRedirect: '/login' }),
+  /*function(){
+    return passport.authenticate('geocaching', { failureRedirect: '/login' })();
+  },*/
+  
   function(req, res) {
     res.redirect('/');
   });

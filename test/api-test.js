@@ -5,6 +5,9 @@ var assert = require('assert')
   , config = require('../config-api')
   , tokens = require('../config-tokens')
   , DATA = require('./data.js');
+  
+//deprecated config1
+var config1 = config;
 
 describe('api', function () {
   describe('config', function () {
