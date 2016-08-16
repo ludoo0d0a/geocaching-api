@@ -5,7 +5,7 @@
   "main": "lib/geocaching-api.js",
   "scripts": {
     "start": "node examples/login/app",
-    "test": "./node_modules/.bin/mocha test/* -t 70000 -R spec --bail --globals domain,_events,_maxListeners"
+    "test": "./node_modules/.bin/mocha test/api-* -t 70000 -R spec --bail --globals domain,_events,_maxListeners"
   },
   "keywords": [
     "geocaching",

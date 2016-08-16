@@ -26,6 +26,9 @@ For a complete, working example, refer to the [login example](https://github.com
     $ npm install --dev
     $ make test
 
+## Todo
+    
+    Complete implementation of GC API following official doc: https://api.groundspeak.com/LiveV6/geocaching.svc/help
 
 ## Credits
 
