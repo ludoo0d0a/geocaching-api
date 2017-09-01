@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var express = require('express'),
     passport = require('passport'),
     util = require('util'),
@@ -24,7 +25,32 @@ if (config) {
     GEOCACHING_APP_ID = config.consumerKey;
     GEOCACHING_APP_SECRET = config.consumerSecret;
     callbackURL = config.callbackURL;
+=======
+var express = require('express')
+  , passport = require('passport')
+  , util = require('util')
+  , GeocachingApi = require('../../lib/geocaching-api')
+  //, GeocachingApi = require('geocaching-api')
+  , morgan = require('morgan')
+  , session = require('express-session')
+  , bodyParser = require('body-parser')
+  , cookieParser = require('cookie-parser')
+  , methodOverride = require('method-override')
+  , expressLayouts=require('express-ejs-layouts')
+  , config = require('../../config-api');
+
+var port = process.env.PORT || 3000;
+var api = null;
+
+/*
+var config = {
+      consumerKey: "--insert-geocaching-app-id-here--",
+      consumerSecret: "--insert-geocaching-app-secret-here--";,
+      callbackURL: 'http://localhost:'+port+'/auth/geocaching/callback'
+>>>>>>> 0fda9db22fc6a96a21ff14b88c976cfd312f3438
 }
+*/
+
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
 //   serialize users into and deserialize users out of the session.  Typically,
@@ -42,11 +68,15 @@ passport.deserializeUser(function(obj, done) {
 
 
 // Use the GeocachingStrategy within GeocachingApi for Passsport.
+<<<<<<< HEAD
 api = new GeocachingApi({
     consumerKey: GEOCACHING_APP_ID,
     consumerSecret: GEOCACHING_APP_SECRET,
     callbackURL: callbackURL
 });
+=======
+api = new GeocachingApi(config);
+>>>>>>> 0fda9db22fc6a96a21ff14b88c976cfd312f3438
 
 passport.use(api.strategy);
 
@@ -81,8 +111,13 @@ app.get('/', function(req, res) {
     res.render('index', { user: req.user, token: token });
 });
 
+<<<<<<< HEAD
 app.get('/account', ensureAuthenticated, function(req, res) {
     res.render('account', { user: req.user, oauth: api._tokens, token: req.token || (req.user && req.user.token) || '?' });
+=======
+app.get('/account', ensureAuthenticated, function(req, res){
+  res.render('account', { user: req.user, api:api, oauth: api._tokens || {}, token: req.token || (req.user && req.user.token) || '?' });
+>>>>>>> 0fda9db22fc6a96a21ff14b88c976cfd312f3438
 });
 
 app.get('/test', ensureAuthenticated, function(req, res) {
@@ -122,11 +157,23 @@ app.get('/auth/geocaching',
 //   request.  If authentication fails, the user will be redirected back to the
 //   login page.  Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
+<<<<<<< HEAD
 app.get('/auth/geocaching/callback',
     passport.authenticate('geocaching', { failureRedirect: '/login' }),
     function(req, res) {
         res.redirect('/');
     });
+=======
+app.get('/auth/geocaching/callback', 
+  passport.authenticate('geocaching', { failureRedirect: '/login' }),
+  /*function(){
+    return passport.authenticate('geocaching', { failureRedirect: '/login' })();
+  },*/
+  
+  function(req, res) {
+    res.redirect('/');
+  });
+>>>>>>> 0fda9db22fc6a96a21ff14b88c976cfd312f3438
 
 app.get('/logout', function(req, res) {
     req.logout();

@@ -2,7 +2,7 @@
 var assert = require('chai').assert
   , GeocachingApi = require('../lib/geocaching-api')
   , _ = require('lodash')
-  , config = require('../config2')
+  , config = require('../config-api')
   , tokens = require('../config-tokens')
   , DATA = require('./data.js');
 
@@ -50,11 +50,11 @@ describe('methods', function () {
         assert.isNotNull(o, 'No response');
         assert.isNotNull(o.Geocaches, 'No Geocaches');
         assert.isAbove(o.Geocaches.length, 0, 'No Geocaches');
-        console.log('Search = '+ o.Geocaches.length + ' geocaches' );
+        console.log('Found '+ o.Geocaches.length + ' geocaches' );
         assert(o.Geocaches[0].Name);
         assert(o.Geocaches[0].ID);
         done();
-      })
+      });
     })
     
     // GetMoreGeocaches
@@ -69,9 +69,8 @@ describe('methods', function () {
         assert(o.Geocaches[0].ID);
         done();
       })
-    })
-    
-    
+    });
+
   });
 
 });

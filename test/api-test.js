@@ -2,9 +2,10 @@
 var assert = require('assert')
   , GeocachingApi = require('../lib/geocaching-api')
   , _ = require('lodash')
-  , config = require('../config2')
+  , config = require('../config-api')
   , tokens = require('../config-tokens')
   , DATA = require('./data.js');
+
 
 describe('api', function () {
   describe('config', function () {
@@ -40,22 +41,24 @@ describe('api', function () {
     it('should update the client\'s auth config', function (done) {
       // partial update
       api.setAuth({
-        consumer_key: 'x',
-        consumer_secret: 'y'
+        consumerKey: 'x',
+        consumerSecret: 'y'
       })
 
       assert(api.config.consumer_key === 'x')
       assert(api.config.consumer_secret === 'y')
 
       // full update
-      api.setAuth(config1)
+      api.setAuth(config)
 
-      assert(api.config.consumer_key === config1.consumer_key)
-      assert(api.config.consumer_secret === config1.consumer_secret)
+      assert(api.config.consumer_key === config.consumer_key)
+      assert(api.config.consumer_secret === config.consumer_secret)
 
       done()
     })
   })
+  
+  
 });
 
 describe('methods', function () {
