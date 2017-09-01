@@ -1,28 +1,29 @@
-var express = require('express')
-  , passport = require('passport')
-  , util = require('util')
-  , GeocachingApi = require('../../lib/geocaching-api')
-  //, GeocachingApi = require('geocaching-api')
-  , morgan = require('morgan')
-  , session = require('express-session')
-  , bodyParser = require('body-parser')
-  , cookieParser = require('cookie-parser')
-  , methodOverride = require('method-override')
-  , expressLayouts=require('express-ejs-layouts')
-  , config1 = require('../../config2');
+var express = require('express'),
+    passport = require('passport'),
+    util = require('util'),
+    //GeocachingApi = require('../../lib/geocaching-api'),
+    GeocachingApi = require('geocaching-api'),
+    morgan = require('morgan'),
+    session = require('express-session'),
+    bodyParser = require('body-parser'),
+    cookieParser = require('cookie-parser'),
+    methodOverride = require('method-override'),
+    expressLayouts = require('express-ejs-layouts'),
+    //copy config-api.js from default-config-api.js and update values
+    config = require('../../config-api');
 
 var port = process.env.PORT || 3000;
 var GEOCACHING_APP_ID = "--insert-geocaching-app-id-here--"
 var GEOCACHING_APP_SECRET = "--insert-geocaching-app-secret-here--";
 
-var callbackURL = 'http://localhost:'+port+'/auth/geocaching/callback';
+var callbackURL = 'http://localhost:' + port + '/auth/geocaching/callback';
 
 var api = null;
 
-if (config1){
-  GEOCACHING_APP_ID = config1.consumerKey;
-  GEOCACHING_APP_SECRET = config1.consumerSecret;
-  callbackURL = config1.callbackURL;
+if (config) {
+    GEOCACHING_APP_ID = config.consumerKey;
+    GEOCACHING_APP_SECRET = config.consumerSecret;
+    callbackURL = config.callbackURL;
 }
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
@@ -32,19 +33,19 @@ if (config1){
 //   have a database of user records, the complete Geocaching profile is serialized
 //   and deserialized.
 passport.serializeUser(function(user, done) {
-  done(null, user);
+    done(null, user);
 });
 
 passport.deserializeUser(function(obj, done) {
-  done(null, obj);
+    done(null, obj);
 });
 
 
 // Use the GeocachingStrategy within GeocachingApi for Passsport.
 api = new GeocachingApi({
-      consumerKey: GEOCACHING_APP_ID,
-      consumerSecret: GEOCACHING_APP_SECRET,
-      callbackURL: callbackURL
+    consumerKey: GEOCACHING_APP_ID,
+    consumerSecret: GEOCACHING_APP_SECRET,
+    callbackURL: callbackURL
 });
 
 passport.use(api.strategy);
@@ -61,10 +62,10 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 
 app.use(methodOverride());
-app.use(session({ 
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true
 }));
 
 // Initialize Passport!  Also use passport.session() middleware, to support
@@ -73,31 +74,35 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
 
-app.get('/', function(req, res){
-  var data='', error='', token = api.oauth_token || '{Undefined}';
-  res.render('index', { user: req.user, token: token });
+app.get('/', function(req, res) {
+    var data = '',
+        error = '',
+        token = api.oauth_token || '{Undefined}';
+    res.render('index', { user: req.user, token: token });
 });
 
-app.get('/account', ensureAuthenticated, function(req, res){
-  res.render('account', { user: req.user, oauth: api._tokens, token: req.token || (req.user && req.user.token) || '?' });
+app.get('/account', ensureAuthenticated, function(req, res) {
+    res.render('account', { user: req.user, oauth: api._tokens, token: req.token || (req.user && req.user.token) || '?' });
 });
 
-app.get('/test', ensureAuthenticated, function(req, res){
-  if (api){
-    var data='', error='', token = api.oauth_token || '{Undefined}';
-    api.getYourUserProfile({}, function(err, o){
-      if (err){
-        error= JSON.stringify(err);
-      }else{
-        data = JSON.stringify({user: o.Profile && o.Profile.User});
-      }
-      res.render('test', { user: req.user, token: token, data: data, error: error });
-    });
-  }
+app.get('/test', ensureAuthenticated, function(req, res) {
+    if (api) {
+        var data = '',
+            error = '',
+            token = api.oauth_token || '{Undefined}';
+        api.getYourUserProfile({}, function(err, o) {
+            if (err) {
+                error = JSON.stringify(err);
+            } else {
+                data = JSON.stringify({ user: o.Profile && o.Profile.User });
+            }
+            res.render('test', { user: req.user, token: token, data: data, error: error });
+        });
+    }
 });
 
-app.get('/login', function(req, res){
-  res.render('login', { user: req.user, token: req.token || (req.user && req.user.token) });
+app.get('/login', function(req, res) {
+    res.render('login', { user: req.user, token: req.token || (req.user && req.user.token) });
 });
 
 // GET /auth/geocaching
@@ -106,30 +111,30 @@ app.get('/login', function(req, res){
 //   redirecting the user to geocaching.com.  After authorization, Geocaching will
 //   redirect the user back to this application at /auth/geocaching/callback
 app.get('/auth/geocaching',
-  passport.authenticate('geocaching'),
-  function(req, res){
-    // The request will be redirected to Geocaching for authentication, so this
-    // function will not be called.
-  });
+    passport.authenticate('geocaching'),
+    function(req, res) {
+        // The request will be redirected to Geocaching for authentication, so this
+        // function will not be called.
+    });
 
 // GET /auth/geocaching/callback
 //   Use passport.authenticate() as route middleware to authenticate the
 //   request.  If authentication fails, the user will be redirected back to the
 //   login page.  Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
-app.get('/auth/geocaching/callback', 
-  passport.authenticate('geocaching', { failureRedirect: '/login' }),
-  function(req, res) {
-    res.redirect('/');
-  });
+app.get('/auth/geocaching/callback',
+    passport.authenticate('geocaching', { failureRedirect: '/login' }),
+    function(req, res) {
+        res.redirect('/');
+    });
 
-app.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
+app.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
 });
 
-app.listen(port, function () {
-  console.log('Example app for geocaching-api is listening');
+app.listen(port, function() {
+    console.log('Example app for geocaching-api is listening');
 });
 
 
@@ -139,6 +144,6 @@ app.listen(port, function () {
 //   the request will proceed.  Otherwise, the user will be redirected to the
 //   login page.
 function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
-  res.redirect('/login')
+    if (req.isAuthenticated()) { return next(); }
+    res.redirect('/login')
 }
