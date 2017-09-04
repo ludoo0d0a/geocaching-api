@@ -1,9 +1,8 @@
 var express = require('express'),
     passport = require('passport'),
     util = require('util'),
-    GeocachingApi = require('../../lib/geocaching-api')
+    GeocachingApi = require('../../lib/geocaching-api'),
     //, GeocachingApi = require('geocaching-api')
-    ,
     morgan = require('morgan'),
     session = require('express-session'),
     bodyParser = require('body-parser'),
