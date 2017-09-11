@@ -7,8 +7,10 @@ Geocaching API client library for node.js
 
 ## Setup
 
-To setup API, replace your API keys values in config files :
+To setup API, replace your API keys values in config-api file (copied from template) :
 > cp default-config-api.js config-api.js  
+
+## Tests
 
 Mocha tests require OAuth token produced after OAUth authorization.
 Since it requires UI, token should be retrieved in exemple app (in /account page) and copied into config-tokens.
@@ -18,13 +20,13 @@ Since it requires UI, token should be retrieved in exemple app (in /account page
 
 For a complete, working example, refer to the [login example](https://github.com/ludoo0d0a/geocaching-api/tree/master/examples/login).
 
-> npm install express express-session body-parser cookie-parser method-override ejs express-ejs-layouts morgan passport
-> npm start
+    > cd examples/login
+    > npm install
+    > npm start
 
 ## Tests
 
-    $ npm install --dev
-    $ make test
+    > npm run test
 
 ## Todo
     
@@ -38,4 +40,4 @@ For a complete, working example, refer to the [login example](https://github.com
 
 [The ISC License](http://opensource.org/licenses/ISC)
 
-Copyright (c) 2015 Ludovic Valente <[http://www.pitaso.com/](http://www.pitaso.com)>
+Copyright (c) 2017 Ludovic Valente <[http://www.geoking.fr/](http://www.geoking.fr)>

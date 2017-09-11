@@ -1,8 +1,8 @@
 var express = require('express'),
     passport = require('passport'),
     util = require('util'),
-    GeocachingApi = require('../../lib/geocaching-api'),
-    //, GeocachingApi = require('geocaching-api')
+    //GeocachingApi = require('../../lib/geocaching-api'),
+    GeocachingApi = require('geocaching-api'),
     morgan = require('morgan'),
     session = require('express-session'),
     bodyParser = require('body-parser'),
@@ -12,6 +12,7 @@ var express = require('express'),
     config = require('../../config-api');
 
 var port = process.env.PORT || 3000;
+var ip = process.env.IP || 'localhost';
 var api = null;
 
 /*
@@ -127,7 +128,7 @@ app.get('/logout', function(req, res) {
 });
 
 app.listen(port, function() {
-    console.log('Example app for geocaching-api is listening');
+    console.log('Example app for geocaching-api is listening on http://%s:%d', ip, port);
 });
 
 
