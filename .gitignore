@@ -2,3 +2,5 @@ node_modules
 config*.js
 *.sh
 package-lock.json
+yarn.lock
+examples/login/yarn.lock
