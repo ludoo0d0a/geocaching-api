@@ -41,3 +41,83 @@ For a complete, working example, refer to the [login example](https://github.com
 [The ISC License](http://opensource.org/licenses/ISC)
 
 Copyright (c) 2017 Ludovic Valente <[http://www.geoking.fr/](http://www.geoking.fr)>
+
+== Favorite
+AddFavoritePointToCache
+GetCacheIdsFavoritedByUser
+GetCachesFavoritedByUser
+GetUsersFavoritePoints
+GetUsersWhoFavoritedCache
+RemoveFavoritePointFromCache
+
+== Bookmark
+AddGeocachesToBookmarkList
+GetBookmarkListByGuid
+GetBookmarkListsByUserID
+GetBookmarkListsForUser
+
+== Trackable
+CreateTrackableLog
+GetOwnedTrackables
+GetTrackableLogsByTBCode
+GetTrackablesByTBCode
+GetTrackablesByTrackingNumber
+GetTrackablesInCache
+GetTrackableTravelList
+GetUsersTrackables
+UploadImageToTrackableLog
+
+== Profile
+GetAnotherUsersProfile
+GetAPILimits
+GetMembershipTypes
+GetYourUserProfile
+Ping
+RegisterWP7DeviceTile
+WindowsPhoneTileSearch
+GetUserCredentials
+GetUsersCacheCounts
+
+== Note
+CreateFieldNoteAndPublish
+DeleteCacheNote
+UpdateCacheNote
+GetUsersCacheNotes
+
+== Waypoint
+DeleteUserWaypoint
+SaveUserWaypoint
+GetUserWaypoints
+
+== Logs
+GetGeocacheLogsByCacheCode
+GetUsersGeocacheLogs
+GetWptLogTypes ??
+UploadImageToGeocacheLog
+
+== Souvenirs
+SearchForSouvenirsByPublicGuid
+
+== caches
+SearchForGeocaches
+GetMoreGeocaches
+GetCacheByTileGuid
+GetGeocacheDataTypes
+GetGeocacheStatus
+GetGeocacheTypes
+GetAttributeTypesData
+
+== images
+GetImagesForGeocache
+GetUserGallery
+
+== PQ
+GetPocketQueryData
+GetPocketQueryList
+GetPocketQueryZippedFile
+GetFullPocketQueryData
+
+== Others...
+GeocodeString
+GetSiteStats
+GetStatusMessages
