@@ -3,7 +3,7 @@ Geocaching API client library for node.js
 
 ## Dependencies
 
-  * [geocaching-api](https://github.com/ludoo0d0a/geocaching-api)
+  * [passport-geocaching](https://github.com/ludoo0d0a/passport-geocaching)
 
 ## Setup
 

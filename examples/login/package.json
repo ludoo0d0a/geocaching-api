@@ -1,21 +1,21 @@
 {
   "name": "geocaching-client-example",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "app.js",
   "scripts": {
     "start": "node app"
   },
   "dependencies": {
-    "body-parser": "^1.18.0",
-    "cookie-parser": "^1.4.3",
-    "ejs": "^2.5.7",
-    "express": "^4.15.4",
-    "express-ejs-layouts": "^2.3.1",
-    "express-session": "^1.15.5",
-    "method-override": "^2.3.9",
-    "morgan": "^1.8.2",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.0",
+    "express-session": "^1.16.2",
+    "method-override": "^3.0.0",
+    "morgan": "^1.9.1",
     "passport": "^0.4.0",
     "geocaching-api": "^1.0.7",
-    "lodash": "4.17.4"
+    "lodash": "4.17.11"
   }
 }
