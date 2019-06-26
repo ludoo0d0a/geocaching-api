@@ -31,6 +31,7 @@ For a complete, working example, refer to the [login example](https://github.com
 ## Todo
     
     Complete implementation of GC API following official doc: https://api.groundspeak.com/LiveV6/geocaching.svc/help
+    Migrate to the new Rest API https://api.groundspeak.com/documentation
 
 ## Credits
 
@@ -40,7 +41,7 @@ For a complete, working example, refer to the [login example](https://github.com
 
 [The ISC License](http://opensource.org/licenses/ISC)
 
-Copyright (c) 2017 Ludovic Valente <[http://www.geoking.fr/](http://www.geoking.fr)>
+Copyright (c) 2019 Ludovic Valente <[http://www.geoking.fr/](http://www.geoking.fr)>
 
 == Favorite
 AddFavoritePointToCache
