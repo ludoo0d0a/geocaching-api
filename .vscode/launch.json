@@ -7,6 +7,12 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "Generator",
+            "program": "${workspaceFolder}/generator/index.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "Login example",
             "program": "${workspaceRoot}/examples/login/app.js"
         }

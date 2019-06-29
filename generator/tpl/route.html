@@ -1,0 +1,58 @@
+<div id="update-geocachelog">
+    <h3>Update Geocache Log</h3>
+    <p>
+        This method will update a specified geocache log. It will return the updated geocache log.
+    </p>
+    <p>
+        <b>Path: </b><code>/v1/geocachelogs/{referenceCode}</code>
+        <br>
+        <b>HTTP Method: </b>PUT
+        <br>
+        <b>Response Type: </b><a href="https://api.groundspeak.com/documentation#geocache-log">GeocacheLog</a>
+        <br>
+        <b>Response Codes: </b>200, 400, 401, 403, 404, 409, 429, 500
+        <br>
+        <b>Restrictions: </b>Only owner of geocache log may update the log.
+    </p>
+    <br>
+    <table class="table table-striped table-hover table-responsive">
+        <caption>Parameters</caption>
+        <thead>
+            <tr>
+                <th class="col-xs-1">Argument</th>
+                <th class="col-xs-1">Type</th>
+                <th class="col-xs-2">Example</th>
+                <th class="col-xs-1">Required</th>
+                <th class="col-xs-5">Description</th>
+                <th class="col-xs-2">Default</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>referenceCode</code></td>
+                <td>path</td>
+                <td><code>gl100</code></td>
+                <td>Yes</td>
+                <td>the identifier of the geocache log</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td><code>log</code></td>
+                <td>body</td>
+                <td><a href="https://api.groundspeak.com/documentation#geocache-log">GeocacheLog</a></td>
+                <td>Yes</td>
+                <td>geocache log to update</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td><code>fields</code></td>
+                <td>query</td>
+                <td><code>fields=name,referenceCode</code></td>
+                <td>No</td>
+                <td>partial response fields to return</td>
+                <td><code>referenceCode</code></td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+</div>

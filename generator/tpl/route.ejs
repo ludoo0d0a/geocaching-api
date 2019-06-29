@@ -1,0 +1,28 @@
+<% endpoints.forEach(function(e){ %>
+
+/**
+ * <%= e.title %>
+ * <%= e.description %>
+ *
+ * @path: <%= e.path %>
+ * @method: <%= e.httpMethod %>
+ * @link <%= e.link %>
+ * @access <%= e.access %>
+<% e.params.forEach(function(param){ %> * @param <%= param.name %> <%= param.type %> <% if (param.required) { %>required<% } %> <%= param.description %> <%= param.defaultValue %> (<%= param.example %>)
+<% }); %>
+ * @return <%= e.responseType %> <%= e.responseTypeUrl %>
+ * @responseCodes <%= e.responseCodes %>
+ * @restrictions <%= e.restrictions %>
+ */
+GeocachingApi.prototype.<%= e.functionName %> = function (params, cb) {
+    <% if (e.required_params && e.required_params.length>0) { %>
+    // check required params
+    <% e.required_params.forEach(function(p){ %>
+    if (!array_key_exists('<%= p.name %>', params)) {
+            throw new Exception('<%= p.name %> is missing.');
+    }
+    <% }); %><% } %>
+    return this.<%= e.httpMethod %>Request(<%= e.path %>, params, cb);
+}
+
+<% }); %>
