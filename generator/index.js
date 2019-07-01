@@ -154,7 +154,7 @@ function parse_objects(div, sectionId, $) {
           .attr('href')
       )
     };
-    param.isArray = /^array/.test(param.type);
+    param.isArray = /array/.test(param.type) || /^array/.test(param.description);
     checkType(param);
     r.params.push(param);
   });
@@ -175,20 +175,13 @@ function parse_endpoints(div, sectionId, $) {
     description: xtrim(nodesP.eq(0).text()),
     path: $('code', n).text(),
     httpMethod: nextText($('b', n).eq(1)).toLowerCase(),
-    responseType: $('b', n)
-      .eq(2)
-      .next('a')
-      .text(),
-    responseTypeLink: $('b', n)
-      .eq(2)
-      .next('a')
-      .attr('href'),
     responseCodes: nextText($('b', n).eq(3)),
     restrictions: nextText($('b', n).eq(4)),
     link: API_URL + '#' + id,
     access: 'public',
     params: []
   };
+  addResponseType($('b', n).eq(2), r);
 
   const rows = $('table>tbody>tr', div);
   rows.map((j, row) => {
@@ -230,8 +223,48 @@ function nextText(el) {
   return el && el[0] && xtrim(el[0].next.data);
 }
 function xtrim(txt) {
+  if (!txt){
+    return txt;
+  }
   return txt.trim().replace(/[\n\t\r]/g, '');
 }
+function addResponseType(el, r) {
+  let responseType = el.text();
+  const text = nextText(el)
+  const isArray = /array/i.test(text);
+  if (/No Response body/.test(text)){
+    responseType = '';
+  }
+  
+  let links = [];
+  let l = el;
+  while(l=l.next()){
+    if (l[0] && l[0].name === 'a'){
+    links.push(l[0]);
+    }else{
+      break;
+    }
+  }
+  // el.nextAll('a');
+  let responseTypes = [];
+  if (links.length>0){
+    // TODO manage multiple response types...
+    links.map((link, i)=>{
+      let r = snakeToCamel(link.attribs['href'].replace(/#/, ''));
+      if (isArray) {
+        r += '[]';
+      }
+      responseTypes.push(r);
+    });    
+    responseType = responseTypes.join(' | ');
+  }else{
+    responseType='';
+  }
+  
+  r.responseType = responseType;
+  // r.responseTypeLink = responseTypeLink;
+}
+
 function cleanAnchor(txt) {
   if (!txt) {
     return txt;
@@ -264,7 +297,7 @@ function checkType(param) {
   param.type = snakeToPascal(param.type);
 
   if (param.isArray) {
-    param.type = param.type + '[]';
+    param.type = param.type.replace('array', '').trim() + '[]';
   }
 }
 

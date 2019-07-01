@@ -1,5 +1,3 @@
-import * as urljoin from 'url-join';
-
 import http, {utils} from '../utils/http';
 import {HttpClient, InternalConfiguration, List} from '../utils/types';
 
@@ -74,18 +72,17 @@ export const trackablelogMethodsApi = (configuration: InternalConfiguration, htt
     * @method: get
     * @link https://api.groundspeak.com/documentation#get-trackable-logs
     * @access public
-     * @param referenceCode (path) [required] the identifier of the trackable - (tb25)
-     * @param fields (query) [required] partial response fields to return referenceCode (fields=name,referenceCode)
-     * @param skip (query) [required] the number of resources to skip over 0 (skip=10)
-     * @param take (query) [required] how many resources to return. maximum value of 50 10 (take=0)
-     * @param expand (query) [required] The fields of the trackable log object to expand. The available options are images. - (expand=images:5)
-     * @param logTypes (query) [required] comma delimited list of log types to include in results all types (logTypes=14,75)
-    
-    * @return Trackable Logs 
+    * @param referenceCode (path) [required] the identifier of the trackable - (tb25)
+* @param fields (query) [required] partial response fields to return referenceCode (fields=name,referenceCode)
+* @param skip (query) [required] the number of resources to skip over 0 (skip=10)
+* @param take (query) [required] how many resources to return. maximum value of 50 10 (take=0)
+* @param expand (query) [required] The fields of the trackable log object to expand. The available options are images. - (expand=images:5)
+* @param logTypes (query) [required] comma delimited list of log types to include in results all types (logTypes=14,75)
+        * @return trackableLog[] 
     * @responseCodes 200, 400, 401, 404, 429, 500
     * @restrictions 
     */
-    const getTrackableLogs = (params: GetTrackableLogs, cb): Trackable Logs => {
+    const getTrackableLogs = (params: GetTrackableLogs, cb): trackableLog[] => {
         
         // check required params
         
@@ -104,15 +101,14 @@ export const trackablelogMethodsApi = (configuration: InternalConfiguration, htt
     * @method: get
     * @link https://api.groundspeak.com/documentation#get-trackablelog
     * @access public
-     * @param referenceCode (path) [required] the identifiers of the trackable log - (tl100)
-     * @param fields (query) [required] partial response fields to return referenceCode (fields=name,referenceCode)
-     * @param expand (query) [required] The fields of the trackable log object to expand. The available options are images. - (expand=images:5)
-    
-    * @return Trackable Log 
+    * @param referenceCode (path) [required] the identifiers of the trackable log - (tl100)
+* @param fields (query) [required] partial response fields to return referenceCode (fields=name,referenceCode)
+* @param expand (query) [required] The fields of the trackable log object to expand. The available options are images. - (expand=images:5)
+        * @return trackableLog 
     * @responseCodes 200, 400, 401, 404, 500
     * @restrictions 
     */
-    const getTrackablelog = (params: GetTrackablelog, cb): Trackable Log => {
+    const getTrackablelog = (params: GetTrackablelog, cb): trackableLog => {
         
         // check required params
         
@@ -131,14 +127,13 @@ export const trackablelogMethodsApi = (configuration: InternalConfiguration, htt
     * @method: post
     * @link https://api.groundspeak.com/documentation#create-trackablelog
     * @access public
-     * @param log (body) [required] trackable log to create - (TrackableLog)
-     * @param fields (query) [required] partial response fields to return referenceCode (fields=name,referenceCode)
-    
-    * @return Trackable Log 
+    * @param log (body) [required] trackable log to create - (TrackableLog)
+* @param fields (query) [required] partial response fields to return referenceCode (fields=name,referenceCode)
+        * @return trackableLog 
     * @responseCodes 201, 400, 401, 404, 409, 500
     * @restrictions 
     */
-    const createTrackablelog = (params: CreateTrackablelog, cb): Trackable Log => {
+    const createTrackablelog = (params: CreateTrackablelog, cb): trackableLog => {
         
         // check required params
         
@@ -157,15 +152,14 @@ export const trackablelogMethodsApi = (configuration: InternalConfiguration, htt
     * @method: put
     * @link https://api.groundspeak.com/documentation#update-trackablelog
     * @access public
-     * @param referenceCode (path) [required] the identifier of the trackable log - (tl100)
-     * @param log (body) [required] trackable log to update - (TrackableLog)
-     * @param fields (query) [required] partial response fields to return referenceCode (fields=name,referenceCode)
-    
-    * @return TrackableLog 
+    * @param referenceCode (path) [required] the identifier of the trackable log - (tl100)
+* @param log (body) [required] trackable log to update - (TrackableLog)
+* @param fields (query) [required] partial response fields to return referenceCode (fields=name,referenceCode)
+        * @return trackableLog 
     * @responseCodes 200, 400, 401, 403, 404, 409, 500
     * @restrictions Only owner of trackable log may update the log.
     */
-    const updateTrackablelog = (params: UpdateTrackablelog, cb): TrackableLog => {
+    const updateTrackablelog = (params: UpdateTrackablelog, cb): trackableLog => {
         
         // check required params
         
@@ -188,13 +182,12 @@ export const trackablelogMethodsApi = (configuration: InternalConfiguration, htt
     * @method: delete
     * @link https://api.groundspeak.com/documentation#delete-trackablelog
     * @access public
-     * @param referenceCode (path) [required] the identifier of the trackable log - (tl100)
-    
-    * @return  
+    * @param referenceCode (path) [required] the identifier of the trackable log - (tl100)
+        * @return  
     * @responseCodes 204, 400, 401, 403, 409, 500
     * @restrictions Only owner of trackable log may delete the log.
     */
-    const deleteTrackablelog = (params: DeleteTrackablelog, cb):  => {
+    const deleteTrackablelog = (params: DeleteTrackablelog, cb) => {
         
         // check required params
         
@@ -213,16 +206,15 @@ export const trackablelogMethodsApi = (configuration: InternalConfiguration, htt
     * @method: get
     * @link https://api.groundspeak.com/documentation#get-trackablelog-images
     * @access public
-     * @param referenceCode (path) [required] the identifier of the trackable log - (tl100)
-     * @param fields (query) [required] partial response fields to return url (fields=name,referenceCode)
-     * @param skip (query) [required] the number of resources to skip over 0 (skip=10)
-     * @param take (query) [required] how many resources to return. maximum value of 50 10 (take=0)
-    
-    * @return Images 
+    * @param referenceCode (path) [required] the identifier of the trackable log - (tl100)
+* @param fields (query) [required] partial response fields to return url (fields=name,referenceCode)
+* @param skip (query) [required] the number of resources to skip over 0 (skip=10)
+* @param take (query) [required] how many resources to return. maximum value of 50 10 (take=0)
+        * @return image[] 
     * @responseCodes 200, 400, 401, 404, 500
     * @restrictions 
     */
-    const getTrackablelogImages = (params: GetTrackablelogImages, cb): Images => {
+    const getTrackablelogImages = (params: GetTrackablelogImages, cb): image[] => {
         
         // check required params
         
@@ -241,15 +233,14 @@ export const trackablelogMethodsApi = (configuration: InternalConfiguration, htt
     * @method: post
     * @link https://api.groundspeak.com/documentation#create-trackablelog-image
     * @access public
-     * @param referenceCode (path) [required] the identifier of the trackable - (tl25)
-     * @param image (body) [required] image to add to log - (ImageToUpload)
-     * @param fields (query) [required] partial response fields to return url (fields=url)
-    
-    * @return Image 
+    * @param referenceCode (path) [required] the identifier of the trackable - (tl25)
+* @param image (body) [required] image to add to log - (ImageToUpload)
+* @param fields (query) [required] partial response fields to return url (fields=url)
+        * @return image 
     * @responseCodes 201, 400, 401, 403, 404, 409, 500
     * @restrictions Only owner of trackable log may add an image.
     */
-    const createTrackablelogImage = (params: CreateTrackablelogImage, cb): Image => {
+    const createTrackablelogImage = (params: CreateTrackablelogImage, cb): image => {
         
         // check required params
         
@@ -272,14 +263,13 @@ export const trackablelogMethodsApi = (configuration: InternalConfiguration, htt
     * @method: delete
     * @link https://api.groundspeak.com/documentation#delete-trackablelog-image
     * @access public
-     * @param referenceCode (path) [required] the identifier of the trackable log - (tl1)
-     * @param imageGuid (path) [required] the identifier of the image - (fed3b84a-414e-469b-8b84-d731d62a2f9e)
-    
-    * @return  
+    * @param referenceCode (path) [required] the identifier of the trackable log - (tl1)
+* @param imageGuid (path) [required] the identifier of the image - (fed3b84a-414e-469b-8b84-d731d62a2f9e)
+        * @return  
     * @responseCodes 201, 400, 401, 403, 409, 500
     * @restrictions Only owner of trackable log may delete an image.
     */
-    const deleteTrackablelogImage = (params: DeleteTrackablelogImage, cb):  => {
+    const deleteTrackablelogImage = (params: DeleteTrackablelogImage, cb) => {
         
         // check required params
         
@@ -302,12 +292,11 @@ export const trackablelogMethodsApi = (configuration: InternalConfiguration, htt
     * @method: get
     * @link https://api.groundspeak.com/documentation#get-trackablelog-types
     * @access public
-    
-    * @return Trackable Log Types 
+            * @return type[] 
     * @responseCodes 200, 401, 500
     * @restrictions 
     */
-    const getTrackablelogTypes = (params: GetTrackablelogTypes, cb): Trackable Log Types => {
+    const getTrackablelogTypes = (params: GetTrackablelogTypes, cb): type[] => {
         
         return this.getRequest('/v1/trackablelogtypes', params, cb);
     };

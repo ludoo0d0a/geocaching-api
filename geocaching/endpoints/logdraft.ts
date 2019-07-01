@@ -1,5 +1,3 @@
-import * as urljoin from 'url-join';
-
 import http, {utils} from '../utils/http';
 import {HttpClient, InternalConfiguration, List} from '../utils/types';
 
@@ -60,15 +58,14 @@ export const logdraftMethodsApi = (configuration: InternalConfiguration, httpCli
     * @method: get
     * @link https://api.groundspeak.com/documentation#get-logdrafts
     * @access public
-     * @param fields (query) [required] partial response fields to return referenceCode (fields=name,referenceCode)
-     * @param skip (query) [required] the number of resources to skip over 0 (skip=10)
-     * @param take (query) [required] how many resources to return. maximum value of 50 10 (take=0)
-    
-    * @return Log Drafts 
+    * @param fields (query) [required] partial response fields to return referenceCode (fields=name,referenceCode)
+* @param skip (query) [required] the number of resources to skip over 0 (skip=10)
+* @param take (query) [required] how many resources to return. maximum value of 50 10 (take=0)
+        * @return logDraft[] 
     * @responseCodes 200, 400, 401, 404, 429, 500
     * @restrictions 
     */
-    const getLogdrafts = (params: GetLogdrafts, cb): Log Drafts => {
+    const getLogdrafts = (params: GetLogdrafts, cb): logDraft[] => {
         
         return this.getRequest('/v1/logdrafts', params, cb);
     };
@@ -81,14 +78,13 @@ export const logdraftMethodsApi = (configuration: InternalConfiguration, httpCli
     * @method: get
     * @link https://api.groundspeak.com/documentation#get-logdraft
     * @access public
-     * @param referenceCode (path) [required] the identifiers of the log draft - (ld100)
-     * @param fields (query) [required] partial response fields to return referenceCode (fields=name,referenceCode)
-    
-    * @return Log Draft 
+    * @param referenceCode (path) [required] the identifiers of the log draft - (ld100)
+* @param fields (query) [required] partial response fields to return referenceCode (fields=name,referenceCode)
+        * @return logDraft 
     * @responseCodes 200, 400, 401, 404, 500
     * @restrictions Only owner of log drafts may fetch it.
     */
-    const getLogdraft = (params: GetLogdraft, cb): Log Draft => {
+    const getLogdraft = (params: GetLogdraft, cb): logDraft => {
         
         // check required params
         
@@ -107,14 +103,13 @@ export const logdraftMethodsApi = (configuration: InternalConfiguration, httpCli
     * @method: post
     * @link https://api.groundspeak.com/documentation#create-logdraft
     * @access public
-     * @param log (body) [required] log draft to create - (LogDraft)
-     * @param fields (query) [required] partial response fields to return referenceCode (fields=name,referenceCode)
-    
-    * @return Log Draft 
+    * @param log (body) [required] log draft to create - (LogDraft)
+* @param fields (query) [required] partial response fields to return referenceCode (fields=name,referenceCode)
+        * @return logDraft 
     * @responseCodes 201, 400, 401, 404, 409, 500
     * @restrictions 
     */
-    const createLogdraft = (params: CreateLogdraft, cb): Log Draft => {
+    const createLogdraft = (params: CreateLogdraft, cb): logDraft => {
         
         // check required params
         
@@ -133,15 +128,14 @@ export const logdraftMethodsApi = (configuration: InternalConfiguration, httpCli
     * @method: put
     * @link https://api.groundspeak.com/documentation#update-logdraft
     * @access public
-     * @param referenceCode (path) [required] the identifier of the log draft - (ld100)
-     * @param log (body) [required] log draft to update - (LogDraft)
-     * @param fields (query) [required] partial response fields to return referenceCode (fields=name,referenceCode)
-    
-    * @return LogDraft 
+    * @param referenceCode (path) [required] the identifier of the log draft - (ld100)
+* @param log (body) [required] log draft to update - (LogDraft)
+* @param fields (query) [required] partial response fields to return referenceCode (fields=name,referenceCode)
+        * @return logDraft 
     * @responseCodes 200, 400, 401, 403, 404, 409, 500
     * @restrictions Only owner of log draft may update the log draft.
     */
-    const updateLogdraft = (params: UpdateLogdraft, cb): LogDraft => {
+    const updateLogdraft = (params: UpdateLogdraft, cb): logDraft => {
         
         // check required params
         
@@ -164,13 +158,12 @@ export const logdraftMethodsApi = (configuration: InternalConfiguration, httpCli
     * @method: delete
     * @link https://api.groundspeak.com/documentation#delete-logdraft
     * @access public
-     * @param referenceCode (path) [required] the identifier of the log draft - (ld100)
-    
-    * @return  
+    * @param referenceCode (path) [required] the identifier of the log draft - (ld100)
+        * @return  
     * @responseCodes 204, 400, 401, 409, 500
     * @restrictions Only owner of log draft may delete the log draft.
     */
-    const deleteLogdraft = (params: DeleteLogdraft, cb):  => {
+    const deleteLogdraft = (params: DeleteLogdraft, cb) => {
         
         // check required params
         
@@ -189,14 +182,13 @@ export const logdraftMethodsApi = (configuration: InternalConfiguration, httpCli
     * @method: post
     * @link https://api.groundspeak.com/documentation#promote-logdraft
     * @access public
-     * @param referenceCode (path) [required] the identifier of the log draft - (ld100)
-     * @param draft (body) [required] the log draft to promote to geocache log - (LogDraft)
-    
-    * @return PromotedLogDraft 
+    * @param referenceCode (path) [required] the identifier of the log draft - (ld100)
+* @param draft (body) [required] the log draft to promote to geocache log - (LogDraft)
+        * @return promotedLogDraft 
     * @responseCodes 201, 400, 401, 409, 500
     * @restrictions Only owner of log draft may promote the log draft.
     */
-    const promoteLogdraft = (params: PromoteLogdraft, cb): PromotedLogDraft => {
+    const promoteLogdraft = (params: PromoteLogdraft, cb): promotedLogDraft => {
         
         // check required params
         
@@ -219,15 +211,14 @@ export const logdraftMethodsApi = (configuration: InternalConfiguration, httpCli
     * @method: post
     * @link https://api.groundspeak.com/documentation#create-logdraft-image
     * @access public
-     * @param referenceCode (path) [required] the identifier of the log draft - (ld100)
-     * @param image (body) [required] the iamge to upload - (PostImage)
-     * @param fields (query) [required] partial response fields to return url (fields=url,guid)
-    
-    * @return Image 
+    * @param referenceCode (path) [required] the identifier of the log draft - (ld100)
+* @param image (body) [required] the iamge to upload - (PostImage)
+* @param fields (query) [required] partial response fields to return url (fields=url,guid)
+        * @return image 
     * @responseCodes 201, 400, 401, 403, 409, 500
     * @restrictions Only owner of log draft may add images to the log draft.
     */
-    const createLogdraftImage = (params: CreateLogdraftImage, cb): Image => {
+    const createLogdraftImage = (params: CreateLogdraftImage, cb): image => {
         
         // check required params
         

@@ -1,5 +1,3 @@
-import * as urljoin from 'url-join';
-
 import http, {utils} from '../utils/http';
 import {HttpClient, InternalConfiguration, List} from '../utils/types';
 
@@ -27,13 +25,12 @@ export const <%= apiName %> = (configuration: InternalConfiguration, httpClient:
     * @method: <%= e.httpMethod %>
     * @link <%= e.link %>
     * @access <%= e.access %>
-    <% e.params.forEach(function(param){ %> * @param <%= param.name %> (<%= param.type %>) <% if (param.required) { %>[required]<% } %> <%= param.description %> <%= param.defaultValue %> (<%= param.example %>)
-    <% }); %>
-    * @return <%= e.responseType %> <%= e.responseTypeUrl %>
+    <% e.params.forEach(function(param){ %>* @param <%= param.name %> (<%= param.type %>) <% if (param.required) { %>[required]<% } %> <%= param.description %> <%= param.defaultValue %> (<%= param.example %>)
+<% }); %>        * @return <%= e.responseType %> <%= e.responseTypeUrl %>
     * @responseCodes <%= e.responseCodes %>
     * @restrictions <%= e.restrictions %>
     */
-    const <%= e.functionName %> = (params: <%= e.interfaceName %>, cb): <%= e.responseType %> => {
+    const <%= e.functionName %> = (params: <%= e.interfaceName %>, cb)<% if (e.responseType) { %>: <%= e.responseType %><% } %> => {
         <% if (e.required_params && e.required_params.length>0) { %>
         // check required params
         <% e.required_params.forEach(function(p){ %>

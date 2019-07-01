@@ -1,5 +1,3 @@
-import * as urljoin from 'url-join';
-
 import http, {utils} from '../utils/http';
 import {HttpClient, InternalConfiguration, List} from '../utils/types';
 
@@ -41,14 +39,13 @@ export const utilityMethodsApi = (configuration: InternalConfiguration, httpClie
     * @method: get
     * @link https://api.groundspeak.com/documentation#get-reference-code
     * @access public
-     * @param id (query) [required] the id to convert - (id=1)
-     * @param codePrefix (query) [required] the type of reference code to return - (codePrefix=GC)
-    
-    * @return  
+    * @param id (query) [required] the id to convert - (id=1)
+* @param codePrefix (query) [required] the type of reference code to return - (codePrefix=GC)
+        * @return  
     * @responseCodes 200, 400, 401, 429, 500
     * @restrictions 
     */
-    const getReferenceCode = (params: GetReferenceCode, cb):  => {
+    const getReferenceCode = (params: GetReferenceCode, cb) => {
         
         // check required params
         
@@ -71,12 +68,11 @@ export const utilityMethodsApi = (configuration: InternalConfiguration, httpClie
     * @method: get
     * @link https://api.groundspeak.com/documentation#get-countries
     * @access public
-    
-    * @return  
+            * @return  
     * @responseCodes 200, 401, 500
     * @restrictions 
     */
-    const getCountries = (params: GetCountries, cb):  => {
+    const getCountries = (params: GetCountries, cb) => {
         
         return this.getRequest('/v1/countries', params, cb);
     };
@@ -89,12 +85,11 @@ export const utilityMethodsApi = (configuration: InternalConfiguration, httpClie
     * @method: get
     * @link https://api.groundspeak.com/documentation#get-states
     * @access public
-    
-    * @return  
+            * @return  
     * @responseCodes 
     * @restrictions 
     */
-    const getStates = (params: GetStates, cb):  => {
+    const getStates = (params: GetStates, cb) => {
         
         return this.getRequest('/v1/states', params, cb);
     };
@@ -107,13 +102,12 @@ export const utilityMethodsApi = (configuration: InternalConfiguration, httpClie
     * @method: get
     * @link https://api.groundspeak.com/documentation#get-country-states
     * @access public
-     * @param countryId (path) [required] the id of the country - (countryId=1)
-    
-    * @return  
+    * @param countryId (path) [required] the id of the country - (countryId=1)
+        * @return  
     * @responseCodes 200, 401, 500
     * @restrictions 
     */
-    const getCountryStates = (params: GetCountryStates, cb):  => {
+    const getCountryStates = (params: GetCountryStates, cb) => {
         
         // check required params
         
@@ -132,12 +126,11 @@ export const utilityMethodsApi = (configuration: InternalConfiguration, httpClie
     * @method: get
     * @link https://api.groundspeak.com/documentation#get-membership-levels
     * @access public
-    
-    * @return  
+            * @return  
     * @responseCodes 200, 401, 500
     * @restrictions 
     */
-    const getMembershipLevels = (params: GetMembershipLevels, cb):  => {
+    const getMembershipLevels = (params: GetMembershipLevels, cb) => {
         
         return this.getRequest('/v1/membershiplevels', params, cb);
     };

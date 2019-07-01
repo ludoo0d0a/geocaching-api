@@ -1,5 +1,3 @@
-import * as urljoin from 'url-join';
-
 import http, {utils} from '../utils/http';
 import {HttpClient, InternalConfiguration, List} from '../utils/types';
 
@@ -61,17 +59,16 @@ export const userwaypointMethodsApi = (configuration: InternalConfiguration, htt
     * @method: get
     * @link https://api.groundspeak.com/documentation#get-geocache-userwaypoints
     * @access public
-     * @param referenceCode (path) [required] the identifier of the geocache - (gc25)
-     * @param includeCorrectedCoordinates (query) [required] bool to include corrected coordinates in the response false (includeCorrectedCoordinates=false)
-     * @param fields (query) [required] partial response fields to return all fields (fields=name,referenceCode)
-     * @param skip (query) [required] the number of resources to skip over 0 (skip=10)
-     * @param take (query) [required] how many resources to return. maximum value of 50 10 (take=0)
-    
-    * @return User Waypoints 
+    * @param referenceCode (path) [required] the identifier of the geocache - (gc25)
+* @param includeCorrectedCoordinates (query) [required] bool to include corrected coordinates in the response false (includeCorrectedCoordinates=false)
+* @param fields (query) [required] partial response fields to return all fields (fields=name,referenceCode)
+* @param skip (query) [required] the number of resources to skip over 0 (skip=10)
+* @param take (query) [required] how many resources to return. maximum value of 50 10 (take=0)
+        * @return userWaypoint[] 
     * @responseCodes 200, 400, 401, 404, 429, 500
     * @restrictions Basic members restriction applies. See
     */
-    const getGeocacheUserwaypoints = (params: GetGeocacheUserwaypoints, cb): User Waypoints => {
+    const getGeocacheUserwaypoints = (params: GetGeocacheUserwaypoints, cb): userWaypoint[] => {
         
         // check required params
         
@@ -90,16 +87,15 @@ export const userwaypointMethodsApi = (configuration: InternalConfiguration, htt
     * @method: get
     * @link https://api.groundspeak.com/documentation#get-userwaypoints
     * @access public
-     * @param includeCorrectedCoordinates (query) [required] bool to include corrected coordinates in the response false (includeCorrectedCoordinates=false)
-     * @param fields (query) [required] partial response fields to return all fields (fields=name,referenceCode)
-     * @param skip (query) [required] the number of resources to skip over 0 (skip=10)
-     * @param take (query) [required] how many resources to return. maximum value of 50 10 (take=0)
-    
-    * @return User Waypoints 
+    * @param includeCorrectedCoordinates (query) [required] bool to include corrected coordinates in the response false (includeCorrectedCoordinates=false)
+* @param fields (query) [required] partial response fields to return all fields (fields=name,referenceCode)
+* @param skip (query) [required] the number of resources to skip over 0 (skip=10)
+* @param take (query) [required] how many resources to return. maximum value of 50 10 (take=0)
+        * @return userWaypoint[] 
     * @responseCodes 200, 400, 401, 404, 500
     * @restrictions Only owner of user waypoints can fetch them.
     */
-    const getUserwaypoints = (params: GetUserwaypoints, cb): User Waypoints => {
+    const getUserwaypoints = (params: GetUserwaypoints, cb): userWaypoint[] => {
         
         return this.getRequest('/v1/userwaypoints', params, cb);
     };
@@ -112,14 +108,13 @@ export const userwaypointMethodsApi = (configuration: InternalConfiguration, htt
     * @method: post
     * @link https://api.groundspeak.com/documentation#create-userwaypoint
     * @access public
-     * @param referenceCode (path) [required] the identifier of the geocache - (gc25)
-     * @param userWaypoint (body) [required] user waypoint to create - (UserWaypoint)
-    
-    * @return User Waypoint 
+    * @param referenceCode (path) [required] the identifier of the geocache - (gc25)
+* @param userWaypoint (body) [required] user waypoint to create - (UserWaypoint)
+        * @return userWaypoint 
     * @responseCodes 201, 400, 401, 404, 409, 500
     * @restrictions 
     */
-    const createUserwaypoint = (params: CreateUserwaypoint, cb): User Waypoint => {
+    const createUserwaypoint = (params: CreateUserwaypoint, cb): userWaypoint => {
         
         // check required params
         
@@ -142,14 +137,13 @@ export const userwaypointMethodsApi = (configuration: InternalConfiguration, htt
     * @method: put
     * @link https://api.groundspeak.com/documentation#update-userwaypoint
     * @access public
-     * @param referenceCode (path) [required] the identifier of the user waypoint - (UW123)
-     * @param log (body) [required] user waypoint to update - (UserWaypoint)
-    
-    * @return User Waypoint 
+    * @param referenceCode (path) [required] the identifier of the user waypoint - (UW123)
+* @param log (body) [required] user waypoint to update - (UserWaypoint)
+        * @return userWaypoint 
     * @responseCodes 200, 400, 401, 403, 404, 409, 500
     * @restrictions Only owner may update the user waypoint.
     */
-    const updateUserwaypoint = (params: UpdateUserwaypoint, cb): User Waypoint => {
+    const updateUserwaypoint = (params: UpdateUserwaypoint, cb): userWaypoint => {
         
         // check required params
         
@@ -172,13 +166,12 @@ export const userwaypointMethodsApi = (configuration: InternalConfiguration, htt
     * @method: delete
     * @link https://api.groundspeak.com/documentation#delete-userwaypoint
     * @access public
-     * @param referenceCode (path) [required] the identifier of the user waypoint - (UW123)
-    
-    * @return  
+    * @param referenceCode (path) [required] the identifier of the user waypoint - (UW123)
+        * @return  
     * @responseCodes 204, 400, 401, 409, 500
     * @restrictions Only owner may delete the user waypoint.
     */
-    const deleteUserwaypoint = (params: DeleteUserwaypoint, cb):  => {
+    const deleteUserwaypoint = (params: DeleteUserwaypoint, cb) => {
         
         // check required params
         
@@ -197,14 +190,13 @@ export const userwaypointMethodsApi = (configuration: InternalConfiguration, htt
     * @method: put
     * @link https://api.groundspeak.com/documentation#upsert-correctedcoordinates
     * @access public
-     * @param referenceCode (path) [required] the identifier of the geocache - (GCK25B)
-     * @param coordinates (body) [required] the corrected coordinates to upsert - (Coordinates)
-    
-    * @return User Waypoint 
+    * @param referenceCode (path) [required] the identifier of the geocache - (GCK25B)
+* @param coordinates (body) [required] the corrected coordinates to upsert - (Coordinates)
+        * @return userWaypoint 
     * @responseCodes 200, 400, 401, 403, 404, 409, 429, 500
     * @restrictions 
     */
-    const upsertCorrectedcoordinates = (params: UpsertCorrectedcoordinates, cb): User Waypoint => {
+    const upsertCorrectedcoordinates = (params: UpsertCorrectedcoordinates, cb): userWaypoint => {
         
         // check required params
         
@@ -227,13 +219,12 @@ export const userwaypointMethodsApi = (configuration: InternalConfiguration, htt
     * @method: delete
     * @link https://api.groundspeak.com/documentation#delete-correctedcoordinates
     * @access public
-     * @param referenceCode (path) [required] the identifier of the geocache - (GCK25B)
-    
-    * @return  
+    * @param referenceCode (path) [required] the identifier of the geocache - (GCK25B)
+        * @return  
     * @responseCodes 204, 400, 401, 409, 429, 500
     * @restrictions Only owner may delete the corrected coordinate.
     */
-    const deleteCorrectedcoordinates = (params: DeleteCorrectedcoordinates, cb):  => {
+    const deleteCorrectedcoordinates = (params: DeleteCorrectedcoordinates, cb) => {
         
         // check required params
         

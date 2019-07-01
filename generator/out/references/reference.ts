@@ -1,5 +1,7 @@
-// geocacheTypes -
+
+// geocacheTypes - 
 enum GeocacheTypes {
+  
   // Traditional
   Traditional = 2,
   // Multi-Cache
@@ -37,11 +39,13 @@ enum GeocacheTypes {
   // Geocaching HQ Block Party
   GeocachingHQBlockParty = 4738,
   // Giga-Event
-  GigaEvent = 7005
+  GigaEvent = 7005,
 }
 
-// geocacheStates -
+
+// geocacheStates - 
 enum GeocacheStates {
+  
   // Unpublished
   Unpublished = 1,
   // Active
@@ -51,11 +55,13 @@ enum GeocacheStates {
   // Locked
   Locked = 4,
   // Archived
-  Archived = 5
+  Archived = 5,
 }
 
-// geocacheSizes -
+
+// geocacheSizes - 
 enum GeocacheSizes {
+  
   // Unknown
   Unknown = 1,
   // Micro
@@ -69,11 +75,13 @@ enum GeocacheSizes {
   // Virtual
   Virtual = 5,
   // Other
-  Other = 6
+  Other = 6,
 }
 
-// geocacheLogTypes -
+
+// geocacheLogTypes - 
 enum GeocacheLogTypes {
+  
   // Found It
   FoundIt = 2,
   // Didn&#39;t find it
@@ -111,11 +119,13 @@ enum GeocacheLogTypes {
   // Post Reviewer Note
   PostReviewerNote = 68,
   // Announcement
-  Announcement = 74
+  Announcement = 74,
 }
 
-// trackableLogTypes -
+
+// trackableLogTypes - 
 enum TrackableLogTypes {
+  
   // Write Note
   WriteNote = 4,
   // Retrieve It from a Cache
@@ -135,11 +145,13 @@ enum TrackableLogTypes {
   // Move to Inventory
   MoveToInventory = 70,
   // Visited
-  Visited = 75
+  Visited = 75,
 }
 
-// listTypes -
+
+// listTypes - 
 enum ListTypes {
+  
   // Pocket Query (pq)
   PocketQueryPq = 1,
   // Bookmark (bm)
@@ -149,11 +161,13 @@ enum ListTypes {
   // Watch (wl)
   WatchWl = 4,
   // Favorites (fl)
-  FavoritesFl = 5
+  FavoritesFl = 5,
 }
 
-// membershipTypes -
+
+// membershipTypes - 
 enum MembershipTypes {
+  
   // Unknown
   Unknown = 0,
   // Basic
@@ -161,11 +175,13 @@ enum MembershipTypes {
   // Charter
   Charter = 2,
   // Premium
-  Premium = 3
+  Premium = 3,
 }
 
-// additionalWaypointTypes -
+
+// additionalWaypointTypes - 
 enum AdditionalWaypointTypes {
+  
   // Parking Area
   ParkingArea = 217,
   // Virtual Stage
@@ -177,5 +193,6 @@ enum AdditionalWaypointTypes {
   // Trailhead
   Trailhead = 221,
   // Reference Point
-  ReferencePoint = 452
+  ReferencePoint = 452,
 }
+

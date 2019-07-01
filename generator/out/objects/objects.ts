@@ -5,71 +5,71 @@
 //
 export interface Geocache {
 
-  // uniquely identifies the geocache -  
+  // uniquely identifies the geocache
   referenceCode: String;
-  // name of the geocache -  
+  // name of the geocache
   name: String;
-  // difficulty rating of the geocache between 1.0 and 5.0 -  
+  // difficulty rating of the geocache between 1.0 and 5.0
   difficulty: Number;
-  // terrain rating of the geocache between 1.0 and 5.0 -  
+  // terrain rating of the geocache between 1.0 and 5.0
   terrain: Number;
-  // number of favorite points awarded to the geocache -  
+  // number of favorite points awarded to the geocache
   favoritePoints: Integer;
-  // number of trackables currently in the geocache -  
+  // number of trackables currently in the geocache
   trackableCount: Integer;
-  // date when the cache was placed (if an event, this is the date of the event) in the timezone of the geocache -  
+  // date when the cache was placed (if an event, this is the date of the event) in the timezone of the geocache
   placedDate: Date;
-  // date when the cache was published in the timezone of the geocache -  
+  // date when the cache was published in the timezone of the geocache
   publishedDate: Date;
-  // date and time of when an event will end (in the timezone of the geocache). null if an end date doesn&#39;t exist or if geocache is not event type. -  Nullable 
+  // date and time of when an event will end (in the timezone of the geocache). null if an end date doesn&#39;t exist or if geocache is not event type. (Nullable)
   eventEndDate: Date;
-  // type of the geocache (see Geocache Types for more info) -   Deprecated
+  // type of the geocache (see Geocache Types for more info) (Deprecated)
   type: GeocacheTypes;
-  // type of the geocache (see Geocache Types for more info) -  
+  // type of the geocache (see Geocache Types for more info)
   geocacheType: Type;
-  // size of the geocache container (see Geocache Sizes for more info) -   Deprecated
+  // size of the geocache container (see Geocache Sizes for more info) (Deprecated)
   size: GeocacheSizes;
-  // size of the geocache (see Geocache Sizes for more info) -  
+  // size of the geocache (see Geocache Sizes for more info)
   geocacheSize: GeocacheSize;
-  // user specific information about the geocache -  
+  // user specific information about the geocache
   userData: UserData;
-  // current status of the geocache (see Geocache Statuses for more info) -  
+  // current status of the geocache (see Geocache Statuses for more info)
   status: GeocacheStates;
-  // country and state information about the geocache -  
+  // country and state information about the geocache
   location: LocationData;
-  // latitude and longitude of the geocache -  
+  // latitude and longitude of the geocache
   postedCoordinates: Coordinates;
-  // datetime of last logged visit to geocache in the timezone of the geocache -  Nullable 
+  // datetime of last logged visit to geocache in the timezone of the geocache (Nullable)
   lastVisitedDate: Date;
-  // owner identifier of the geocache -  
+  // owner identifier of the geocache
   ownerCode: String;
-  // display name of owner for geocache -  
+  // display name of owner for geocache
   ownerAlias: String;
-  // whether the geocache can only be viewed by premium members -  
+  // whether the geocache can only be viewed by premium members
   isPremiumOnly: Boolean;
-  // summary about the geocache -  
+  // summary about the geocache
   shortDescription: String;
-  // details about the geocache -  
+  // details about the geocache
   longDescription: String;
-  // hints/spoilers to help to find the geocache -  
+  // hints/spoilers to help to find the geocache
   hints: String;
-  // attributes of the geocache -  
+  // attributes of the geocache
   attributes: Attribute[];
-  // timezone of the geocache -  
+  // timezone of the geocache
   ianaTimezoneId: String;
-  // external web page associated with geocache -  
+  // external web page associated with geocache
   relatedWebPage: String;
-  // geocaching.com web page associated with geocache -  
+  // geocaching.com web page associated with geocache
   url: String;
-  // user supplied image url used as background image on geocaching.com (will be null if none supplied) -  
+  // user supplied image url used as background image on geocaching.com (will be null if none supplied)
   backgroundImageUrl: String;
-  // flag for if the short or long description contains html -  
+  // flag for if the short or long description contains html
   containsHtml: Boolean;
-  // number of Found It logs on the geocache -  
+  // number of Found It logs on the geocache
   findCount: Integer;
-  // information about the owner of the geocache -  
+  // information about the owner of the geocache
   owner: User;
-  // other reference waypoints associated with the geocache -  
+  // other reference waypoints associated with the geocache
   additionalWaypoints: AdditionalWaypoint[];
 }
 
@@ -80,59 +80,59 @@ export interface Geocache {
 //
 export interface LiteGeocache {
 
-  // uniquely identifies the geocache -  
+  // uniquely identifies the geocache
   referenceCode: String;
-  // name of the geocache -  
+  // name of the geocache
   name: String;
-  // difficulty rating of the geocache between 1.0 and 5.0 -  
+  // difficulty rating of the geocache between 1.0 and 5.0
   difficulty: Number;
-  // terrain rating of the geocache between 1.0 and 5.0 -  
+  // terrain rating of the geocache between 1.0 and 5.0
   terrain: Number;
-  // number of favorite points awarded to the geocache -  
+  // number of favorite points awarded to the geocache
   favoritePoints: Integer;
-  // number of trackables currently in the geocache -  
+  // number of trackables currently in the geocache
   trackableCount: Integer;
-  // date when the cache was placed (if an event, this is the date of the event) in the timezone of the geocache -  
+  // date when the cache was placed (if an event, this is the date of the event) in the timezone of the geocache
   placedDate: Date;
-  // date when the cache was published in the timezone of the geocache -  
+  // date when the cache was published in the timezone of the geocache
   publishedDate: Date;
-  // date and time of when an event will end (in the timezone of the geocache). null if an end date doesn&#39;t exist or if geocache is not event type. -  Nullable 
+  // date and time of when an event will end (in the timezone of the geocache). null if an end date doesn&#39;t exist or if geocache is not event type. (Nullable)
   eventEndDate: Date;
-  // type of the geocache (see Geocache Types for more info) -   Deprecated
+  // type of the geocache (see Geocache Types for more info) (Deprecated)
   type: GeocacheTypes;
-  // type of the geocache (see Geocache Types for more info) -  
+  // type of the geocache (see Geocache Types for more info)
   geocacheType: Type;
-  // size of the geocache container (see Geocache Sizes for more info) -   Deprecated
+  // size of the geocache container (see Geocache Sizes for more info) (Deprecated)
   size: GeocacheSizes;
-  // size of the geocache (see Geocache Sizes for more info) -  
+  // size of the geocache (see Geocache Sizes for more info)
   geocacheSize: GeocacheSize;
-  // user specific information about the geocache -  
+  // user specific information about the geocache
   userData: UserData;
-  // current status of the geocache (see Geocache Statuses for more info) -  
+  // current status of the geocache (see Geocache Statuses for more info)
   status: GeocacheStates;
-  // country and state information about the geocache -  
+  // country and state information about the geocache
   location: LocationData;
-  // latitude and longitude of the geocache -  
+  // latitude and longitude of the geocache
   postedCoordinates: Coordinates;
-  // datetime of last logged visit to geocache in the timezone of the geocache -  Nullable 
+  // datetime of last logged visit to geocache in the timezone of the geocache (Nullable)
   lastVisitedDate: Date;
-  // owner identifier of the geocache -  
+  // owner identifier of the geocache
   ownerCode: String;
-  // display name of owner for geocache -  
+  // display name of owner for geocache
   ownerAlias: String;
-  // whether the geocache can only be viewed by premium members -  
+  // whether the geocache can only be viewed by premium members
   isPremiumOnly: Boolean;
-  // timezone of the geocache -  
+  // timezone of the geocache
   ianaTimezoneId: String;
-  // external web page associated with geocache -  
+  // external web page associated with geocache
   relatedWebPage: String;
-  // geocaching.com web page associated with geocache -  
+  // geocaching.com web page associated with geocache
   url: String;
-  // user supplied image url used as background image on geocaching.com (will be null if none supplied) -  
+  // user supplied image url used as background image on geocaching.com (will be null if none supplied)
   backgroundImageUrl: String;
-  // flag for if the short or long description contains html -  
+  // flag for if the short or long description contains html
   containsHtml: Boolean;
-  // information about the owner of the geocache -  
+  // information about the owner of the geocache
   owner: User;
 }
 
@@ -143,37 +143,37 @@ export interface LiteGeocache {
 //
 export interface GeocacheLog {
 
-  // uniquely identifies the geocache log -  
+  // uniquely identifies the geocache log
   referenceCode: String;
-  // identifier of the log owner -  
+  // identifier of the log owner
   ownerCode: String;
-  // number of images associated with geocache log -  
+  // number of images associated with geocache log
   imageCount: Integer;
-  // date and time of when user logged the geocache in the timezone of the geocache -  
+  // date and time of when user logged the geocache in the timezone of the geocache
   loggedDate: Date;
-  // display text of the geocache log -  
+  // display text of the geocache log
   text: String;
-  // name of the geocache log type (see Geocache Log Types for more info) -   Deprecated
+  // name of the geocache log type (see Geocache Log Types for more info) (Deprecated)
   type: String;
-  // type of the geocache log (see Geocache Log Types for more info) -  
+  // type of the geocache log (see Geocache Log Types for more info)
   geocacheLogType: Type;
-  // latitude and longitude of the geocache (only used with log type 47 - Update Coordinates) -  
+  // latitude and longitude of the geocache (only used with log type 47 - Update Coordinates)
   updatedCoordinates: Coordinates;
-  // identifier of the associated geocache -  
+  // identifier of the associated geocache
   geocacheCode: String;
-  // name of the associated geocache -  
+  // name of the associated geocache
   geocacheName: String;
-  // timezone of the associated geocache -  
+  // timezone of the associated geocache
   ianaTimezoneId: String;
-  // if a favorite point was awarded from this log -  
+  // if a favorite point was awarded from this log
   usedFavoritePoint: Boolean;
-  // if log was encrypted using ROT13. This field is grandfathered to logs already set to true. New logs cannot be encoded. -  
+  // if log was encrypted using ROT13. This field is grandfathered to logs already set to true. New logs cannot be encoded.
   isEncoded: Boolean;
-  // if the log has been deleted -  
+  // if the log has been deleted
   isArchived: Boolean;
-  // geocaching.com web page associated with geocache log -  
+  // geocaching.com web page associated with geocache log
   url: String;
-  // information about the owner of the geocache log -  
+  // information about the owner of the geocache log
   owner: User;
 }
 
@@ -184,43 +184,43 @@ export interface GeocacheLog {
 //
 export interface Trackable {
 
-  // uniquely identifies the trackable -  
+  // uniquely identifies the trackable
   referenceCode: String;
-  // link to image for trackable icon -  
+  // link to image for trackable icon
   iconUrl: String;
-  // display name of the trackable -  
+  // display name of the trackable
   name: String;
-  // how many owner images on the trackable -  
+  // how many owner images on the trackable
   imageCount: Int;
-  // the owner&#39;s goal for the trackable -  
+  // the owner&#39;s goal for the trackable
   goal: String;
-  // text about the trackable -  
+  // text about the trackable
   description: String;
-  // when the trackable was activated -  
+  // when the trackable was activated
   releasedDate: Date;
-  // where the trackable originated from -  
+  // where the trackable originated from
   originCountry: String;
-  // identifier about the owner -  
+  // identifier about the owner
   ownerCode: String;
-  // user identifier about the current holder (null if not currently in someone&#39;s inventory) -  
+  // user identifier about the current holder (null if not currently in someone&#39;s inventory)
   holderCode: String;
-  // if the trackable is in the holder&#39;s collection -  
+  // if the trackable is in the holder&#39;s collection
   inHolderCollection: Boolean;
-  // identifier of the geocache if the trackable is currently in one -  
+  // identifier of the geocache if the trackable is currently in one
   currentGeocacheCode: String;
-  // name of the geocache if the trackable is currently in one -  
+  // name of the geocache if the trackable is currently in one
   currentGeocacheName: String;
-  // flag is trackable is marked as missing -  
+  // flag is trackable is marked as missing
   isMissing: Boolean;
-  // unique number used to prove discovery of trackable. only returned if user matches the holderCode -  
+  // unique number used to prove discovery of trackable. only returned if user matches the holderCode
   trackingNumber: String;
-  // type of the trackable -  
+  // type of the trackable
   trackableType: Type;
-  // geocaching.com web page associated with trackable -  
+  // geocaching.com web page associated with trackable
   url: String;
-  // information about the owner of the trackable -  
+  // information about the owner of the trackable
   owner: User;
-  // information about the holder of the trackable -  
+  // information about the holder of the trackable
   holder: User;
 }
 
@@ -231,35 +231,35 @@ export interface Trackable {
 //
 export interface TrackableLog {
 
-  // uniquely identifies the trackable log -  
+  // uniquely identifies the trackable log
   referenceCode: String;
-  // reference code of the owner -  
+  // reference code of the owner
   ownerCode: String;
-  // identifier of the related trackable -  
+  // identifier of the related trackable
   trackableCode: String;
-  // identifier of the related geocache -  
+  // identifier of the related geocache
   geocacheCode: String;
-  // name of the related geocache if there is one -  
+  // name of the related geocache if there is one
   geocacheName: String;
-  // when the user logged the trackable -  
+  // when the user logged the trackable
   loggedDate: Date;
-  // display text of the log -  
+  // display text of the log
   text: String;
-  // how many images are associated with the log -  
+  // how many images are associated with the log
   imageCount: Int;
-  // flag for if the text is ROT13 encoded -  
+  // flag for if the text is ROT13 encoded
   isRot13Encoded: Boolean;
-  // type of the trackable log (see Trackable Log Types for more info) -   Deprecated
+  // type of the trackable log (see Trackable Log Types for more info) (Deprecated)
   typeId: Integer;
-  // type of the trackable log (see Trackable Log Types for more info) -  
+  // type of the trackable log (see Trackable Log Types for more info)
   trackableLogType: Type;
-  // latitude and longitude of the trackable log -  
+  // latitude and longitude of the trackable log
   coordinates: Coordinates;
-  // code only found on the trackable itself (only needed for creating a log, this will not be returned with any GET methods) -  
+  // code only found on the trackable itself (only needed for creating a log, this will not be returned with any GET methods)
   trackingNumber: String;
-  // geocaching.com web page associated with trackable log -  
+  // geocaching.com web page associated with trackable log
   url: String;
-  // information about the owner of the trackable log -  
+  // information about the owner of the trackable log
   owner: User;
 }
 
@@ -270,25 +270,25 @@ export interface TrackableLog {
 //
 export interface LogDraft {
 
-  // uniquely identifies the log draft -  
+  // uniquely identifies the log draft
   referenceCode: String;
-  // identifer of the geocache -  
+  // identifer of the geocache
   geocacheCode: String;
-  // name of the geocache -  
+  // name of the geocache
   geocacheName: String;
-  // name of the geocache log type (see Geocache Log Types for more info) -   Deprecated
+  // name of the geocache log type (see Geocache Log Types for more info) (Deprecated)
   logType: String;
-  // type of the geocache log (see Geocache Log Types for more info) -  
+  // type of the geocache log (see Geocache Log Types for more info)
   geocacheLogType: Type;
-  // display text of the log draft -  
+  // display text of the log draft
   note: String;
-  // when the user logged the geocache in UTC -   Deprecated
+  // when the user logged the geocache in UTC (Deprecated)
   loggedDateUtc: Date;
-  // when the user logged the geocache in the geocache&#39;s local timezone -  
+  // when the user logged the geocache in the geocache&#39;s local timezone
   loggedDate: Date;
-  // number of images associated with draft -  
+  // number of images associated with draft
   imageCount: Integer;
-  // whether to award favorite point when  -  
+  // whether to award favorite point when 
   useFavoritePoint: Boolean;
 }
 
@@ -299,15 +299,15 @@ export interface LogDraft {
 //
 export interface PromotedLogDraft {
 
-  // geocache log created from log draft -  
+  // geocache log created from log draft
   geocacheLog: GeocacheLog;
-  // successfully transferred images -  
+  // successfully transferred images
   successfulImages: Image[];
-  // failed transferred images -  
+  // failed transferred images
   failedImages: Image[];
-  // if a favorite point was applied to log -  
+  // if a favorite point was applied to log
   favoritePointApplied: Boolean;
-  // if the draft was successfully deleted -  
+  // if the draft was successfully deleted
   draftDeleted: Boolean;
 }
 
@@ -318,15 +318,15 @@ export interface PromotedLogDraft {
 //
 export interface UserWaypoint {
 
-  // uniquely identifies the user waypoint -  
+  // uniquely identifies the user waypoint
   referenceCode: String;
-  // text about the waypoint -  
+  // text about the waypoint
   description: String;
-  // whether the user waypoint are corrected coordinates -  
+  // whether the user waypoint are corrected coordinates
   isCorrectedCoordinates: Boolean;
-  // latitude and longitude of the waypoint -  
+  // latitude and longitude of the waypoint
   coordinates: Coordinates;
-  // identifier of the related geocache -  
+  // identifier of the related geocache
   geocacheCode: String;
 }
 
@@ -337,19 +337,19 @@ export interface UserWaypoint {
 //
 export interface AdditionalWaypoint {
 
-  // display name of the waypoint -  
+  // display name of the waypoint
   name: String;
-  // text about the waypoint -  
+  // text about the waypoint
   description: String;
-  // type of the waypoint (see Waypoint Types for more info) -  
+  // type of the waypoint (see Waypoint Types for more info)
   typeId: Integer;
-  // display name of the type -  
+  // display name of the type
   typeName: String;
-  // short category prefix of the waypoint type -  
+  // short category prefix of the waypoint type
   prefix: String;
-  // geocaching.com web page associated with the waypoint -  
+  // geocaching.com web page associated with the waypoint
   url: String;
-  // latitude and longitude of the waypoint -  
+  // latitude and longitude of the waypoint
   coordinates: Coordinates;
 }
 
@@ -360,13 +360,13 @@ export interface AdditionalWaypoint {
 //
 export interface Attribute {
 
-  // identifier of the attribute -  
+  // identifier of the attribute
   id: Integer;
-  // display name of the attribute -  
+  // display name of the attribute
   name: String;
-  // flag for if the attribute is a positive or negative (e.g. available 24/7 vs not available 24/7) -  
+  // flag for if the attribute is a positive or negative (e.g. available 24/7 vs not available 24/7)
   isOn: Boolean;
-  // link to the image for the attribute -  
+  // link to the image for the attribute
   imageUrl: String;
 }
 
@@ -377,19 +377,19 @@ export interface Attribute {
 //
 export interface Attributetype {
 
-  // identifier of the attribute -  
+  // identifier of the attribute
   id: Integer;
-  // display name of the attribute -  
+  // display name of the attribute
   name: String;
-  // flag for if the attribute can be set to isOn = true -  
+  // flag for if the attribute can be set to isOn = true
   hasYesOption: Boolean;
-  // flag for if the attribute can be set to isOn = false -  
+  // flag for if the attribute can be set to isOn = false
   hasNoOption: Boolean;
-  // image url for the attribute if isOn = true -  
+  // image url for the attribute if isOn = true
   yesIconUrl: String;
-  // image url for the attribute if isOn = false -  
+  // image url for the attribute if isOn = false
   noIconUrl: String;
-  // image url for the attribute if not chosen -  
+  // image url for the attribute if not chosen
   notChosenIconUrl: String;
 }
 
@@ -400,13 +400,13 @@ export interface Attributetype {
 //
 export interface LocationData {
 
-  // id of country -  
+  // id of country
   countryId: Integer;
-  // display name of country -  
+  // display name of country
   country: String;
-  // id of state -  
+  // id of state
   stateId: Integer;
-  // display name of state -  
+  // display name of state
   state: String;
 }
 
@@ -417,9 +417,9 @@ export interface LocationData {
 //
 export interface GeocacheSize {
 
-  // id of size -  
+  // id of size
   id: Integer;
-  // display name of size -  
+  // display name of size
   name: String;
 }
 
@@ -430,29 +430,29 @@ export interface GeocacheSize {
 //
 export interface List {
 
-  // uniquely identifies the list -  
+  // uniquely identifies the list
   referenceCode: String;
-  // when the list was created in UTC -  
+  // when the list was created in UTC
   createdDateUtc: Date;
-  // when the list was last updated in UTC. for pocket queries, this represents the last time the query was generated -  
+  // when the list was last updated in UTC. for pocket queries, this represents the last time the query was generated
   lastUpdatedDateUtc: Date;
-  // display name of the list -  
+  // display name of the list
   name: String;
-  // how many geocaches are in the list -  
+  // how many geocaches are in the list
   count: Integer;
-  // how many of the geocaches in list are found -  
+  // how many of the geocaches in list are found
   findCount: Integer;
-  // identifier of the user who owns the list -  
+  // identifier of the user who owns the list
   ownerCode: String;
-  // text about the list -  
+  // text about the list
   description: String;
-  // type of the list (see List Types for more info) -  
+  // type of the list (see List Types for more info)
   typeId: Integer;
-  // if the list is accessible through a direct link -  
+  // if the list is accessible through a direct link
   isShared: Boolean;
-  // if the list is accessible to everyone without a direct link -  
+  // if the list is accessible to everyone without a direct link
   isPublic: Boolean;
-  // geocaching.com web page associated with list (no url returned for pocket query types) -  
+  // geocaching.com web page associated with list (no url returned for pocket query types)
   url: String;
 }
 
@@ -463,67 +463,67 @@ export interface List {
 //
 export interface ListGeocache {
 
-  // uniquely identifies the geocache -  
+  // uniquely identifies the geocache
   referenceCode: String;
-  // user generated name of list item -  
+  // user generated name of list item
   listItemName: String;
-  // name of the geocache -  
+  // name of the geocache
   name: String;
-  // difficulty rating of the geocache between 1.0 and 5.0 -  
+  // difficulty rating of the geocache between 1.0 and 5.0
   difficulty: Number;
-  // terrain rating of the geocache between 1.0 and 5.0 -  
+  // terrain rating of the geocache between 1.0 and 5.0
   terrain: Number;
-  // number of favorite points awarded to the geocache -  
+  // number of favorite points awarded to the geocache
   favoritePoints: Integer;
-  // number of trackables currently in the geocache -  
+  // number of trackables currently in the geocache
   trackableCount: Integer;
-  // date when the cache was placed (if an event, this is the date of the event) in the timezone of the geocache -  
+  // date when the cache was placed (if an event, this is the date of the event) in the timezone of the geocache
   placedDate: Date;
-  // date when the cache was published in the timezone of the geocache -  
+  // date when the cache was published in the timezone of the geocache
   publishedDate: Date;
-  // type of the geocache (see Geocache Types for more info) -   Deprecated
+  // type of the geocache (see Geocache Types for more info) (Deprecated)
   type: GeocacheTypes;
-  // type of the geocache (see Geocache Types for more info) -  
+  // type of the geocache (see Geocache Types for more info)
   geocacheType: Type;
-  // size of the geocache container (see Geocache Sizes for more info) -   Deprecated
+  // size of the geocache container (see Geocache Sizes for more info) (Deprecated)
   size: GeocacheSizes;
-  // size of the geocache (see Geocache Sizes for more info) -  
+  // size of the geocache (see Geocache Sizes for more info)
   geocacheSize: GeocacheSize;
-  // user specific information about the geocache -  
+  // user specific information about the geocache
   userData: UserData;
-  // current status of the geocache (see Geocache Statuses for more info) -  
+  // current status of the geocache (see Geocache Statuses for more info)
   status: GeocacheStates;
-  // country and state information about the geocache -  
+  // country and state information about the geocache
   location: LocationData;
-  // latitude and longitude of the geocache -  
+  // latitude and longitude of the geocache
   postedCoordinates: Coordinates;
-  // datetime of last logged visit to geocache in the timezone of the geocache -  Nullable 
+  // datetime of last logged visit to geocache in the timezone of the geocache (Nullable)
   lastVisitedDate: Date;
-  // owner identifier of the geocache -  
+  // owner identifier of the geocache
   ownerCode: String;
-  // display name of owner for geocache -  
+  // display name of owner for geocache
   ownerAlias: String;
-  // whether the geocache can only be viewed by premium members -  
+  // whether the geocache can only be viewed by premium members
   isPremiumOnly: Boolean;
-  // summary about the geocache -  
+  // summary about the geocache
   shortDescription: String;
-  // details about the geocache -  
+  // details about the geocache
   longDescription: String;
-  // hints/spoilers to help to find the geocache -  
+  // hints/spoilers to help to find the geocache
   hints: String;
-  // attributes of the geocache -  
+  // attributes of the geocache
   attributes: Attribute[];
-  // timezone of the geocache -  
+  // timezone of the geocache
   ianaTimezoneId: String;
-  // external web page associated with geocache -  
+  // external web page associated with geocache
   relatedWebPage: String;
-  // geocaching.com web page associated with geocache -  
+  // geocaching.com web page associated with geocache
   url: String;
-  // flag for if the short or long description contains html -  
+  // flag for if the short or long description contains html
   containsHtml: Boolean;
-  // information about the owner of the geocache -  
+  // information about the owner of the geocache
   owner: User;
-  // other reference waypoints associated with the geocache -  
+  // other reference waypoints associated with the geocache
   additionalWaypoints: AdditionalWaypoint[];
 }
 
@@ -534,9 +534,9 @@ export interface ListGeocache {
 //
 export interface ListItem {
 
-  // uniquely identifies the geocache -  
+  // uniquely identifies the geocache
   referenceCode: String;
-  // name of the geocache -  
+  // name of the geocache
   name: String;
 }
 
@@ -547,10 +547,10 @@ export interface ListItem {
 //
 export interface BulkResponse {
 
-  // array of identifiers for which the bulk operation was successful -  
-  successes: String array;
-  // array of identifiers and reasons for which the bulk operation was unsuccessful -  
-  failures: BulkFailure;
+  // array of identifiers for which the bulk operation was successful
+  successes: String[];
+  // array of identifiers and reasons for which the bulk operation was unsuccessful
+  failures: BulkFailure[];
 }
 
 
@@ -560,11 +560,11 @@ export interface BulkResponse {
 //
 export interface BulkFailure {
 
-  // identifier for which bulk request item was unsuccessful -  
+  // identifier for which bulk request item was unsuccessful
   referenceCode: String;
-  // reason for why the bulk operation was unsuccessful -  
+  // reason for why the bulk operation was unsuccessful
   message: String;
-  // HTTP status code for why the bulk operation was unsuccessful -  
+  // HTTP status code for why the bulk operation was unsuccessful
   statusCode: Int;
 }
 
@@ -575,39 +575,39 @@ export interface BulkFailure {
 //
 export interface User {
 
-  // uniquely identifies the user -  
+  // uniquely identifies the user
   referenceCode: String;
-  // how many geocache finds the user has -  
+  // how many geocache finds the user has
   findCount: Integer;
-  // how many geocache hides the user has -  
+  // how many geocache hides the user has
   hideCount: Integer;
-  // how many favorite points the user has avaiable -  
+  // how many favorite points the user has avaiable
   favoritePoints: Integer;
-  // the display username -  
+  // the display username
   username: String;
-  // type of the membership (see Membership Types for more info) -  
+  // type of the membership (see Membership Types for more info)
   membershipLevelId: Integer;
-  // datetime indicating when the user account was created -  Nullable 
+  // datetime indicating when the user account was created (Nullable)
   joinedDateUtc: Date;
-  // link to image of the user&#39;s profile avatar -  
+  // link to image of the user&#39;s profile avatar
   avatarUrl: String;
-  // link to image of the user&#39;s banner image -  
+  // link to image of the user&#39;s banner image
   bannerUrl: String;
-  // geocaching.com web page associated with user profile -  
+  // geocaching.com web page associated with user profile
   url: String;
-  // text from Profile Information section on user profile page -  
+  // text from Profile Information section on user profile page
   profileText: String;
-  // latitude and longitude of the user&#39;s home location -  
+  // latitude and longitude of the user&#39;s home location
   homeCoordinates: Coordinates;
-  // find counts per geocache type for user -  
+  // find counts per geocache type for user
   geocacheFindCounts: GeocacheCount;
-  // hide counts per geocache type for user -  
+  // hide counts per geocache type for user
   geocacheHideCounts: GeocacheCount;
-  // find counts per trackable type for user -  
+  // find counts per trackable type for user
   trackableFindCounts: TrackableCount;
-  // owned counts per trackable type for user -  
+  // owned counts per trackable type for user
   trackableOwnedCounts: TrackableCount;
-  // how many geocaches/lite geocaches the user has remaining and time to live until limit is refreshed -  
+  // how many geocaches/lite geocaches the user has remaining and time to live until limit is refreshed
   geocacheLimits: Geocachelimits;
 }
 
@@ -618,21 +618,21 @@ export interface User {
 //
 export interface Friendrequest {
 
-  // uniquely identifies the friend request -  
+  // uniquely identifies the friend request
   id: Integer;
-  // identifier of the user that initiated the friend request -  
+  // identifier of the user that initiated the friend request
   requestorUserCode: String;
-  // user information about the requestor -  
+  // user information about the requestor
   requestor: UserReference;
-  // identifier of the user that received the friend request -  
+  // identifier of the user that received the friend request
   requestedUserCode: String;
-  // user information about the requested user -  
+  // user information about the requested user
   requested: UserReference;
-  // requestor custom text to go along with the request -  
+  // requestor custom text to go along with the request
   message: String;
-  // flags requests as true if calling user is the requestor -  
+  // flags requests as true if calling user is the requestor
   isOutgoing: Boolean;
-  // the date the request was made in UTC -  
+  // the date the request was made in UTC
   requestDateUtc: Date;
 }
 
@@ -643,13 +643,13 @@ export interface Friendrequest {
 //
 export interface Geocachelimits {
 
-  // number of lite geocaches the user can fetch during the current limit -  
+  // number of lite geocaches the user can fetch during the current limit
   liteCallsRemaining: Integer;
-  // number of seconds until lite geocache limit will be refreshed. if null, no limit has been started yet (limit begins at first lite geocache call) -  Nullable 
+  // number of seconds until lite geocache limit will be refreshed. if null, no limit has been started yet (limit begins at first lite geocache call) (Nullable)
   liteCallsSecondsToLive: Integer;
-  // number of non-lite geocaches the user can fetch during the current limit -  
+  // number of non-lite geocaches the user can fetch during the current limit
   fullCallsRemaining: Integer;
-  // number of seconds until non-lite geocache limit will be refreshed. if null, no limit has been started yet (limit begins at first non-lite geocache call) -  Nullable 
+  // number of seconds until non-lite geocache limit will be refreshed. if null, no limit has been started yet (limit begins at first non-lite geocache call) (Nullable)
   fullCallsSecondsToLive: Integer;
 }
 
@@ -660,9 +660,9 @@ export interface Geocachelimits {
 //
 export interface GeocacheCount {
 
-  // type information of the geocache -  
+  // type information of the geocache
   GeocacheType: Type;
-  // total count of geocache type -  
+  // total count of geocache type
   Count: Integer;
 }
 
@@ -673,9 +673,9 @@ export interface GeocacheCount {
 //
 export interface TrackableCount {
 
-  // type information of the trackable -  
+  // type information of the trackable
   TrackableType: Type;
-  // total count of trackable type -  
+  // total count of trackable type
   Count: Integer;
 }
 
@@ -686,19 +686,19 @@ export interface TrackableCount {
 //
 export interface Souvenir {
 
-  // unique id of the souvenir -  
+  // unique id of the souvenir
   id: Integer;
-  // display name of the souvenir -  
+  // display name of the souvenir
   title: String;
-  // text about the souvenir -  
+  // text about the souvenir
   description: String;
-  // link url to the image of the souvenir -  
+  // link url to the image of the souvenir
   imagePath: String;
-  // link url to the thumbnail image of the souvenir -  
+  // link url to the thumbnail image of the souvenir
   thumbImagePath: String;
-  // when the souvenir was awarded in UTC -  
+  // when the souvenir was awarded in UTC
   foundDateUtc: Date;
-  // link to souvenir details on www.geocaching.com website -  
+  // link to souvenir details on www.geocaching.com website
   url: String;
 }
 
@@ -709,17 +709,17 @@ export interface Souvenir {
 //
 export interface Image {
 
-  // text about the image -  
+  // text about the image
   description: String;
-  // link url to the image -  
+  // link url to the image
   url: String;
-  // link url to the image with a height of 75px -  
+  // link url to the image with a height of 75px
   thumbnailUrl: String;
-  // link url to the image with a larger height -  
+  // link url to the image with a larger height
   largeUrl: String;
-  // identifier of the related entity (geocache log, trackable log, etc.) -  
+  // identifier of the related entity (geocache log, trackable log, etc.)
   referenceCode: String;
-  // date image was uploaded in UTC -  
+  // date image was uploaded in UTC
   createdDate: DateTime;
 }
 
@@ -730,11 +730,11 @@ export interface Image {
 //
 export interface PostImage {
 
-  // text about the image -  
+  // text about the image
   description: String;
-  // image data -  
+  // image data
   base64ImageData: String;
-  // optional unique identifier to prevent duplicate uploads -  
+  // optional unique identifier to prevent duplicate uploads
   guid: Guid;
 }
 
@@ -745,15 +745,15 @@ export interface PostImage {
 //
 export interface UserData {
 
-  // personal geocache note only visible to user -  
+  // personal geocache note only visible to user
   note: String;
-  // if the user has awarded this geocache a favorite point -  
+  // if the user has awarded this geocache a favorite point
   isFavorited: Boolean;
-  // the date the user found the geocache in the timezone of the geocache (null if not found) -  Nullable 
+  // the date the user found the geocache in the timezone of the geocache (null if not found) (Nullable)
   foundDate: Date;
-  // the date the user logged a DNF on the geocache in the timezone of the geocache (null if no DNF exists) -  Nullable 
+  // the date the user logged a DNF on the geocache in the timezone of the geocache (null if no DNF exists) (Nullable)
   dnfDate: Date;
-  // latitude and longitude of the user&#39;s solved coordinates -  
+  // latitude and longitude of the user&#39;s solved coordinates
   correctedCoordinates: Coordinates;
 }
 
@@ -764,9 +764,9 @@ export interface UserData {
 //
 export interface Coordinates {
 
-  // the latitude in decimal format -  
+  // the latitude in decimal format
   latitude: Number;
-  // the longitude in decimal format -  
+  // the longitude in decimal format
   longitude: Number;
 }
 
@@ -777,11 +777,11 @@ export interface Coordinates {
 //
 export interface UserReference {
 
-  // identifier of the user -  
+  // identifier of the user
   referenceCode: String;
-  // the display username -  
+  // the display username
   username: String;
-  // source link of user avatar image -  
+  // source link of user avatar image
   avatarUrl: String;
 }
 
@@ -792,11 +792,11 @@ export interface UserReference {
 //
 export interface Type {
 
-  // identifier of the type -  
+  // identifier of the type
   id: Integer;
-  // the name of the type -  
+  // the name of the type
   name: String;
-  // link to the image of the type -  
+  // link to the image of the type
   imageUrl: String;
 }
 
