@@ -1,0 +1,12 @@
+<% objects.forEach(function(o){ %>
+
+//
+// <%= o.name %> : <%= o.title %>
+//
+export interface <%= o.interfaceName %> {
+<% o.params.forEach(function(param){ %>
+  // <%= param.description %> - <% if (param.nullable) { %> Nullable<% } %> <% if (param.deprecated) { %> Deprecated<% } %>
+  <%= param.name %>: <%= param.type %>;<% }); %>
+}
+
+<% }); %>

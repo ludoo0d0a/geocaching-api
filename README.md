@@ -1,124 +1,95 @@
-# geocaching-api
-Geocaching API client library for node.js
+## TODO
+Adapt the doc
 
-## Dependencies
+------
 
-  * [passport-geocaching](https://github.com/ludoo0d0a/passport-geocaching)
 
-## Setup
+# Geocaching Javascript API Client 
+[![Geocaching](http://geocaching-a.akamaihd.net/webpages/geocaching-logo-github.png)](http://www.geocaching.com)
+[![codecov](https://codecov.io/gh/Geocaching/geocaching-api/branch/develop/graph/badge.svg?token=XNzQalljOE)](https://codecov.io/gh/Geocaching/geocaching-api)
+[![npm version](https://badge.fury.io/js/geocaching-api.svg)](https://badge.fury.io/js/geocaching-api)
+[![Build Status](https://travis-ci.org/Geocaching/geocaching-api.svg?branch=develop)](https://travis-ci.org/Geocaching/geocaching-api)
 
-To setup API, replace your API keys values in config-api file (copied from template) :
-> cp default-config-api.js config-api.js  
+Javascript-API-Client which enables you to seamlessly integrate the [Geocaching API](https://api.groundspeak.com/documentation) into your projects.
+Using this API client requires an active account.
 
-## Tests
+[Sign up for a Geocaching Account!](https://www.geocaching.com/account/join)
 
-Mocha tests require OAuth token produced after OAUth authorization.
-Since it requires UI, token should be retrieved in exemple app (in /account page) and copied into config-tokens.
-> cp default-config-tokens.js config-tokens.js
+The full API reference can be found [here](https://api.groundspeak.com/documentation).
 
-## Examples
+Installation 
+------------
 
-For a complete, working example, refer to the [login example](https://github.com/ludoo0d0a/geocaching-api/tree/master/examples/login).
+``` bash
+npm install geocaching-api
+```
+or with yarnpkg
+``` bash
+yarn add geocaching-api
+```
 
-    > cd examples/login
-    > npm install
-    > npm start
+Initialization
+----------
 
-## Tests
+### Node
 
-    > npm run test
+Using ES6 `import`
+```es6
+import Geocaching from 'geocaching-api';
+const Geocaching = Geocaching({'apiKey': '<YOUR_API_KEY>'});
+```
 
-## Todo
-    
-    Complete implementation of GC API following official doc: https://api.groundspeak.com/LiveV6/geocaching.svc/help
-    Migrate to the new Rest API https://api.groundspeak.com/documentation
+With `require`
+```js
+const Geocaching = require('geocaching-api').default;
+const Geocaching = Geocaching({'apiKey': '<YOUR_API_KEY>'});
+```
 
-## Credits
+### Browser
 
-  - [Ludovic Valente](http://github.com/ludoo0d0a)
+Use `geocaching-api/dist/geocaching.browser.js` or `geocaching.browser.min.js` for the minified version.
 
-## License
+### ES5 with Modules (CommonJS)
 
-[The ISC License](http://opensource.org/licenses/ISC)
+Import `geocaching-api/dist/index.js`.
 
-Copyright (c) 2019 Ludovic Valente <[http://www.geoking.fr/](http://www.geoking.fr)>
+### Types
 
-== Favorite
-AddFavoritePointToCache
-GetCacheIdsFavoritedByUser
-GetCachesFavoritedByUser
-GetUsersFavoritePoints
-GetUsersWhoFavoritedCache
-RemoveFavoritePointFromCache
+- Typescript (`geocaching-api/dist/index.d.ts`)
 
-== Bookmark
-AddGeocachesToBookmarkList
-GetBookmarkListByGuid
-GetBookmarkListsByUserID
-GetBookmarkListsForUser
+Usage
+-----------
 
-== Trackable
-CreateTrackableLog
-GetOwnedTrackables
-GetTrackableLogsByTBCode
-GetTrackablesByTBCode
-GetTrackablesByTrackingNumber
-GetTrackablesInCache
-GetTrackableTravelList
-GetUsersTrackables
-UploadImageToTrackableLog
+The Geocaching-Javascript API Client is closely modeled after our Geocaching API Reference [Geocaching API](https://api.groundspeak.com/documentation).
+Each resource in the API Reference has a 1:1 mapping in our API Client.
 
-== Profile
-GetAnotherUsersProfile
-GetAPILimits
-GetMembershipTypes
-GetYourUserProfile
-Ping
-RegisterWP7DeviceTile
-WindowsPhoneTileSearch
-GetUserCredentials
-GetUsersCacheCounts
+All methods return a `Promise` Object that will return the fetched result values from the API.
 
-== Note
-CreateFieldNoteAndPublish
-DeleteCacheNote
-UpdateCacheNote
-GetUsersCacheNotes
+So for example the list all inputs call is defined as `GET v1/encoding/inputs` in our API-Reference and simply corresponds to:
 
-== Waypoint
-DeleteUserWaypoint
-SaveUserWaypoint
-GetUserWaypoints
+```js
+const limit = 100;
+const offset = 0;
+Geocaching.encoding.inputs.list(limit, offset).then(result => {
+  const {items} = result;
+  items.forEach(input => {
+    console.log(input.name);
+  });
+});
+```
 
-== Logs
-GetGeocacheLogsByCacheCode
-GetUsersGeocacheLogs
-GetWptLogTypes ??
-UploadImageToGeocacheLog
+Examples
+-----------
 
-== Souvenirs
-SearchForSouvenirsByPublicGuid
+An sample DASH & HLS encoding sample can be found in [examples/encoding/01_simple_encoding_dash_manifest.js](https://github.com/Geocaching/geocaching-api/blob/develop/examples/encoding/01_simple_encoding_dash_manifest.js)
 
-== caches
-SearchForGeocaches
-GetMoreGeocaches
-GetCacheByTileGuid
-GetGeocacheDataTypes
-GetGeocacheStatus
-GetGeocacheTypes
-GetAttributeTypesData
+For more examples visit our [example page](https://github.com/Geocaching/geocaching-api/tree/develop/examples/encoding).
 
-== images
-GetImagesForGeocache
-GetUserGallery
+Contributing
+-----------
 
-== PQ
-GetPocketQueryData
-GetPocketQueryList
-GetPocketQueryZippedFile
-GetFullPocketQueryData
+If you want to contribute feel free to send pull requests. Code quality is ensured through [lint-staged](https://github.com/okonet/lint-staged), please make sure all tests are passing with `yarn test`.
 
-== Others...
-GeocodeString
-GetSiteStats
-GetStatusMessages
+License
+-----------
+MIT

@@ -1,0 +1,9 @@
+<% references.forEach(function(o){ %>
+// <%= o.name %> - <%= o.title %>
+enum <%= o.interfaceName %> {
+  <% o.fields.forEach(function(f){ %>
+  // <%= f.name %>
+  <%= f.interfaceName %> = <%= f.value %>,<% }); %>
+}
+
+<% }); %>

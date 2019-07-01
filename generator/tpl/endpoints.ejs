@@ -1,0 +1,59 @@
+import * as urljoin from 'url-join';
+
+import http, {utils} from '../utils/http';
+import {HttpClient, InternalConfiguration, List} from '../utils/types';
+
+/*
+ List of interfaces from request parameters
+*/
+<% endpoints.forEach(function(e){ %>
+export interface <%= e.interfaceName %> {
+<% e.params.forEach(function(param){ %> <%= param.name %>: string;
+<% }); %>}
+<% }); %>
+
+/*
+* Returned api <%= apiName %>
+*/
+export const <%= apiName %> = (configuration: InternalConfiguration, httpClient: HttpClient): <%= apiInterfaceName %> => {
+    const {get, post, delete_} = httpClient;
+
+    <% endpoints.forEach(function(e){ %>
+    /**
+    * <%= e.title %>
+    * <%= e.description %>
+    *
+    * @path: <%= e.path %>
+    * @method: <%= e.httpMethod %>
+    * @link <%= e.link %>
+    * @access <%= e.access %>
+    <% e.params.forEach(function(param){ %> * @param <%= param.name %> (<%= param.type %>) <% if (param.required) { %>[required]<% } %> <%= param.description %> <%= param.defaultValue %> (<%= param.example %>)
+    <% }); %>
+    * @return <%= e.responseType %> <%= e.responseTypeUrl %>
+    * @responseCodes <%= e.responseCodes %>
+    * @restrictions <%= e.restrictions %>
+    */
+    const <%= e.functionName %> = (params: <%= e.interfaceName %>, cb): <%= e.responseType %> => {
+        <% if (e.required_params && e.required_params.length>0) { %>
+        // check required params
+        <% e.required_params.forEach(function(p){ %>
+        if (!array_key_exists('<%= p.name %>', params)) {
+                throw new Exception('<%= p.name %> is missing.');
+        }
+        <% }); %><% } %>
+        return this.<%= e.httpMethod %>Request('<%= e.path %>', params, cb);
+    };
+    <% }); //endpoints loop %>
+
+    // Returns all methods in a single object API
+    return {
+        <% endpoints.forEach(function(e){ %><%= e.functionName %>,
+        <% }); //endpoints loop %>
+    };
+
+}; //end export const
+
+
+export default (configuration: InternalConfiguration): <%= apiInterfaceName %> => {
+    return <%= apiName %>(configuration, http);
+};

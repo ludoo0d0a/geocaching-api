@@ -1,11 +1,10 @@
 {
   "name": "geocaching-api",
   "version": "2.0.0",
-  "description": "",
-  "main": "lib/geocaching-api.js",
-  "scripts": {
-    "test": "./node_modules/.bin/mocha test/api-* -t 70000 -R spec --bail --globals domain,_events,_maxListeners"
-  },
+  "description": "Client for Geocaching API",
+  "main": "./dist/index.js",
+  "browser": "./dist/geocaching.browser.js",
+  "types": "./dist/index.d.ts",
   "keywords": [
     "geocaching",
     "live",
@@ -25,14 +24,66 @@
   "bugs": {
     "url": "http://github.com/ludoo0d0a/geocaching-api/issues"
   },
-  "license": "ISC",
-  "dependencies": {
-    "lodash": "^4.17.11",
-    "passport-geocaching": "^0.1.x",
-    "request": "^2.x"
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "clean": "rimraf dist",
+    "lint": "tslint \"./{geocaching,tests}/**/*.ts\"",
+    "lint-examples": "eslint ./examples",
+    "test": "jest --watch",
+    "_test": "./node_modules/.bin/mocha test/api-* -t 70000 -R spec --bail --globals domain,_events,_maxListeners",
+    "coverage-ci": "jest --runInBand --coverage",
+    "format": "prettier --config ./.prettierrc --write \"./{geocaching,examples,tests}/**/*.ts\"",
+    "format-files": "prettier --config ./.prettierrc --write",
+    "format-check": "prettier --config ./.prettierrc --list-different \"./{geocaching,examples,tests}/**/*.ts\"",
+    "build": "yarn clean && yarn build:bundle:dev && yarn build:bundle:prod && yarn build:modules",
+    "build:bundle:dev": "cross-env NODE_ENV=development webpack --config=./webpack4.config.js",
+    "build:bundle:prod": "cross-env NODE_ENV=production webpack --config=./webpack4.config.js",
+    "build:modules": "tsc --project ./tsconfig.json && replace \"__VERSION__\" \"'$(node -p \"require('./package.json').version\")'\" ./dist/index.js",
+    "prepublish": "yarn lint && yarn build",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.tsxx": [
+      "yarn format-files",
+      "tslint --fix",
+      "git add"
+    ],
+    "*.jsxx": [
+      "yarn format-files",
+      "eslint --fix",
+      "git add"
+    ]
   },
   "devDependencies": {
-    "mocha": "^6.x",
-    "chai": "*"
+    "@types/isomorphic-fetch": "^0.0.35",
+    "@types/jest": "^24.0.15",
+    "@types/url-join": "^4.0.0",
+    "awesome-typescript-loader": "^5.2.1",
+    "codecov": "^3.5.0",
+    "cross-env": "^5.2.0",
+    "eslint": "^6.0.1",
+    "esprima": "^4.0.1",
+    "husky": "^2.7.0",
+    "jest": "^24.8.0",
+    "lint-staged": "^8.2.1",
+    "prettier": "^1.18.2",
+    "replace": "^1.1.0",
+    "rimraf": "^2.6.3",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.18.0",
+    "typescript": "^3.5.2",
+    "uglifyjs-webpack-plugin": "^2.1.3",
+    "webpack": "^4.35.2",
+    "webpack-cli": "^3.3.5"
+  },
+  "dependencies": {
+    "es6-promise": "^4.2.8",
+    "isomorphic-fetch": "^2.2.1",
+    "moment": "^2.24.0",
+    "url-join": "^4.0.0",
+    "passport-geocaching": "^0.1.x"
   }
 }
