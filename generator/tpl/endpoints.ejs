@@ -5,9 +5,10 @@ import {HttpClient, InternalConfiguration, List} from '../utils/types';
  List of interfaces from request parameters
 */
 <% endpoints.forEach(function(e){ %>
-export interface <%= e.interfaceName %> {
-<% e.params.forEach(function(param){ %> <%= param.name %>: string;
-<% }); %>}
+export interface <%= e.interfaceName %> {<% e.params.forEach(function(param){ %>
+  // [<%= param.type %>] <%= param.description %><% if (param.nullable) { %> (Nullable)<% } %><% if (param.deprecated) { %> (Deprecated)<% } %><% if (param.defaultValue) { %> default:<%= param.defaultValue %><% } %><% if (param.example) { %> ex:<%= param.example %><% } %>
+  <%= param.name %><% if (!param.required) { %>?<% } %>: string;<% }); %> 
+}
 <% }); %>
 
 /*

@@ -6,32 +6,43 @@ import {HttpClient, InternalConfiguration, List} from '../utils/types';
 */
 
 export interface GetFriends {
- skip: string;
- take: string;
- fields: string;
+  // [query] the number of resources to skip over default:0 ex:skip=10
+  skip?: string;
+  // [query] how many resources to return. maximum value of 50 default:10 ex:take=0
+  take?: string;
+  // [query] partial response fields to return default:referenceCode ex:fields=username,referenceCode
+  fields?: string; 
 }
 
 export interface GetFriendrequests {
- skip: string;
- take: string;
- fields: string;
+  // [query] the number of resources to skip over default:0 ex:skip=10
+  skip?: string;
+  // [query] how many resources to return. maximum value of 50 default:10 ex:take=0
+  take?: string;
+  // [query] partial response fields to return default:id ex:fields=requested.username,id
+  fields?: string; 
 }
 
 export interface CreateFriendrequest {
- friendRequest: string;
- fields: string;
+  // [body] friend request to create default:- ex:FriendRequest
+  friendRequest: string;
+  // [query] partial response fields to return default:id ex:fields=message
+  fields?: string; 
 }
 
 export interface AcceptFriendrequest {
- requestId: string;
+  // [path] the identifier of the friend request default:- ex:12345
+  requestId: string; 
 }
 
 export interface DeleteFriendrequest {
- requestId: string;
+  // [path] the identifier of the friend request default:- ex:12345
+  requestId: string; 
 }
 
 export interface DeleteFriend {
- userCode: string;
+  // [path] the identifier of the user to remove as a friend default:- ex:PR18
+  userCode: string; 
 }
 
 
@@ -50,9 +61,9 @@ export const friendMethodsApi = (configuration: InternalConfiguration, httpClien
     * @method: get
     * @link https://api.groundspeak.com/documentation#get-friends
     * @access public
-    * @param skip (query) [required] the number of resources to skip over 0 (skip=10)
-* @param take (query) [required] how many resources to return. maximum value of 50 10 (take=0)
-* @param fields (query) [required] partial response fields to return referenceCode (fields=username,referenceCode)
+    * @param skip (query)  the number of resources to skip over 0 (skip=10)
+* @param take (query)  how many resources to return. maximum value of 50 10 (take=0)
+* @param fields (query)  partial response fields to return referenceCode (fields=username,referenceCode)
         * @return user[] 
     * @responseCodes 200, 400, 401, 429, 500
     * @restrictions Users may opt out of sharing personal data. See
@@ -70,9 +81,9 @@ export const friendMethodsApi = (configuration: InternalConfiguration, httpClien
     * @method: get
     * @link https://api.groundspeak.com/documentation#get-friendrequests
     * @access public
-    * @param skip (query) [required] the number of resources to skip over 0 (skip=10)
-* @param take (query) [required] how many resources to return. maximum value of 50 10 (take=0)
-* @param fields (query) [required] partial response fields to return id (fields=requested.username,id)
+    * @param skip (query)  the number of resources to skip over 0 (skip=10)
+* @param take (query)  how many resources to return. maximum value of 50 10 (take=0)
+* @param fields (query)  partial response fields to return id (fields=requested.username,id)
         * @return friendrequest[] 
     * @responseCodes 200, 400, 401, 500
     * @restrictions 
@@ -91,7 +102,7 @@ export const friendMethodsApi = (configuration: InternalConfiguration, httpClien
     * @link https://api.groundspeak.com/documentation#create-friendrequest
     * @access public
     * @param friendRequest (body) [required] friend request to create - (FriendRequest)
-* @param fields (query) [required] partial response fields to return id (fields=message)
+* @param fields (query)  partial response fields to return id (fields=message)
         * @return friendrequest 
     * @responseCodes 200, 400, 401, 403, 404, 409, 500
     * @restrictions 
@@ -116,11 +127,11 @@ export const friendMethodsApi = (configuration: InternalConfiguration, httpClien
     * @link https://api.groundspeak.com/documentation#accept-friendrequest
     * @access public
     * @param requestId (path) [required] the identifier of the friend request - (12345)
-        * @return  
+        * @return void 
     * @responseCodes 204, 400, 401, 403, 404, 500
     * @restrictions Only the requested user can accept a friend request.
     */
-    const acceptFriendrequest = (params: AcceptFriendrequest, cb) => {
+    const acceptFriendrequest = (params: AcceptFriendrequest, cb): void => {
         
         // check required params
         
@@ -140,11 +151,11 @@ export const friendMethodsApi = (configuration: InternalConfiguration, httpClien
     * @link https://api.groundspeak.com/documentation#delete-friendrequest
     * @access public
     * @param requestId (path) [required] the identifier of the friend request - (12345)
-        * @return  
+        * @return void 
     * @responseCodes 204, 400, 401, 403, 404, 500
     * @restrictions 
     */
-    const deleteFriendrequest = (params: DeleteFriendrequest, cb) => {
+    const deleteFriendrequest = (params: DeleteFriendrequest, cb): void => {
         
         // check required params
         
@@ -164,11 +175,11 @@ export const friendMethodsApi = (configuration: InternalConfiguration, httpClien
     * @link https://api.groundspeak.com/documentation#delete-friend
     * @access public
     * @param userCode (path) [required] the identifier of the user to remove as a friend - (PR18)
-        * @return  
+        * @return void 
     * @responseCodes 204, 400, 401, 403, 404, 500
     * @restrictions 
     */
-    const deleteFriend = (params: DeleteFriend, cb) => {
+    const deleteFriend = (params: DeleteFriend, cb): void => {
         
         // check required params
         

@@ -6,40 +6,56 @@ import {HttpClient, InternalConfiguration, List} from '../utils/types';
 */
 
 export interface GetLogdrafts {
- fields: string;
- skip: string;
- take: string;
+  // [query] partial response fields to return default:referenceCode ex:fields=name,referenceCode
+  fields?: string;
+  // [query] the number of resources to skip over default:0 ex:skip=10
+  skip?: string;
+  // [query] how many resources to return. maximum value of 50 default:10 ex:take=0
+  take?: string; 
 }
 
 export interface GetLogdraft {
- referenceCode: string;
- fields: string;
+  // [path] the identifiers of the log draft default:- ex:ld100
+  referenceCode: string;
+  // [query] partial response fields to return default:referenceCode ex:fields=name,referenceCode
+  fields?: string; 
 }
 
 export interface CreateLogdraft {
- log: string;
- fields: string;
+  // [body] log draft to create default:- ex:LogDraft
+  log: string;
+  // [query] partial response fields to return default:referenceCode ex:fields=name,referenceCode
+  fields?: string; 
 }
 
 export interface UpdateLogdraft {
- referenceCode: string;
- log: string;
- fields: string;
+  // [path] the identifier of the log draft default:- ex:ld100
+  referenceCode: string;
+  // [body] log draft to update default:- ex:LogDraft
+  log: string;
+  // [query] partial response fields to return default:referenceCode ex:fields=name,referenceCode
+  fields?: string; 
 }
 
 export interface DeleteLogdraft {
- referenceCode: string;
+  // [path] the identifier of the log draft default:- ex:ld100
+  referenceCode: string; 
 }
 
 export interface PromoteLogdraft {
- referenceCode: string;
- draft: string;
+  // [path] the identifier of the log draft default:- ex:ld100
+  referenceCode: string;
+  // [body] the log draft to promote to geocache log default:- ex:LogDraft
+  draft: string; 
 }
 
 export interface CreateLogdraftImage {
- referenceCode: string;
- image: string;
- fields: string;
+  // [path] the identifier of the log draft default:- ex:ld100
+  referenceCode: string;
+  // [body] the iamge to upload default:- ex:PostImage
+  image: string;
+  // [query] partial response fields to return default:url ex:fields=url,guid
+  fields?: string; 
 }
 
 
@@ -58,9 +74,9 @@ export const logdraftMethodsApi = (configuration: InternalConfiguration, httpCli
     * @method: get
     * @link https://api.groundspeak.com/documentation#get-logdrafts
     * @access public
-    * @param fields (query) [required] partial response fields to return referenceCode (fields=name,referenceCode)
-* @param skip (query) [required] the number of resources to skip over 0 (skip=10)
-* @param take (query) [required] how many resources to return. maximum value of 50 10 (take=0)
+    * @param fields (query)  partial response fields to return referenceCode (fields=name,referenceCode)
+* @param skip (query)  the number of resources to skip over 0 (skip=10)
+* @param take (query)  how many resources to return. maximum value of 50 10 (take=0)
         * @return logDraft[] 
     * @responseCodes 200, 400, 401, 404, 429, 500
     * @restrictions 
@@ -79,7 +95,7 @@ export const logdraftMethodsApi = (configuration: InternalConfiguration, httpCli
     * @link https://api.groundspeak.com/documentation#get-logdraft
     * @access public
     * @param referenceCode (path) [required] the identifiers of the log draft - (ld100)
-* @param fields (query) [required] partial response fields to return referenceCode (fields=name,referenceCode)
+* @param fields (query)  partial response fields to return referenceCode (fields=name,referenceCode)
         * @return logDraft 
     * @responseCodes 200, 400, 401, 404, 500
     * @restrictions Only owner of log drafts may fetch it.
@@ -104,7 +120,7 @@ export const logdraftMethodsApi = (configuration: InternalConfiguration, httpCli
     * @link https://api.groundspeak.com/documentation#create-logdraft
     * @access public
     * @param log (body) [required] log draft to create - (LogDraft)
-* @param fields (query) [required] partial response fields to return referenceCode (fields=name,referenceCode)
+* @param fields (query)  partial response fields to return referenceCode (fields=name,referenceCode)
         * @return logDraft 
     * @responseCodes 201, 400, 401, 404, 409, 500
     * @restrictions 
@@ -130,7 +146,7 @@ export const logdraftMethodsApi = (configuration: InternalConfiguration, httpCli
     * @access public
     * @param referenceCode (path) [required] the identifier of the log draft - (ld100)
 * @param log (body) [required] log draft to update - (LogDraft)
-* @param fields (query) [required] partial response fields to return referenceCode (fields=name,referenceCode)
+* @param fields (query)  partial response fields to return referenceCode (fields=name,referenceCode)
         * @return logDraft 
     * @responseCodes 200, 400, 401, 403, 404, 409, 500
     * @restrictions Only owner of log draft may update the log draft.
@@ -159,11 +175,11 @@ export const logdraftMethodsApi = (configuration: InternalConfiguration, httpCli
     * @link https://api.groundspeak.com/documentation#delete-logdraft
     * @access public
     * @param referenceCode (path) [required] the identifier of the log draft - (ld100)
-        * @return  
+        * @return void 
     * @responseCodes 204, 400, 401, 409, 500
     * @restrictions Only owner of log draft may delete the log draft.
     */
-    const deleteLogdraft = (params: DeleteLogdraft, cb) => {
+    const deleteLogdraft = (params: DeleteLogdraft, cb): void => {
         
         // check required params
         
@@ -213,7 +229,7 @@ export const logdraftMethodsApi = (configuration: InternalConfiguration, httpCli
     * @access public
     * @param referenceCode (path) [required] the identifier of the log draft - (ld100)
 * @param image (body) [required] the iamge to upload - (PostImage)
-* @param fields (query) [required] partial response fields to return url (fields=url,guid)
+* @param fields (query)  partial response fields to return url (fields=url,guid)
         * @return image 
     * @responseCodes 201, 400, 401, 403, 409, 500
     * @restrictions Only owner of log draft may add images to the log draft.

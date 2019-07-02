@@ -6,54 +6,78 @@ import {HttpClient, InternalConfiguration, List} from '../utils/types';
 */
 
 export interface GetTrackableLogs {
- referenceCode: string;
- fields: string;
- skip: string;
- take: string;
- expand: string;
- logTypes: string;
+  // [path] the identifier of the trackable default:- ex:tb25
+  referenceCode: string;
+  // [query] partial response fields to return default:referenceCode ex:fields=name,referenceCode
+  fields?: string;
+  // [query] the number of resources to skip over default:0 ex:skip=10
+  skip?: string;
+  // [query] how many resources to return. maximum value of 50 default:10 ex:take=0
+  take?: string;
+  // [query] The fields of the trackable log object to expand. The available options are images. default:- ex:expand=images:5
+  expand?: string;
+  // [query] comma delimited list of log types to include in results default:all types ex:logTypes=14,75
+  logTypes?: string; 
 }
 
 export interface GetTrackablelog {
- referenceCode: string;
- fields: string;
- expand: string;
+  // [path] the identifiers of the trackable log default:- ex:tl100
+  referenceCode: string;
+  // [query] partial response fields to return default:referenceCode ex:fields=name,referenceCode
+  fields?: string;
+  // [query] The fields of the trackable log object to expand. The available options are images. default:- ex:expand=images:5
+  expand?: string; 
 }
 
 export interface CreateTrackablelog {
- log: string;
- fields: string;
+  // [body] trackable log to create default:- ex:TrackableLog
+  log: string;
+  // [query] partial response fields to return default:referenceCode ex:fields=name,referenceCode
+  fields?: string; 
 }
 
 export interface UpdateTrackablelog {
- referenceCode: string;
- log: string;
- fields: string;
+  // [path] the identifier of the trackable log default:- ex:tl100
+  referenceCode: string;
+  // [body] trackable log to update default:- ex:TrackableLog
+  log: string;
+  // [query] partial response fields to return default:referenceCode ex:fields=name,referenceCode
+  fields?: string; 
 }
 
 export interface DeleteTrackablelog {
- referenceCode: string;
+  // [path] the identifier of the trackable log default:- ex:tl100
+  referenceCode: string; 
 }
 
 export interface GetTrackablelogImages {
- referenceCode: string;
- fields: string;
- skip: string;
- take: string;
+  // [path] the identifier of the trackable log default:- ex:tl100
+  referenceCode: string;
+  // [query] partial response fields to return default:url ex:fields=name,referenceCode
+  fields?: string;
+  // [query] the number of resources to skip over default:0 ex:skip=10
+  skip?: string;
+  // [query] how many resources to return. maximum value of 50 default:10 ex:take=0
+  take?: string; 
 }
 
 export interface CreateTrackablelogImage {
- referenceCode: string;
- image: string;
- fields: string;
+  // [path] the identifier of the trackable default:- ex:tl25
+  referenceCode: string;
+  // [body] image to add to log default:- ex:ImageToUpload
+  image: string;
+  // [query] partial response fields to return default:url ex:fields=url
+  fields?: string; 
 }
 
 export interface DeleteTrackablelogImage {
- referenceCode: string;
- imageGuid: string;
+  // [path] the identifier of the trackable log default:- ex:tl1
+  referenceCode: string;
+  // [path] the identifier of the image default:- ex:fed3b84a-414e-469b-8b84-d731d62a2f9e
+  imageGuid: string; 
 }
 
-export interface GetTrackablelogTypes {
+export interface GetTrackablelogTypes { 
 }
 
 
@@ -73,11 +97,11 @@ export const trackablelogMethodsApi = (configuration: InternalConfiguration, htt
     * @link https://api.groundspeak.com/documentation#get-trackable-logs
     * @access public
     * @param referenceCode (path) [required] the identifier of the trackable - (tb25)
-* @param fields (query) [required] partial response fields to return referenceCode (fields=name,referenceCode)
-* @param skip (query) [required] the number of resources to skip over 0 (skip=10)
-* @param take (query) [required] how many resources to return. maximum value of 50 10 (take=0)
-* @param expand (query) [required] The fields of the trackable log object to expand. The available options are images. - (expand=images:5)
-* @param logTypes (query) [required] comma delimited list of log types to include in results all types (logTypes=14,75)
+* @param fields (query)  partial response fields to return referenceCode (fields=name,referenceCode)
+* @param skip (query)  the number of resources to skip over 0 (skip=10)
+* @param take (query)  how many resources to return. maximum value of 50 10 (take=0)
+* @param expand (query)  The fields of the trackable log object to expand. The available options are images. - (expand=images:5)
+* @param logTypes (query)  comma delimited list of log types to include in results all types (logTypes=14,75)
         * @return trackableLog[] 
     * @responseCodes 200, 400, 401, 404, 429, 500
     * @restrictions 
@@ -102,8 +126,8 @@ export const trackablelogMethodsApi = (configuration: InternalConfiguration, htt
     * @link https://api.groundspeak.com/documentation#get-trackablelog
     * @access public
     * @param referenceCode (path) [required] the identifiers of the trackable log - (tl100)
-* @param fields (query) [required] partial response fields to return referenceCode (fields=name,referenceCode)
-* @param expand (query) [required] The fields of the trackable log object to expand. The available options are images. - (expand=images:5)
+* @param fields (query)  partial response fields to return referenceCode (fields=name,referenceCode)
+* @param expand (query)  The fields of the trackable log object to expand. The available options are images. - (expand=images:5)
         * @return trackableLog 
     * @responseCodes 200, 400, 401, 404, 500
     * @restrictions 
@@ -128,7 +152,7 @@ export const trackablelogMethodsApi = (configuration: InternalConfiguration, htt
     * @link https://api.groundspeak.com/documentation#create-trackablelog
     * @access public
     * @param log (body) [required] trackable log to create - (TrackableLog)
-* @param fields (query) [required] partial response fields to return referenceCode (fields=name,referenceCode)
+* @param fields (query)  partial response fields to return referenceCode (fields=name,referenceCode)
         * @return trackableLog 
     * @responseCodes 201, 400, 401, 404, 409, 500
     * @restrictions 
@@ -154,7 +178,7 @@ export const trackablelogMethodsApi = (configuration: InternalConfiguration, htt
     * @access public
     * @param referenceCode (path) [required] the identifier of the trackable log - (tl100)
 * @param log (body) [required] trackable log to update - (TrackableLog)
-* @param fields (query) [required] partial response fields to return referenceCode (fields=name,referenceCode)
+* @param fields (query)  partial response fields to return referenceCode (fields=name,referenceCode)
         * @return trackableLog 
     * @responseCodes 200, 400, 401, 403, 404, 409, 500
     * @restrictions Only owner of trackable log may update the log.
@@ -183,11 +207,11 @@ export const trackablelogMethodsApi = (configuration: InternalConfiguration, htt
     * @link https://api.groundspeak.com/documentation#delete-trackablelog
     * @access public
     * @param referenceCode (path) [required] the identifier of the trackable log - (tl100)
-        * @return  
+        * @return void 
     * @responseCodes 204, 400, 401, 403, 409, 500
     * @restrictions Only owner of trackable log may delete the log.
     */
-    const deleteTrackablelog = (params: DeleteTrackablelog, cb) => {
+    const deleteTrackablelog = (params: DeleteTrackablelog, cb): void => {
         
         // check required params
         
@@ -207,9 +231,9 @@ export const trackablelogMethodsApi = (configuration: InternalConfiguration, htt
     * @link https://api.groundspeak.com/documentation#get-trackablelog-images
     * @access public
     * @param referenceCode (path) [required] the identifier of the trackable log - (tl100)
-* @param fields (query) [required] partial response fields to return url (fields=name,referenceCode)
-* @param skip (query) [required] the number of resources to skip over 0 (skip=10)
-* @param take (query) [required] how many resources to return. maximum value of 50 10 (take=0)
+* @param fields (query)  partial response fields to return url (fields=name,referenceCode)
+* @param skip (query)  the number of resources to skip over 0 (skip=10)
+* @param take (query)  how many resources to return. maximum value of 50 10 (take=0)
         * @return image[] 
     * @responseCodes 200, 400, 401, 404, 500
     * @restrictions 
@@ -235,7 +259,7 @@ export const trackablelogMethodsApi = (configuration: InternalConfiguration, htt
     * @access public
     * @param referenceCode (path) [required] the identifier of the trackable - (tl25)
 * @param image (body) [required] image to add to log - (ImageToUpload)
-* @param fields (query) [required] partial response fields to return url (fields=url)
+* @param fields (query)  partial response fields to return url (fields=url)
         * @return image 
     * @responseCodes 201, 400, 401, 403, 404, 409, 500
     * @restrictions Only owner of trackable log may add an image.
@@ -265,11 +289,11 @@ export const trackablelogMethodsApi = (configuration: InternalConfiguration, htt
     * @access public
     * @param referenceCode (path) [required] the identifier of the trackable log - (tl1)
 * @param imageGuid (path) [required] the identifier of the image - (fed3b84a-414e-469b-8b84-d731d62a2f9e)
-        * @return  
+        * @return void 
     * @responseCodes 201, 400, 401, 403, 409, 500
     * @restrictions Only owner of trackable log may delete an image.
     */
-    const deleteTrackablelogImage = (params: DeleteTrackablelogImage, cb) => {
+    const deleteTrackablelogImage = (params: DeleteTrackablelogImage, cb): void => {
         
         // check required params
         

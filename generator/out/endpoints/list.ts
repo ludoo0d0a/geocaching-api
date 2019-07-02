@@ -6,52 +6,74 @@ import {HttpClient, InternalConfiguration, List} from '../utils/types';
 */
 
 export interface GetList {
- referenceCode: string;
- fields: string;
+  // [path] identifier of the list (ignore, favorites, or watch can be used as aliases in place of the reference codes to get the calling user&#39;s ignore list and watch list). default:- ex:BM1234
+  referenceCode: string;
+  // [query] partial response fields to return default:referenceCode ex:fields=name,referenceCode
+  fields?: string; 
 }
 
 export interface CreateList {
- list: string;
- fields: string;
+  // [body] list to create default:- ex:List
+  list: string;
+  // [query] partial response fields to return default:referenceCode ex:fields=name,referenceCode
+  fields?: string; 
 }
 
 export interface UpdateList {
- referenceCode: string;
- list: string;
- fields: string;
+  // [path] the identifier of the list default:- ex:BM1234
+  referenceCode: string;
+  // [body] list to update default:- ex:List
+  list: string;
+  // [query] partial response fields to return default:referenceCode ex:fields=name,referenceCode
+  fields?: string; 
 }
 
 export interface RemoveList {
- referenceCode: string;
+  // [path] the identifier of the list default:- ex:BM1234
+  referenceCode: string; 
 }
 
 export interface GetListGeocaches {
- referenceCode: string;
- fields: string;
- skip: string;
- take: string;
- lite: string;
- expand: string;
+  // [path] identifier of the list (ignore, favorites, or watch can be used as aliases in place of the reference codes to get the calling user&#39;s ignore list and watch list). default:- ex:BM1234
+  referenceCode: string;
+  // [query] partial response fields to return default:all fields ex:fields=name,referenceCode
+  fields?: string;
+  // [query] the number of resources to skip over default:0 ex:skip=10
+  skip?: string;
+  // [query] how many resources to return. maximum value of 50 default:10 ex:take=0
+  take?: string;
+  // [query] whether the response should be a lite geocaches or not default:true ex:lite=true
+  lite?: string;
+  // [query] The fields of the geocache object to expand. Cannot be used with lite geocaches. The available options are geocachelogs, trackables, geocachelog.images, userwaypoints, and images. default:- ex:expand=geocachelogs:5,trackables:5
+  expand?: string; 
 }
 
 export interface GetPqZip {
- referenceCode: string;
+  // [path] identifier of the pocket query default:- ex:PQ1234
+  referenceCode: string; 
 }
 
 export interface AddGeocacheList {
- referenceCode: string;
- geocache: string;
- fields: string;
+  // [path] identifier of the list (ignore, favorites, or watch can be used as aliases in place of the reference codes to get the calling user&#39;s ignore list and watch list). default:- ex:BM1234
+  referenceCode: string;
+  // [body] geocache to add to the list default:- ex:Geocache
+  geocache: string;
+  // [query] partial response fields to return default:referenceCode ex:fields=name,referenceCode
+  fields?: string; 
 }
 
 export interface AddGeocachesList {
- referenceCode: string;
- geocacheCodes: string;
+  // [path] identifier of the list (ignore, favorites, or watch can be used as aliases in place of the reference codes to get the calling user&#39;s ignore list and watch list). default:- ex:BM1234
+  referenceCode: string;
+  // [body] The reference codes of the geocaches to add. default:- ex:Array of strings
+  geocacheCodes: string; 
 }
 
 export interface DeleteGeocacheList {
- referenceCode: string;
- geocacheCode: string;
+  // [path] identifier of the list (ignore, favorites, or watch can be used as aliases in place of the reference codes to get the calling user&#39;s ignore list and watch list). default:- ex:BM1234
+  referenceCode: string;
+  // [query] identifier of the geocache default:- ex:geocacheCode=GC1234
+  geocacheCode: string; 
 }
 
 
@@ -71,7 +93,7 @@ export const listMethodsApi = (configuration: InternalConfiguration, httpClient:
     * @link https://api.groundspeak.com/documentation#get-list
     * @access public
     * @param referenceCode (path) [required] identifier of the list (ignore, favorites, or watch can be used as aliases in place of the reference codes to get the calling user&#39;s ignore list and watch list). - (BM1234)
-* @param fields (query) [required] partial response fields to return referenceCode (fields=name,referenceCode)
+* @param fields (query)  partial response fields to return referenceCode (fields=name,referenceCode)
         * @return list 
     * @responseCodes 200, 400, 401, 404, 429, 500
     * @restrictions Basic members restriction applies. See
@@ -96,7 +118,7 @@ export const listMethodsApi = (configuration: InternalConfiguration, httpClient:
     * @link https://api.groundspeak.com/documentation#create-list
     * @access public
     * @param list (body) [required] list to create - (List)
-* @param fields (query) [required] partial response fields to return referenceCode (fields=name,referenceCode)
+* @param fields (query)  partial response fields to return referenceCode (fields=name,referenceCode)
         * @return list 
     * @responseCodes 201, 400, 401, 403, 404, 409, 422, 500
     * @restrictions Basic members restriction applies. See
@@ -122,7 +144,7 @@ export const listMethodsApi = (configuration: InternalConfiguration, httpClient:
     * @access public
     * @param referenceCode (path) [required] the identifier of the list - (BM1234)
 * @param list (body) [required] list to update - (List)
-* @param fields (query) [required] partial response fields to return referenceCode (fields=name,referenceCode)
+* @param fields (query)  partial response fields to return referenceCode (fields=name,referenceCode)
         * @return list 
     * @responseCodes 200, 400, 401, 403, 404, 409, 500
     * @restrictions Only owner may update the list.
@@ -151,11 +173,11 @@ export const listMethodsApi = (configuration: InternalConfiguration, httpClient:
     * @link https://api.groundspeak.com/documentation#remove-list
     * @access public
     * @param referenceCode (path) [required] the identifier of the list - (BM1234)
-        * @return  
+        * @return void 
     * @responseCodes 200, 400, 401, 403, 404, 409, 500
     * @restrictions Only owner may delete the list.
     */
-    const removeList = (params: RemoveList, cb) => {
+    const removeList = (params: RemoveList, cb): void => {
         
         // check required params
         
@@ -175,11 +197,11 @@ export const listMethodsApi = (configuration: InternalConfiguration, httpClient:
     * @link https://api.groundspeak.com/documentation#get-list-geocaches
     * @access public
     * @param referenceCode (path) [required] identifier of the list (ignore, favorites, or watch can be used as aliases in place of the reference codes to get the calling user&#39;s ignore list and watch list). - (BM1234)
-* @param fields (query) [required] partial response fields to return all fields (fields=name,referenceCode)
-* @param skip (query) [required] the number of resources to skip over 0 (skip=10)
-* @param take (query) [required] how many resources to return. maximum value of 50 10 (take=0)
-* @param lite (query) [required] whether the response should be a lite geocaches or not true (lite=true)
-* @param expand (query) [required] The fields of the geocache object to expand. Cannot be used with lite geocaches. The available options are geocachelogs, trackables, geocachelog.images, userwaypoints, and images. - (expand=geocachelogs:5,trackables:5)
+* @param fields (query)  partial response fields to return all fields (fields=name,referenceCode)
+* @param skip (query)  the number of resources to skip over 0 (skip=10)
+* @param take (query)  how many resources to return. maximum value of 50 10 (take=0)
+* @param lite (query)  whether the response should be a lite geocaches or not true (lite=true)
+* @param expand (query)  The fields of the geocache object to expand. Cannot be used with lite geocaches. The available options are geocachelogs, trackables, geocachelog.images, userwaypoints, and images. - (expand=geocachelogs:5,trackables:5)
         * @return listGeocache[] | liteGeocache[] 
     * @responseCodes 200, 400, 401, 404, 500
     * @restrictions Basic members restriction applies. See
@@ -204,11 +226,11 @@ export const listMethodsApi = (configuration: InternalConfiguration, httpClient:
     * @link https://api.groundspeak.com/documentation#get-pq-zip
     * @access public
     * @param referenceCode (path) [required] identifier of the pocket query - (PQ1234)
-        * @return  
+        * @return void 
     * @responseCodes 200, 400, 401, 404, 500
     * @restrictions Only Read for Download pocket queries from the web may be fetched. Pocket queries are a premium member feature.
     */
-    const getPqZip = (params: GetPqZip, cb) => {
+    const getPqZip = (params: GetPqZip, cb): void => {
         
         // check required params
         
@@ -229,7 +251,7 @@ export const listMethodsApi = (configuration: InternalConfiguration, httpClient:
     * @access public
     * @param referenceCode (path) [required] identifier of the list (ignore, favorites, or watch can be used as aliases in place of the reference codes to get the calling user&#39;s ignore list and watch list). - (BM1234)
 * @param geocache (body) [required] geocache to add to the list - (Geocache)
-* @param fields (query) [required] partial response fields to return referenceCode (fields=name,referenceCode)
+* @param fields (query)  partial response fields to return referenceCode (fields=name,referenceCode)
         * @return listItem 
     * @responseCodes 200, 400, 401, 404, 500
     * @restrictions Basic members restriction applies. See
@@ -288,11 +310,11 @@ export const listMethodsApi = (configuration: InternalConfiguration, httpClient:
     * @access public
     * @param referenceCode (path) [required] identifier of the list (ignore, favorites, or watch can be used as aliases in place of the reference codes to get the calling user&#39;s ignore list and watch list). - (BM1234)
 * @param geocacheCode (query) [required] identifier of the geocache - (geocacheCode=GC1234)
-        * @return  
+        * @return void 
     * @responseCodes 204, 400, 401, 409, 500
     * @restrictions Basic members restriction applies. See
     */
-    const deleteGeocacheList = (params: DeleteGeocacheList, cb) => {
+    const deleteGeocacheList = (params: DeleteGeocacheList, cb): void => {
         
         // check required params
         

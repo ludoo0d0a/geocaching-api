@@ -3,10 +3,9 @@
 //
 // <%= o.name %> : <%= o.title %>
 //
-export interface <%= o.interfaceName %> {
-<% o.params.forEach(function(param){ %>
-  // <%= param.description %><% if (param.nullable) { %> (Nullable)<% } %><% if (param.deprecated) { %> (Deprecated)<% } %>
-  <%= param.name %>: <%= param.type %>;<% }); %>
+export interface <%= o.interfaceName %> {<% o.params.forEach(function(param){ %>
+  // <%= param.description %><% if (param.nullable) { %> (Nullable)<% } %><% if (param.deprecated) { %> (Deprecated)<% } %><% if (param.defaultValue) { %> default:<%= param.defaultValue %><% } %><% if (param.example) { %> ex:<%= param.example %><% } %>
+  <%= param.name %><% if (!param.required) { %>?<% } %>: <%= param.type %>;<% }); %>
 }
 
 <% }); %>

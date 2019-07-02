@@ -194,13 +194,13 @@ function parse_endpoints(div, sectionId, $) {
         .eq(2)
         .find('a')
         .attr('href'),
-      required: values.eq(3).text(),
+      required: (values.eq(3).text().toLowerCase() === 'yes'),
       description: values.eq(4).text(),
       defaultValue: values.eq(5).text()
     };
     r.params.push(param);
   });
-  r.required_params = r.params.filter(param => param.required.toLowerCase() === 'yes');
+  r.required_params = r.params.filter(param => param.required);
   return r;
 }
 function normalize(txt) {
@@ -229,27 +229,18 @@ function xtrim(txt) {
   return txt.trim().replace(/[\n\t\r]/g, '');
 }
 function addResponseType(el, r) {
-  let responseType = el.text();
+  let responseType = ''; 
   const text = nextText(el)
   const isArray = /array/i.test(text);
-  if (/No Response body/.test(text)){
-    responseType = '';
-  }
-  
-  let links = [];
-  let l = el;
-  while(l=l.next()){
-    if (l[0] && l[0].name === 'a'){
-    links.push(l[0]);
-    }else{
-      break;
-    }
-  }
+  // if (/No Response body/.test(text)){
+  //   responseType = '';
+  // }
+  const links = el.nextUntil('br');
   // el.nextAll('a');
   let responseTypes = [];
   if (links.length>0){
     // TODO manage multiple response types...
-    links.map((link, i)=>{
+    links.map((i, link)=>{
       let r = snakeToCamel(link.attribs['href'].replace(/#/, ''));
       if (isArray) {
         r += '[]';
@@ -257,12 +248,8 @@ function addResponseType(el, r) {
       responseTypes.push(r);
     });    
     responseType = responseTypes.join(' | ');
-  }else{
-    responseType='';
   }
-  
-  r.responseType = responseType;
-  // r.responseTypeLink = responseTypeLink;
+  r.responseType = responseType || 'void';
 }
 
 function cleanAnchor(txt) {

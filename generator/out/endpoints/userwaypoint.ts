@@ -6,41 +6,58 @@ import {HttpClient, InternalConfiguration, List} from '../utils/types';
 */
 
 export interface GetGeocacheUserwaypoints {
- referenceCode: string;
- includeCorrectedCoordinates: string;
- fields: string;
- skip: string;
- take: string;
+  // [path] the identifier of the geocache default:- ex:gc25
+  referenceCode: string;
+  // [query] bool to include corrected coordinates in the response default:false ex:includeCorrectedCoordinates=false
+  includeCorrectedCoordinates?: string;
+  // [query] partial response fields to return default:all fields ex:fields=name,referenceCode
+  fields?: string;
+  // [query] the number of resources to skip over default:0 ex:skip=10
+  skip?: string;
+  // [query] how many resources to return. maximum value of 50 default:10 ex:take=0
+  take?: string; 
 }
 
 export interface GetUserwaypoints {
- includeCorrectedCoordinates: string;
- fields: string;
- skip: string;
- take: string;
+  // [query] bool to include corrected coordinates in the response default:false ex:includeCorrectedCoordinates=false
+  includeCorrectedCoordinates?: string;
+  // [query] partial response fields to return default:all fields ex:fields=name,referenceCode
+  fields?: string;
+  // [query] the number of resources to skip over default:0 ex:skip=10
+  skip?: string;
+  // [query] how many resources to return. maximum value of 50 default:10 ex:take=0
+  take?: string; 
 }
 
 export interface CreateUserwaypoint {
- referenceCode: string;
- userWaypoint: string;
+  // [path] the identifier of the geocache default:- ex:gc25
+  referenceCode: string;
+  // [body] user waypoint to create default:- ex:UserWaypoint
+  userWaypoint: string; 
 }
 
 export interface UpdateUserwaypoint {
- referenceCode: string;
- log: string;
+  // [path] the identifier of the user waypoint default:- ex:UW123
+  referenceCode: string;
+  // [body] user waypoint to update default:- ex:UserWaypoint
+  log: string; 
 }
 
 export interface DeleteUserwaypoint {
- referenceCode: string;
+  // [path] the identifier of the user waypoint default:- ex:UW123
+  referenceCode: string; 
 }
 
 export interface UpsertCorrectedcoordinates {
- referenceCode: string;
- coordinates: string;
+  // [path] the identifier of the geocache default:- ex:GCK25B
+  referenceCode: string;
+  // [body] the corrected coordinates to upsert default:- ex:Coordinates
+  coordinates: string; 
 }
 
 export interface DeleteCorrectedcoordinates {
- referenceCode: string;
+  // [path] the identifier of the geocache default:- ex:GCK25B
+  referenceCode: string; 
 }
 
 
@@ -60,10 +77,10 @@ export const userwaypointMethodsApi = (configuration: InternalConfiguration, htt
     * @link https://api.groundspeak.com/documentation#get-geocache-userwaypoints
     * @access public
     * @param referenceCode (path) [required] the identifier of the geocache - (gc25)
-* @param includeCorrectedCoordinates (query) [required] bool to include corrected coordinates in the response false (includeCorrectedCoordinates=false)
-* @param fields (query) [required] partial response fields to return all fields (fields=name,referenceCode)
-* @param skip (query) [required] the number of resources to skip over 0 (skip=10)
-* @param take (query) [required] how many resources to return. maximum value of 50 10 (take=0)
+* @param includeCorrectedCoordinates (query)  bool to include corrected coordinates in the response false (includeCorrectedCoordinates=false)
+* @param fields (query)  partial response fields to return all fields (fields=name,referenceCode)
+* @param skip (query)  the number of resources to skip over 0 (skip=10)
+* @param take (query)  how many resources to return. maximum value of 50 10 (take=0)
         * @return userWaypoint[] 
     * @responseCodes 200, 400, 401, 404, 429, 500
     * @restrictions Basic members restriction applies. See
@@ -87,10 +104,10 @@ export const userwaypointMethodsApi = (configuration: InternalConfiguration, htt
     * @method: get
     * @link https://api.groundspeak.com/documentation#get-userwaypoints
     * @access public
-    * @param includeCorrectedCoordinates (query) [required] bool to include corrected coordinates in the response false (includeCorrectedCoordinates=false)
-* @param fields (query) [required] partial response fields to return all fields (fields=name,referenceCode)
-* @param skip (query) [required] the number of resources to skip over 0 (skip=10)
-* @param take (query) [required] how many resources to return. maximum value of 50 10 (take=0)
+    * @param includeCorrectedCoordinates (query)  bool to include corrected coordinates in the response false (includeCorrectedCoordinates=false)
+* @param fields (query)  partial response fields to return all fields (fields=name,referenceCode)
+* @param skip (query)  the number of resources to skip over 0 (skip=10)
+* @param take (query)  how many resources to return. maximum value of 50 10 (take=0)
         * @return userWaypoint[] 
     * @responseCodes 200, 400, 401, 404, 500
     * @restrictions Only owner of user waypoints can fetch them.
@@ -167,11 +184,11 @@ export const userwaypointMethodsApi = (configuration: InternalConfiguration, htt
     * @link https://api.groundspeak.com/documentation#delete-userwaypoint
     * @access public
     * @param referenceCode (path) [required] the identifier of the user waypoint - (UW123)
-        * @return  
+        * @return void 
     * @responseCodes 204, 400, 401, 409, 500
     * @restrictions Only owner may delete the user waypoint.
     */
-    const deleteUserwaypoint = (params: DeleteUserwaypoint, cb) => {
+    const deleteUserwaypoint = (params: DeleteUserwaypoint, cb): void => {
         
         // check required params
         
@@ -220,11 +237,11 @@ export const userwaypointMethodsApi = (configuration: InternalConfiguration, htt
     * @link https://api.groundspeak.com/documentation#delete-correctedcoordinates
     * @access public
     * @param referenceCode (path) [required] the identifier of the geocache - (GCK25B)
-        * @return  
+        * @return void 
     * @responseCodes 204, 400, 401, 409, 429, 500
     * @restrictions Only owner may delete the corrected coordinate.
     */
-    const deleteCorrectedcoordinates = (params: DeleteCorrectedcoordinates, cb) => {
+    const deleteCorrectedcoordinates = (params: DeleteCorrectedcoordinates, cb): void => {
         
         // check required params
         
