@@ -1,5 +1,5 @@
 import http, {utils} from '../utils/http';
-import {HttpClient, InternalConfiguration, List} from '../utils/types';
+import {HttpClient, APIConfiguration, List} from '../utils/types';
 
 /*
  List of interfaces from request parameters
@@ -64,7 +64,7 @@ export interface DeleteCorrectedcoordinates {
 /*
 * Returned api userwaypointMethodsApi
 */
-export const userwaypointMethodsApi = (configuration: InternalConfiguration, httpClient: HttpClient): UserwaypointMethodsApi => {
+export const userwaypointMethodsApi = (configuration: APIConfiguration, httpClient: HttpClient): UserwaypointMethodsApi => {
     const {get, post, delete_} = httpClient;
 
     
@@ -268,6 +268,6 @@ export const userwaypointMethodsApi = (configuration: InternalConfiguration, htt
 }; //end export const
 
 
-export default (configuration: InternalConfiguration): UserwaypointMethodsApi => {
+export default (configuration: APIConfiguration): UserwaypointMethodsApi => {
     return userwaypointMethodsApi(configuration, http);
 };

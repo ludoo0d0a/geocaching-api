@@ -1,5 +1,5 @@
 import http, {utils} from '../utils/http';
-import {HttpClient, InternalConfiguration, List} from '../utils/types';
+import {HttpClient, APIConfiguration, List} from '../utils/types';
 
 /*
  List of interfaces from request parameters
@@ -84,7 +84,7 @@ export interface GetTrackablelogTypes {
 /*
 * Returned api trackablelogMethodsApi
 */
-export const trackablelogMethodsApi = (configuration: InternalConfiguration, httpClient: HttpClient): TrackablelogMethodsApi => {
+export const trackablelogMethodsApi = (configuration: APIConfiguration, httpClient: HttpClient): TrackablelogMethodsApi => {
     const {get, post, delete_} = httpClient;
 
     
@@ -343,6 +343,6 @@ export const trackablelogMethodsApi = (configuration: InternalConfiguration, htt
 }; //end export const
 
 
-export default (configuration: InternalConfiguration): TrackablelogMethodsApi => {
+export default (configuration: APIConfiguration): TrackablelogMethodsApi => {
     return trackablelogMethodsApi(configuration, http);
 };

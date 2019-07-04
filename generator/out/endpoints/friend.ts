@@ -1,5 +1,5 @@
 import http, {utils} from '../utils/http';
-import {HttpClient, InternalConfiguration, List} from '../utils/types';
+import {HttpClient, APIConfiguration, List} from '../utils/types';
 
 /*
  List of interfaces from request parameters
@@ -49,7 +49,7 @@ export interface DeleteFriend {
 /*
 * Returned api friendMethodsApi
 */
-export const friendMethodsApi = (configuration: InternalConfiguration, httpClient: HttpClient): FriendMethodsApi => {
+export const friendMethodsApi = (configuration: APIConfiguration, httpClient: HttpClient): FriendMethodsApi => {
     const {get, post, delete_} = httpClient;
 
     
@@ -205,6 +205,6 @@ export const friendMethodsApi = (configuration: InternalConfiguration, httpClien
 }; //end export const
 
 
-export default (configuration: InternalConfiguration): FriendMethodsApi => {
+export default (configuration: APIConfiguration): FriendMethodsApi => {
     return friendMethodsApi(configuration, http);
 };

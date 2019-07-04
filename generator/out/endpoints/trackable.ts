@@ -1,5 +1,5 @@
 import http, {utils} from '../utils/http';
-import {HttpClient, InternalConfiguration, List} from '../utils/types';
+import {HttpClient, APIConfiguration, List} from '../utils/types';
 
 /*
  List of interfaces from request parameters
@@ -66,7 +66,7 @@ export interface GetGeocoinTypes {
 /*
 * Returned api trackableMethodsApi
 */
-export const trackableMethodsApi = (configuration: InternalConfiguration, httpClient: HttpClient): TrackableMethodsApi => {
+export const trackableMethodsApi = (configuration: APIConfiguration, httpClient: HttpClient): TrackableMethodsApi => {
     const {get, post, delete_} = httpClient;
 
     
@@ -208,6 +208,6 @@ export const trackableMethodsApi = (configuration: InternalConfiguration, httpCl
 }; //end export const
 
 
-export default (configuration: InternalConfiguration): TrackableMethodsApi => {
+export default (configuration: APIConfiguration): TrackableMethodsApi => {
     return trackableMethodsApi(configuration, http);
 };
