@@ -1,5 +1,5 @@
 import http, {utils} from '../utils/http';
-import {HttpClient, InternalConfiguration, List} from '../utils/types';
+import {HttpClient, APIConfiguration, List} from '../utils/types';
 
 /*
  List of interfaces from request parameters
@@ -61,10 +61,7 @@ export interface CreateLogdraftImage {
 /*
  * Returned api logdraftMethodsApi
  */
-export const logdraftMethodsApi = (
-  configuration: InternalConfiguration,
-  httpClient: HttpClient
-): LogdraftMethodsApi => {
+export const logdraftMethodsApi = (configuration: APIConfiguration, httpClient: HttpClient): LogdraftMethodsApi => {
   const {get, post, delete_} = httpClient;
 
   /**
@@ -255,6 +252,6 @@ export const logdraftMethodsApi = (
   };
 }; //end export const
 
-export default (configuration: InternalConfiguration): LogdraftMethodsApi => {
+export default (configuration: APIConfiguration): LogdraftMethodsApi => {
   return logdraftMethodsApi(configuration, http);
 };

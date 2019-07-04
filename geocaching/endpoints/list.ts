@@ -1,5 +1,5 @@
 import http, {utils} from '../utils/http';
-import {HttpClient, InternalConfiguration, List} from '../utils/types';
+import {APIConfiguration, HttpClient, List} from '../utils/types';
 
 /*
  List of interfaces from request parameters
@@ -79,7 +79,7 @@ export interface DeleteGeocacheList {
 /*
  * Returned api listMethodsApi
  */
-export const listMethodsApi = (configuration: InternalConfiguration, httpClient: HttpClient): ListMethodsApi => {
+export const listMethodsApi = (configuration: APIConfiguration, httpClient: HttpClient): ListMethodsApi => {
   const {get, post, delete_} = httpClient;
 
   /**
@@ -332,6 +332,6 @@ export const listMethodsApi = (configuration: InternalConfiguration, httpClient:
   };
 }; //end export const
 
-export default (configuration: InternalConfiguration): ListMethodsApi => {
+export default (configuration: APIConfiguration): ListMethodsApi => {
   return listMethodsApi(configuration, http);
 };

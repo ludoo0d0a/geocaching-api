@@ -1,5 +1,5 @@
 import http, {utils} from '../utils/http';
-import {HttpClient, InternalConfiguration, List} from '../utils/types';
+import {HttpClient, APIConfiguration, List} from '../utils/types';
 
 /*
  List of interfaces from request parameters
@@ -14,7 +14,7 @@ export interface <%= e.interfaceName %> {<% e.params.forEach(function(param){ %>
 /*
 * Returned api <%= apiName %>
 */
-export const <%= apiName %> = (configuration: InternalConfiguration, httpClient: HttpClient): <%= apiInterfaceName %> => {
+export const <%= apiName %> = (configuration: APIConfiguration, httpClient: HttpClient): <%= apiInterfaceName %> => {
     const {get, post, delete_} = httpClient;
 
     <% endpoints.forEach(function(e){ %>
@@ -34,12 +34,35 @@ export const <%= apiName %> = (configuration: InternalConfiguration, httpClient:
     const <%= e.functionName %> = (params: <%= e.interfaceName %>, cb)<% if (e.responseType) { %>: <%= e.responseType %><% } %> => {
         <% if (e.required_params && e.required_params.length>0) { %>
         // check required params
+        %> 
         <% e.required_params.forEach(function(p){ %>
-        if (!array_key_exists('<%= p.name %>', params)) {
+        if (!params.<%= p.name %>) {
                 throw new Exception('<%= p.name %> is missing.');
         }
         <% }); %><% } %>
-        return this.<%= e.httpMethod %>Request('<%= e.path %>', params, cb);
+
+        <% 
+        let paths = e.params
+            .filter(p=>p.type==='path')
+            .map(p=>p.name)
+            .join(',')
+        paths=`[${paths}]`;
+        let body = e.params
+            .filter(p=>p.type==='body')
+            .map(p=>e.interfaceName+'.'+p.name)
+        let queries = e.params
+            .filter(p=>p.type==='query')
+            .map(p=>`${p.name}: ${e.interfaceName}.${p.name}`)
+            .join(',')
+        queries=`[${queries}]`;
+        %>
+
+        const urlOptions = {
+            path_params: <%= paths %>,
+            query_params: <%= queries %>
+        }
+        //TODO body undefined
+        return this.<%= e.httpMethod %>(configuration, '<%= e.path %>', urlOptions, <%= body %>);
     };
     <% }); //endpoints loop %>
 
@@ -52,6 +75,6 @@ export const <%= apiName %> = (configuration: InternalConfiguration, httpClient:
 }; //end export const
 
 
-export default (configuration: InternalConfiguration): <%= apiInterfaceName %> => {
+export default (configuration: APIConfiguration): <%= apiInterfaceName %> => {
     return <%= apiName %>(configuration, http);
 };

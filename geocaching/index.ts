@@ -16,7 +16,7 @@ import utility, {Utility} from './endpoints/utility';
 
 import logger from './utils/Logger';
 import utils from './utils/Utils';
-import {GeocachingConfiguration, InternalConfiguration} from './utils/types';
+import {APIConfiguration, APIConfiguration} from './utils/types';
 
 declare const __VERSION__: any;
 
@@ -29,7 +29,7 @@ const checkAuthorizationInConfiguration = configuration => {
 };
 
 const setupConfiguration = configuration => {
-  const internalConfig: InternalConfiguration = {
+  const internalConfig: APIConfiguration = {
     ...configuration
   };
 
@@ -94,10 +94,10 @@ export interface GeocachingAPI {
   // notifications: Notifications;
 }
 
-const Geocaching = (configuration: GeocachingConfiguration): GeocachingAPI => {
+const Geocaching = (configuration: APIConfiguration): GeocachingAPI => {
   checkAuthorizationInConfiguration(configuration);
 
-  const internalConfig: InternalConfiguration = setupConfiguration(configuration);
+  const internalConfig: APIConfiguration = setupConfiguration(configuration);
 
   const geocaching: GeocachingAPI = {
     trackable: trackable(internalConfig),

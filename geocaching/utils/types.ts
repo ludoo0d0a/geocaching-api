@@ -1,18 +1,18 @@
-export interface GeocachingConfiguration {
-  apiKey: string;
-  tenantOrgId?: string;
-  debug?: boolean;
-  protocol?: string;
-  host?: string;
-  apiBaseUrl?: string;
-  basePath?: string;
-  requestTimeout?: number;
-  xApiClient?: string;
-  additionalHeaders?: any;
-  httpHeaders?: any;
-}
+// export interface APIConfiguration {
+//   apiKey: string;
+//   tenantOrgId?: string;
+//   debug?: boolean;
+//   protocol?: string;
+//   host?: string;
+//   apiBaseUrl?: string;
+//   basePath?: string;
+//   requestTimeout?: number;
+//   xApiClient?: string;
+//   additionalHeaders?: any;
+//   httpHeaders?: any;
+// }
 
-export interface InternalConfiguration {
+export interface APIConfiguration {
   apiKey: string;
   tenantOrgId?: string;
   debug?: boolean;
@@ -25,6 +25,13 @@ export interface InternalConfiguration {
   additionalHeaders?: any;
   httpHeaders?: any;
 }
+
+export type UrlOptions = {
+  url: string;
+  body?: any;
+  path_params: any[];
+  query_params: any[];
+};
 
 export type Pagination<T, J = {}> = J & {
   totalCount: number;
@@ -84,15 +91,15 @@ export type Delete<T> = () => Promise<T>;
 export type CustomData = () => Promise<CustomDataT>;
 
 export interface HttpClient {
-  get<T>(configuration: InternalConfiguration, url: string, fetchMethod?: any): Promise<T>;
-  post<T, J>(configuration: InternalConfiguration, url: string, object?: J, fetchMethod?: any): Promise<T>;
-  put<T, J>(configuration: InternalConfiguration, url: string, object?: J, fetchMethod?: any): Promise<T>;
-  delete_<T>(configuration: InternalConfiguration, url: string, fetchMethod?: any): Promise<T>;
+  get<T>(configuration: APIConfiguration, url: string, fetchMethod?: any): Promise<T>;
+  post<T, J>(configuration: APIConfiguration, url: string, object?: J, fetchMethod?: any): Promise<T>;
+  put<T, J>(configuration: APIConfiguration, url: string, object?: J, fetchMethod?: any): Promise<T>;
+  delete_<T>(configuration: APIConfiguration, url: string, fetchMethod?: any): Promise<T>;
 }
 
-export interface GeocachingDetails {
-  createdAt: string;
-  modifiedAt: string;
-}
+// export interface GeocachingDetails {
+//   createdAt: string;
+//   modifiedAt: string;
+// }
 
 export interface DeleteResult extends ResourceId {}

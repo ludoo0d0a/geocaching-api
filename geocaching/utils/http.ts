@@ -4,14 +4,24 @@ import * as urljoin from 'url-join';
 
 import GeocachingError from './GeocachingError';
 import logger from './Logger';
-import {HttpClient, InternalConfiguration, List, Pagination} from './types';
+import {APIConfiguration, HttpClient, List, Pagination} from './types';
 
 const GET = 'GET';
 const POST = 'POST';
 const DELETE = 'DELETE';
 const PUT = 'PUT';
 
-const buildParams = (method, configuration, body) => {
+// Replace paths in url
+function renderUrl(path, pathParams: any, queryParams: any) {
+  let url = utils.buildUrlString(path, pathParams);
+  const getParams = utils.buildGetParamString(queryParams);
+  if (getParams.length > 0) {
+    url = urljoin(url, getParams);
+  }
+  return url;
+}
+
+const buildParams = (method, configuration: APIConfiguration, body) => {
   return {
     method,
     body,
@@ -20,15 +30,32 @@ const buildParams = (method, configuration, body) => {
   };
 };
 
-const request = (configuration, method, url, fetchMethod = fetch, body) => {
-  logger.log('Request: ' + method + ' ' + url + '  ...');
-
-  if (body !== undefined) {
+const getBody = (options: urlOptions) => {
+  // logger.log('Request payload will be: ' + JSON.stringify(object, undefined, 2));
+  // const body = JSON.stringify(object);
+  let body;
+  if (options.body !== undefined) {
+    if (!(typeof options.body === 'string')) {
+      body = JSON.stringify(options.body);
+    }
     logger.log('Request Body: ' + body);
+    logger.log('Request payload will be: ' + body);
   }
+  return body;
+};
 
+const request = (
+  configuration: APIConfiguration,
+  method: string,
+  urlapi: string,
+  options: UrlOptions,
+  fetchMethod: any = fetch,
+  body: any
+) => {
+  logger.log('Request: ' + method + ' ' + urlapi + '  ...');
+
+  const url = renderUrl(urlapi, options.path_params, options.query_params);
   const params = buildParams(method, configuration, body);
-
   return fetchMethod(url, params)
     .then(response => {
       if (response.status > 399) {
@@ -61,27 +88,41 @@ const request = (configuration, method, url, fetchMethod = fetch, body) => {
     });
 };
 
-const get = (configuration, url, fetchMethod = fetch) => {
-  return request(configuration, GET, url, fetchMethod, undefined);
+const get = (configuration: APIConfiguration, url: string, options: UrlOptions, fetchMethod: any = fetch) => {
+  return request(configuration, GET, url, options, fetchMethod, undefined);
 };
 
-const post = (configuration, url, object, fetchMethod = fetch) => {
-  logger.log('Request payload will be: ' + JSON.stringify(object, undefined, 2));
-  const body = JSON.stringify(object);
-
-  return request(configuration, POST, url, fetchMethod, body);
+const post = (
+  configuration: APIConfiguration,
+  url: string,
+  options: UrlOptions,
+  object: any,
+  fetchMethod: any = fetch
+) => {
+  const body = getBody(options);
+  return request(configuration, POST, url, options, fetchMethod, body);
 };
 
-const put = (configuration, url, object, fetchMethod = fetch) => {
-  logger.log('Request payload will be: ' + JSON.stringify(object, undefined, 2));
-  const body = JSON.stringify(object);
-
-  return request(configuration, PUT, url, fetchMethod, body);
+const put = (
+  configuration: APIConfiguration,
+  url: string,
+  options: UrlOptions,
+  object: any,
+  fetchMethod: any = fetch
+) => {
+  const body = getBody(options);
+  return request(configuration, PUT, url, options, fetchMethod, body);
 };
 
 // tslint:disable-next-line
-const delete_ = (configuration, url, fetchMethod = fetch) => {
-  return request(configuration, DELETE, url, fetchMethod, undefined);
+const delete_ = (configuration: APIConfiguration, url: string, options: UrlOptions, fetchMethod: any = fetch) => {
+  return request(configuration, DELETE, url, options, fetchMethod, undefined);
+};
+
+const buildUrlString = (path: string, pathParams: any) => {
+  return path.replace(/{(.*?)\}/g, (match, token) => {
+    return pathParams[token];
+  });
 };
 
 const buildGetParamString = (getParams: any) => {
@@ -124,7 +165,7 @@ const buildFilterParamString = (filterParams: any) => {
 
 const buildListCallFunction = <T, J = {}>(
   httpClient: HttpClient,
-  configuration: InternalConfiguration,
+  configuration: APIConfiguration,
   url: string
 ): List<T, J> => {
   return (limit?: number, offset?: number, sort?: string, filter?: any): Promise<Pagination<T, J>> => {
@@ -156,7 +197,8 @@ const Http: HttpClient = {
 export const utils = {
   buildGetParamString,
   buildFilterParamString,
-  buildListCallFunction
+  buildListCallFunction,
+  buildUrlString
 };
 
 export default Http;

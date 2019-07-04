@@ -1,5 +1,5 @@
 import http, {utils} from '../utils/http';
-import {HttpClient, InternalConfiguration, List} from '../utils/types';
+import {HttpClient, APIConfiguration, List} from '../utils/types';
 
 /*
  List of interfaces from request parameters
@@ -26,7 +26,7 @@ export interface GetMembershipLevels {}
 /*
  * Returned api utilityMethodsApi
  */
-export const utilityMethodsApi = (configuration: InternalConfiguration, httpClient: HttpClient): UtilityMethodsApi => {
+export const utilityMethodsApi = (configuration: APIConfiguration, httpClient: HttpClient): UtilityMethodsApi => {
   const {get, post, delete_} = httpClient;
 
   /**
@@ -138,6 +138,6 @@ export const utilityMethodsApi = (configuration: InternalConfiguration, httpClie
   };
 }; //end export const
 
-export default (configuration: InternalConfiguration): UtilityMethodsApi => {
+export default (configuration: APIConfiguration): UtilityMethodsApi => {
   return utilityMethodsApi(configuration, http);
 };
