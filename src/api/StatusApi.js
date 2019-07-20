@@ -83,7 +83,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['AccessToken'];
       var contentTypes = [];
       var accepts = [];
       var returnType = null;

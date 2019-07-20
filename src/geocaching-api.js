@@ -21,13 +21,12 @@
  * 
  * */
 var util = require('util'),
-    querystring = require('querystring'),
     GeocachingStrategy = require('passport-geocaching').Strategy,
     //GeocachingStrategy = require('../../passport-geocaching/lib/index').Strategy,
     _ = require('lodash');
 
-var GeocachingApiV10 = require('./swagger-index');
-
+var GeocachingApiV10 = require('./geocaching-api-v10');
+var ApiClient = require('./ApiClient');
 var apiVersion = '1'; // {String} The requested API version
 
 function Exception(msg, e) {
@@ -66,11 +65,6 @@ var prod_api_url = 'https://api.groundspeak.com/%s';
  * @return void
  */
 var GeocachingApi = function (config) {
-    var self = this
-    var credentials = {
-        clientID: config.clientID,
-        clientSecret: config.clientSecret
-    }
     /**
      * Log API requests in a file
      *
@@ -85,6 +79,15 @@ var GeocachingApi = function (config) {
      * @var string $api_url
      */
     this.api_url = null;
+
+    this.apiClient = ApiClient.instance; //new ApiClient({});
+    this.apiClient.authentications = {
+        'AccessToken': { type: 'oauth2', 'in': 'header', name: 'AccessToken' }
+    };
+
+    // Token to pass from Passport to Geocaching API
+    this.oauth_token = null;
+    this.oauth_token_secret = null;
 
     this._validateConfigOrThrow(config);
     this.config = config;
@@ -101,24 +104,8 @@ var GeocachingApi = function (config) {
     //Auto define strategy if not available
     if (typeof this.strategy === 'undefined') {
         this.strategy = new GeocachingStrategy(this.config, _.bind(this._verify, this));
-        // this.strategy.api = this;
     }
 }
-
-GeocachingApi.prototype.GeocachingApiV10 = GeocachingApiV10;
-
-GeocachingApi.prototype.getYourUserProfile = function (params, cb){
-    // var callback = function (error, data, response) {
-    //     if (error) {
-    //         console.error(error);
-    //     } else {
-    //         console.info('API called successfully.');
-    //         console.log(data);
-    //     }
-    // };
-    var usersApi = new GeocachingApiV10.UsersApi();
-    usersApi.usersGetUser('me', apiVersion, cb);
-};
 
 //Middleware for Express to set user credentails retrieved from storage
 GeocachingApi.prototype.securized = function (req, res, next) {
@@ -148,7 +135,8 @@ GeocachingApi.prototype.securized = function (req, res, next) {
 GeocachingApi.prototype.setAuth = function (token, tokenSecret) {
     if (token) {
         this.oauth_token = token;
-        this.oauth_token_secret = tokenSecret;
+        // this.oauth_token_secret = tokenSecret;
+        this.apiClient.authentications.AccessToken.accessToken = token;
     }
 }
 
@@ -174,11 +162,14 @@ GeocachingApi.prototype._verify = function (token, tokenSecret, profile, done) {
     //});
 }
 
-// GeocachingApi.prototype.getYourUserProfile = function (params, cb) {
-//     return this.getUserProfile('getYourUserProfile', params, cb);
-// };
+GeocachingApi.prototype.GeocachingApiV10 = GeocachingApiV10;
 
-
+GeocachingApi.prototype.getYourUserProfile = function (params, cb) {
+    var usersApi = new GeocachingApiV10.UsersApi(this.apiClient);
+    usersApi.usersGetUser('me', apiVersion, {
+        fields: 'referenceCode,findCount,hideCount,favoritePoints,username,membershipLevelId,avatarUrl,profileText,homeCoordinates'
+    }, cb);
+};
 
 /**
  * Check the status of the POST or GET request in JSON
@@ -192,73 +183,6 @@ GeocachingApi.prototype.checkRequestStatus = function (content) {
         throw new Exception(content.Status.StatusMessage, content.Status.StatusCode);
     }
 }
-
-GeocachingApi.prototype.getUrl = function (request) {
-    var qparams = { format: 'json', AccessToken: this.oauth_token };
-    //var qparams = {format: 'json'};
-    var query_string = '?' + querystring.stringify(qparams);
-    var path = util.format(this.api_url, _.upperFirst(request)) + query_string;
-    return path;
-}
-function parseResonse(err, body, res, done) {
-    if (err) { return done(new Exception('failed to fetch data', err)); }
-    try {
-        var json = JSON.parse(body);
-
-        if (json.Status && json.Status.StatusCode > 0) {
-            throw new Exception('Failed to access api : ' + json.Status.StatusMessage, json.Status);
-        }
-        done(null, json);
-    } catch (e) {
-        done(e);
-    }
-}
-
-GeocachingApi.prototype.getRequest = function (request, params, done) {
-    //optional params
-    if (typeof done === 'undefined') {
-        done = params;
-        params = null;
-    }
-    //return this.request('GET', request, params, callback)
-    return new Promise((resolve, reject) => {
-        var url = this.getUrl(request);
-        //TODO : should I treat params into url ?
-        this.strategy._oauth._performSecureRequest(this.oauth_token, this.oauth_token_secret, 'GET', url, null, "", 'application/json', function (err, body, res) {
-            //this.strategy._oauth.get(url, this.oauth_token, this.oauth_token_secret, function (err, body, res) {
-            if (err) {
-                reject(err)
-            } else {
-                parseResonse(err, body, res, function (err, json) {
-                    resolve(json);
-                    if (done) {
-                        done(err, json);
-                    }
-                });
-            }
-        });
-    });
-}
-
-// GeocachingApi.prototype.postRequest = function (request, post_body, done) {
-//     //return this.request('POST', request, params, callback)
-//     return new Promise((resolve, reject) => {
-//         var url = this.getUrl(request);
-//         post_body.AccessToken = this.oauth_token;
-//         this.strategy._oauth.post(url, this.oauth_token, this.oauth_token_secret, JSON.stringify(post_body), 'application/json', function (err, body, res) {
-//             if (err) {
-//                 reject(err)
-//             } else {
-//                 parseResonse(err, body, res, function (err, json) {
-//                     resolve(json);
-//                     if (done) {
-//                         done(err, json);
-//                     }
-//                 });
-//             }
-//         });
-//     });
-// }
 
 
 /**

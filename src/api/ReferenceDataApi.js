@@ -84,7 +84,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['AccessToken'];
       var contentTypes = [];
       var accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       var returnType = [AttributeType];
@@ -132,7 +132,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['AccessToken'];
       var contentTypes = [];
       var accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       var returnType = [Country];
@@ -180,7 +180,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['AccessToken'];
       var contentTypes = [];
       var accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       var returnType = [GeocacheLogType];
@@ -228,7 +228,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['AccessToken'];
       var contentTypes = [];
       var accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       var returnType = [GeocacheType];
@@ -276,7 +276,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['AccessToken'];
       var contentTypes = [];
       var accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       var returnType = [MembershipLevel];
@@ -324,7 +324,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['AccessToken'];
       var contentTypes = [];
       var accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       var returnType = [State];
@@ -379,7 +379,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['AccessToken'];
       var contentTypes = [];
       var accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       var returnType = [State];
@@ -427,7 +427,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['AccessToken'];
       var contentTypes = [];
       var accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       var returnType = [TrackableLogType];

@@ -101,7 +101,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['AccessToken'];
       var contentTypes = ['application/json', 'text/json', 'application/json-patch+json', 'application/x-www-form-urlencoded'];
       var accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       var returnType = Image;
@@ -159,7 +159,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['AccessToken'];
       var contentTypes = ['application/json', 'text/json', 'application/json-patch+json', 'application/x-www-form-urlencoded'];
       var accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       var returnType = GeocacheLog;
@@ -214,7 +214,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['AccessToken'];
       var contentTypes = [];
       var accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       var returnType = Object;
@@ -276,7 +276,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['AccessToken'];
       var contentTypes = [];
       var accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       var returnType = Object;
@@ -337,7 +337,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['AccessToken'];
       var contentTypes = [];
       var accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       var returnType = GeocacheLog;
@@ -400,7 +400,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['AccessToken'];
       var contentTypes = [];
       var accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       var returnType = [Image];
@@ -465,7 +465,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['AccessToken'];
       var contentTypes = ['application/json', 'text/json', 'application/json-patch+json', 'application/x-www-form-urlencoded'];
       var accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       var returnType = GeocacheLog;

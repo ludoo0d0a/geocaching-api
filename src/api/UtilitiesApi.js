@@ -98,7 +98,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['AccessToken'];
       var contentTypes = [];
       var accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       var returnType = 'String';

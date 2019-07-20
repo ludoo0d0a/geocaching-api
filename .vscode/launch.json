@@ -7,6 +7,7 @@
         {
             "type": "node",
             "request": "launch",
+            "runtimeExecutable": "/Users/ludoo/.nvm/versions/node/v10.16.0/bin/node",
             "name": "Login example",
             "program": "${workspaceRoot}/examples/login/app.js"
         }

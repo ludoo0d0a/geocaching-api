@@ -101,7 +101,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['AccessToken'];
       var contentTypes = ['application/json', 'text/json', 'application/json-patch+json', 'application/x-www-form-urlencoded'];
       var accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       var returnType = Geocache;
@@ -162,7 +162,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['AccessToken'];
       var contentTypes = ['application/json', 'text/json', 'application/json-patch+json', 'application/x-www-form-urlencoded'];
       var accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       var returnType = BulkResponse;
@@ -220,7 +220,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['AccessToken'];
       var contentTypes = ['application/json', 'text/json', 'application/json-patch+json', 'application/x-www-form-urlencoded'];
       var accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       var returnType = GeocacheList;
@@ -282,7 +282,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['AccessToken'];
       var contentTypes = [];
       var accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       var returnType = Object;
@@ -337,7 +337,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['AccessToken'];
       var contentTypes = [];
       var accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       var returnType = Object;
@@ -404,7 +404,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['AccessToken'];
       var contentTypes = [];
       var accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       var returnType = [ListGeocache];
@@ -463,7 +463,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['AccessToken'];
       var contentTypes = [];
       var accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       var returnType = GeocacheList;
@@ -518,7 +518,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['AccessToken'];
       var contentTypes = [];
       var accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       var returnType = 'Blob';
@@ -583,7 +583,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['AccessToken'];
       var contentTypes = ['application/json', 'text/json', 'application/json-patch+json', 'application/x-www-form-urlencoded'];
       var accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       var returnType = GeocacheList;

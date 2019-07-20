@@ -8,12 +8,11 @@ var express = require('express'),
     methodOverride = require('method-override'),
     expressLayouts = require('express-ejs-layouts'),
     // GeocachingApi = require('geocaching-api'),
-    GeocachingApi = require('../../lib/geocaching-api'),
+    GeocachingApi = require('../../src/geocaching-api'),
     config = require('../../config-api');
 
 var port = process.env.PORT || 3000;
 var ip = process.env.IP || 'localhost';
-var api = null;
 
 /*
 var config = {
@@ -40,7 +39,7 @@ passport.deserializeUser(function(obj, done) {
 
 
 // Use the GeocachingStrategy within GeocachingApi for Passsport.
-api = new GeocachingApi(config);
+const api = new GeocachingApi(config);
 
 passport.use(api.strategy);
 
@@ -69,9 +68,7 @@ app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res) {
-    var data = '',
-        error = '',
-        token = api.oauth_token || '{Undefined}';
+    var token = api.oauth_token || '{Undefined}';
     res.render('index', { user: req.user, token: token });
 });
 
@@ -84,7 +81,6 @@ app.get('/test', ensureAuthenticated, function(req, res) {
         var data = '',
             error = '',
             token = api.oauth_token || '{Undefined}';
-        var api = new GeocachingApiV10.UsersApi()
         api.getYourUserProfile({}, function(err, o) {
             if (err) {
                 error = JSON.stringify(err);
@@ -92,7 +88,9 @@ app.get('/test', ensureAuthenticated, function(req, res) {
                 // data = JSON.stringify({ user: o.Profile && o.Profile.User });
                 data = JSON.stringify({ user: o });
             }
-            res.render('test', { user: req.user, token: token, data: data, error: error });
+            var r = JSON.parse(JSON.stringify(o));
+            var c = r.homeCoordinates;
+            res.render('test', { user: r /*req.user*/ , token: token, data: data, error: error });
         });
     }
 });
