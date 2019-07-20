@@ -1,10 +1,10 @@
 {
   "name": "geocaching-api",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "",
-  "main": "lib/geocaching-api.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha test/api-* -t 70000 -R spec --bail --globals domain,_events,_maxListeners"
+    "test": "./node_modules/mocha/bin/mocha --recursive"
   },
   "keywords": [
     "geocaching",
@@ -27,12 +27,13 @@
   },
   "license": "ISC",
   "dependencies": {
-    "lodash": "^4.17.11",
-    "passport-geocaching": "^0.1.x",
-    "request": "^2.x"
+    "superagent": "5.1.0",
+    "lodash": "^4.17.15",
+    "passport-geocaching": "^0.2.0"
   },
   "devDependencies": {
-    "mocha": "^6.x",
-    "chai": "*"
+    "mocha": "^6.2.0",
+    "sinon": "7.3.2",
+    "expect.js": "~0.3.1"
   }
 }

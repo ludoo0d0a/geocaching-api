@@ -16,6 +16,6 @@
     "morgan": "^1.9.1",
     "passport": "^0.4.0",
     "geocaching-api": "^1.0.7",
-    "lodash": "4.17.11"
+    "lodash": "4.17.15"
   }
 }
