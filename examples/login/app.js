@@ -1,14 +1,14 @@
 var express = require('express'),
     passport = require('passport'),
-    util = require('util'),
-    //GeocachingApi = require('../../lib/geocaching-api'),
-    GeocachingApi = require('geocaching-api'),
+    // util = require('util'),
     morgan = require('morgan'),
     session = require('express-session'),
     bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
     methodOverride = require('method-override'),
     expressLayouts = require('express-ejs-layouts'),
+    // GeocachingApi = require('geocaching-api'),
+    GeocachingApi = require('../../lib/geocaching-api'),
     config = require('../../config-api');
 
 var port = process.env.PORT || 3000;
@@ -17,8 +17,8 @@ var api = null;
 
 /*
 var config = {
-      consumerKey: "--insert-geocaching-app-id-here--",
-      consumerSecret: "--insert-geocaching-app-secret-here--";,
+      clientID: "--insert-geocaching-app-id-here--",
+      clientSecret: "--insert-geocaching-app-secret-here--";,
       callbackURL: 'http://localhost:'+port+'/auth/geocaching/callback'
 }
 */
@@ -84,11 +84,13 @@ app.get('/test', ensureAuthenticated, function(req, res) {
         var data = '',
             error = '',
             token = api.oauth_token || '{Undefined}';
+        var api = new GeocachingApiV10.UsersApi()
         api.getYourUserProfile({}, function(err, o) {
             if (err) {
                 error = JSON.stringify(err);
             } else {
-                data = JSON.stringify({ user: o.Profile && o.Profile.User });
+                // data = JSON.stringify({ user: o.Profile && o.Profile.User });
+                data = JSON.stringify({ user: o });
             }
             res.render('test', { user: req.user, token: token, data: data, error: error });
         });
@@ -111,12 +113,12 @@ app.get('/auth/geocaching',
         // function will not be called.
     });
 
-// GET /auth/geocaching/callback
+// GET /auth/callback  (This url need sto be registed on Geocaching platform to be allowed)
 //   Use passport.authenticate() as route middleware to authenticate the
 //   request.  If authentication fails, the user will be redirected back to the
 //   login page.  Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
-app.get('/auth/geocaching/callback',
+app.get(config.callbackRoute,
     passport.authenticate('geocaching', { failureRedirect: '/login' }),
     function(req, res) {
         res.redirect('/');
