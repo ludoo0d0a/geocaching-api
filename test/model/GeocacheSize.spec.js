@@ -17,10 +17,10 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD.
-    define(['expect.js', '../../src/index'], factory);
+    define(['expect.js', '../../src/geocaching-api-v10'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    factory(require('expect.js'), require('../../src/index'));
+    factory(require('expect.js'), require('../../src/geocaching-api-v10'));
   } else {
     // Browser globals (root is window)
     factory(root.expect, root.GeocachingApiV10);
