@@ -20,11 +20,10 @@
  * http://geocaching.vaguelibre.net/api/docs/classes/Geocaching.Api.AbstractGeocachingApi.html#method_getMoreGeocaches
  * 
  * */
-var util = require('util'),
-    GeocachingStrategy = require('passport-geocaching').Strategy,
-    //GeocachingStrategy = require('../../passport-geocaching/lib/index').Strategy,
-    _ = require('lodash');
-
+var util = require('util')
+var GeocachingStrategy = require('passport-geocaching').Strategy;
+// var GeocachingStrategy = require('../../passport-geocaching/lib/index').Strategy,
+// var _ = require('lodash');
 var GeocachingApiV10 = require('./geocaching-api-v10');
 var ApiClient = require('./ApiClient');
 var apiVersion = '1'; // {String} The requested API version
@@ -80,11 +79,6 @@ var GeocachingApi = function (config) {
      */
     this.api_url = null;
 
-    this.apiClient = ApiClient.instance; //new ApiClient({});
-    this.apiClient.authentications = {
-        'AccessToken': { type: 'oauth2', 'in': 'header', name: 'AccessToken' }
-    };
-
     // Token to pass from Passport to Geocaching API
     this.oauth_token = null;
     this.oauth_token_secret = null;
@@ -99,11 +93,19 @@ var GeocachingApi = function (config) {
         this.api_url = staging_api_url;
     }
 
+    this.apiClient = ApiClient.instance; //new ApiClient({});
+    this.apiClient.authentications = {
+        'AccessToken': { type: 'oauth2', 'in': 'header', name: 'AccessToken' }
+    };
+    this.apiClient.defaultHeaders = { 'X-Source': 'geocaching-api' };
+    this.apiClient.basePath = this.api_url.replace(/\/+$/, '');
+
     this.strategy = this.config.strategy;
 
     //Auto define strategy if not available
     if (typeof this.strategy === 'undefined') {
-        this.strategy = new GeocachingStrategy(this.config, _.bind(this._verify, this));
+        // this.strategy = new GeocachingStrategy(this.config, _.bind(this._verify, this));
+        this.strategy = new GeocachingStrategy(this.config, this._verify.bind(this));
     }
 }
 
@@ -162,6 +164,7 @@ GeocachingApi.prototype._verify = function (token, tokenSecret, profile, done) {
     //});
 }
 
+// For internal access to generated Swagger API if required
 GeocachingApi.prototype.GeocachingApiV10 = GeocachingApiV10;
 
 GeocachingApi.prototype.getYourUserProfile = function (params, cb) {
@@ -169,6 +172,58 @@ GeocachingApi.prototype.getYourUserProfile = function (params, cb) {
     usersApi.usersGetUser('me', apiVersion, {
         fields: 'referenceCode,findCount,hideCount,favoritePoints,username,membershipLevelId,avatarUrl,profileText,homeCoordinates'
     }, cb);
+};
+
+/** 
+ * Map all API to wrap apiClient config
+*/
+GeocachingApi.prototype.UsersApi = function (opts) {
+    return new GeocachingApiV10.UsersApi(this.apiClient);
+};
+GeocachingApi.prototype.FriendsApi = function (opts) {
+    return new GeocachingApiV10.UserFriendsApisApi(this.apiClient);
+};
+GeocachingApi.prototype.GeocacheLogsApi = function (opts) {
+    return new GeocachingApiV10.GeocacheLogsApi(this.apiClient);
+};
+GeocachingApi.prototype.GeocacheNotesApi = function (opts) {
+    return new GeocachingApiV10.GeocacheNotesApi(this.apiClient);
+};
+GeocachingApi.prototype.GeocacheNotesApi = function (opts) {
+    return new GeocachingApiV10.GeocacheNotesApi(this.apiClient);
+};
+GeocachingApi.prototype.GeocacheNotesApi = function (opts) {
+    return new GeocachingApiV10.GeocacheNotesApi(this.apiClient);
+};
+GeocachingApi.prototype.ListsApi = function (opts) {
+    return new GeocachingApiV10.ListsApi(this.apiClient);
+};
+GeocachingApi.prototype.GeocacheNotesApi = function (opts) {
+    return new GeocachingApiV10.GeocacheNotesApi(this.apiClient);
+};
+GeocachingApi.prototype.LogDraftsApi = function (opts) {
+    return new GeocachingApiV10.LogDraftsApi(this.apiClient);
+};
+GeocachingApi.prototype.ReferenceDataApi = function (opts) {
+    return new GeocachingApiV10.ReferenceDataApi(this.apiClient);
+};
+GeocachingApi.prototype.StatusApi = function (opts) {
+    return new GeocachingApiV10.StatusApi(this.apiClient);
+};
+GeocachingApi.prototype.TrackableLogsApi = function (opts) {
+    return new GeocachingApiV10.TrackableLogsApi(this.apiClient);
+};
+GeocachingApi.prototype.TrackablesApi = function (opts) {
+    return new GeocachingApiV10.TrackablesApi(this.apiClient);
+};
+GeocachingApi.prototype.UserWaypointsApi = function (opts) {
+    return new GeocachingApiV10.UserWaypointsApi(this.apiClient);
+};
+GeocachingApi.prototype.UsersApi = function (opts) {
+    return new GeocachingApiV10.UsersApi(this.apiClient);
+};
+GeocachingApi.prototype.UtilitiesApi = function (opts) {
+    return new GeocachingApiV10.UtilitiesApi(this.apiClient);
 };
 
 /**

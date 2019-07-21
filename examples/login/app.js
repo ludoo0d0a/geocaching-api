@@ -78,22 +78,20 @@ app.get('/account', ensureAuthenticated, function(req, res) {
 
 app.get('/test', ensureAuthenticated, function(req, res) {
     if (api) {
-        var data = '',
-            error = '',
-            token = api.oauth_token || '{Undefined}';
-        api.getYourUserProfile({}, function(err, o) {
+        api.getYourUserProfile({}, function(err, user) {
+            var data = '',
+                error = '',
+                token = api.oauth_token || '{Undefined}';
             if (err) {
                 error = JSON.stringify(err);
             } else {
-                // data = JSON.stringify({ user: o.Profile && o.Profile.User });
-                data = JSON.stringify({ user: o });
+                data = JSON.stringify({ user });
             }
-            var r = JSON.parse(JSON.stringify(o));
-            var c = r.homeCoordinates;
-            res.render('test', { user: r /*req.user*/ , token: token, data: data, error: error });
+            res.render('test', { user: serializeTojson(user) , token: token, data: data, error: error });
         });
     }
 });
+
 
 app.get('/login', function(req, res) {
     res.render('login', { user: req.user, token: req.token || (req.user && req.user.token) });
@@ -140,4 +138,11 @@ app.listen(port, function() {
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) { return next(); }
     res.redirect('/login')
+}
+
+/** 
+ * Tip to serialize properly inner objects like homeCoordinates
+ * */
+function serializeTojson(o) {
+    return JSON.parse(JSON.stringify(o));
 }
