@@ -24,7 +24,7 @@ var util = require('util')
 var GeocachingStrategy = require('passport-geocaching').Strategy;
 // var GeocachingStrategy = require('../../passport-geocaching/lib/index').Strategy,
 // var _ = require('lodash');
-var GeocachingApiV10 = require('./geocaching-api-v10');
+var GeocachingApiV10 = require('./Api-v10');
 var ApiClient = require('./ApiClient');
 var apiVersion = '1'; // {String} The requested API version
 

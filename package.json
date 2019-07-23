@@ -2,9 +2,11 @@
   "name": "geocaching-api",
   "version": "2.1.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha --recursive"
+    "build": "babel src -d dist",
+    "prepack": "npm run build",
+    "test": "mocha --compilers js:babel-core/register --recursive"
   },
   "keywords": [
     "geocaching",
@@ -25,15 +27,25 @@
   "bugs": {
     "url": "http://github.com/ludoo0d0a/geocaching-api/issues"
   },
+  "browser": {
+    "fs": false
+  },
   "license": "ISC",
   "dependencies": {
+    "babel-cli": "^6.26.0",
     "superagent": "5.1.0",
     "lodash": "^4.17.15",
     "passport-geocaching": "^0.2.0"
   },
   "devDependencies": {
+    "babel-core": "6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-0": "^6.24.1",
     "mocha": "^6.2.0",
     "sinon": "7.3.2",
     "expect.js": "~0.3.1"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }
