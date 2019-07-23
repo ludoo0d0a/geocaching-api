@@ -3,7 +3,8 @@
   "version": "0.0.3",
   "main": "app.js",
   "scripts": {
-    "start": "node app"
+    "start": "node app",
+    "build": "babel src -d dist --source-maps"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
