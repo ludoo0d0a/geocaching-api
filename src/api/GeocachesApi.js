@@ -84,7 +84,7 @@ export default class GeocachesApi {
       let formParams = {
       };
 
-      let authNames = [{type:'oauth2'}];
+      let authNames = ['AccessToken'];
       let contentTypes = [];
       let accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       let returnType = [User];
@@ -141,7 +141,7 @@ export default class GeocachesApi {
       let formParams = {
       };
 
-      let authNames = [{type:'oauth2'}];
+      let authNames = ['AccessToken'];
       let contentTypes = [];
       let accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       let returnType = Geocache;
@@ -198,7 +198,7 @@ export default class GeocachesApi {
       let formParams = {
       };
 
-      let authNames = [{type:'oauth2'}];
+      let authNames = ['AccessToken'];
       let contentTypes = [];
       let accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       let returnType = [Geocache];
@@ -255,7 +255,7 @@ export default class GeocachesApi {
       let formParams = {
       };
 
-      let authNames = [{type:'oauth2'}];
+      let authNames = ['AccessToken'];
       let contentTypes = [];
       let accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       let returnType = [Image];
@@ -314,7 +314,7 @@ export default class GeocachesApi {
       let formParams = {
       };
 
-      let authNames = [{type:'oauth2'}];
+      let authNames = ['AccessToken'];
       let contentTypes = [];
       let accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       let returnType = [GeocacheLog];
@@ -373,7 +373,7 @@ export default class GeocachesApi {
       let formParams = {
       };
 
-      let authNames = [{type:'oauth2'}];
+      let authNames = ['AccessToken'];
       let contentTypes = [];
       let accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       let returnType = [Trackable];
@@ -436,7 +436,7 @@ export default class GeocachesApi {
       let formParams = {
       };
 
-      let authNames = [{type:'oauth2'}];
+      let authNames = ['AccessToken'];
       let contentTypes = [];
       let accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       let returnType = [Geocache];
