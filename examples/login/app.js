@@ -84,6 +84,7 @@ app.get('/test', ensureAuthenticated, function(req, res) {
                 token = api.oauth_token || '{Undefined}';
             if (err) {
                 error = JSON.stringify(err);
+                user = { homeCoordinates: {}}
             } else {
                 data = JSON.stringify({ user });
             }

@@ -77,7 +77,7 @@ export default class TrackablesApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = [{type:'oauth2'}];
       let contentTypes = [];
       let accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       let returnType = [TrackableType];
@@ -134,7 +134,7 @@ export default class TrackablesApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = [{type:'oauth2'}];
       let contentTypes = [];
       let accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       let returnType = [Image];
@@ -189,7 +189,7 @@ export default class TrackablesApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = [{type:'oauth2'}];
       let contentTypes = [];
       let accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       let returnType = Trackable;
@@ -250,7 +250,7 @@ export default class TrackablesApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = [{type:'oauth2'}];
       let contentTypes = [];
       let accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       let returnType = [TrackableLog];
@@ -307,7 +307,7 @@ export default class TrackablesApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = [{type:'oauth2'}];
       let contentTypes = [];
       let accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       let returnType = [Trackable];

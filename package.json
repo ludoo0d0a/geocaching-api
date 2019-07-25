@@ -32,18 +32,18 @@
   },
   "license": "ISC",
   "dependencies": {
-    "babel-cli": "^6.26.0",
-    "superagent": "5.1.0",
+    "@babel/polyfill": "^7.4.4",
     "lodash": "^4.17.15",
-    "passport-geocaching": "^0.2.0"
+    "passport-geocaching": "^0.2.0",
+    "superagent": "5.1.0"
   },
   "devDependencies": {
-    "babel-core": "6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-stage-0": "^6.24.1",
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "expect.js": "~0.3.1",
     "mocha": "^6.2.0",
-    "sinon": "7.3.2",
-    "expect.js": "~0.3.1"
+    "sinon": "7.3.2"
   },
   "files": [
     "dist"

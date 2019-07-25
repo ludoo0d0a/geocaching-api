@@ -20,12 +20,17 @@
  * http://geocaching.vaguelibre.net/api/docs/classes/Geocaching.Api.AbstractGeocachingApi.html#method_getMoreGeocaches
  * 
  * */
-var util = require('util')
-var GeocachingStrategy = require('passport-geocaching').Strategy;
+import util from 'util';
+import { Strategy as GeocachingStrategy } from 'passport-geocaching';
+
+// var util = require('util')
+// var GeocachingStrategy = require('passport-geocaching').Strategy;
 // var GeocachingStrategy = require('../../passport-geocaching/lib/index').Strategy,
 // var _ = require('lodash');
-var GeocachingApiV10 = require('./Api-v10');
-var ApiClient = require('./ApiClient');
+// var GeocachingApiV10 = require('./Api-v10');
+// var ApiClient = require('./ApiClient');
+import GeocachingApiV10, { UsersApi } from './Api-v10';
+import ApiClient from './ApiClient';
 var apiVersion = '1'; // {String} The requested API version
 
 function Exception(msg, e) {
@@ -45,14 +50,16 @@ var required_for_app_auth = [
  * @access var
  * @var string $staging_api_url
  */
-var staging_api_url = 'https://staging.api.groundspeak.com/%s';
+var staging_api_url = 'https://staging.api.groundspeak.com';
+// var staging_api_url = 'https://staging.api.groundspeak.com/%s';
 /**
  * Production URL of Groundspeak API
  *
  * @access var
  * @var string $prod_api_url
  */
-var prod_api_url = 'https://api.groundspeak.com/%s';
+var prod_api_url = 'https://api.groundspeak.com';
+// var prod_api_url = 'https://api.groundspeak.com/%s';
 
 /**
  * Constructor
@@ -93,7 +100,7 @@ var GeocachingApi = function (config) {
         this.api_url = staging_api_url;
     }
 
-    this.apiClient = ApiClient.instance; //new ApiClient({});
+    this.apiClient = new ApiClient({}); // ApiClient.default(); //
     this.apiClient.authentications = {
         'AccessToken': { type: 'oauth2', 'in': 'header', name: 'AccessToken' }
     };
@@ -168,7 +175,7 @@ GeocachingApi.prototype._verify = function (token, tokenSecret, profile, done) {
 GeocachingApi.prototype.GeocachingApiV10 = GeocachingApiV10;
 
 GeocachingApi.prototype.getYourUserProfile = function (params, cb) {
-    var usersApi = new GeocachingApiV10.UsersApi(this.apiClient);
+    var usersApi = new UsersApi(this.apiClient);
     usersApi.usersGetUser('me', apiVersion, {
         fields: 'referenceCode,findCount,hideCount,favoritePoints,username,membershipLevelId,avatarUrl,profileText,homeCoordinates'
     }, cb);
@@ -178,7 +185,7 @@ GeocachingApi.prototype.getYourUserProfile = function (params, cb) {
  * Map all API to wrap apiClient config
 */
 GeocachingApi.prototype.UsersApi = function (opts) {
-    return new GeocachingApiV10.UsersApi(this.apiClient);
+    return new UsersApi(this.apiClient);
 };
 GeocachingApi.prototype.FriendsApi = function (opts) {
     return new GeocachingApiV10.UserFriendsApisApi(this.apiClient);

@@ -64,7 +64,7 @@ export default class StatusApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = [{type:'oauth2'}];
       let contentTypes = [];
       let accepts = [];
       let returnType = null;

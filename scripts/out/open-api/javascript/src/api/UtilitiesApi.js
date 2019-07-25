@@ -76,7 +76,7 @@ export default class UtilitiesApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = [{type:'oauth2'}];
       let contentTypes = [];
       let accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       let returnType = 'String';

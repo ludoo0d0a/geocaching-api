@@ -71,7 +71,7 @@ export default class FriendsApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = [{type:'oauth2'}];
       let contentTypes = [];
       let accepts = [];
       let returnType = null;
@@ -123,7 +123,7 @@ export default class FriendsApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = [{type:'oauth2'}];
       let contentTypes = ['application/json', 'text/json', 'application/json-patch+json', 'application/x-www-form-urlencoded'];
       let accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       let returnType = FriendRequest;
@@ -172,7 +172,7 @@ export default class FriendsApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = [{type:'oauth2'}];
       let contentTypes = [];
       let accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       let returnType = Object;
@@ -223,7 +223,7 @@ export default class FriendsApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = [{type:'oauth2'}];
       let contentTypes = [];
       let accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       let returnType = [FriendRequest];
@@ -274,7 +274,7 @@ export default class FriendsApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = [{type:'oauth2'}];
       let contentTypes = [];
       let accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       let returnType = [User];
@@ -323,7 +323,7 @@ export default class FriendsApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = [{type:'oauth2'}];
       let contentTypes = [];
       let accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       let returnType = Object;

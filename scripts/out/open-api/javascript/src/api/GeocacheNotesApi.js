@@ -72,7 +72,7 @@ export default class GeocacheNotesApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = [{type:'oauth2'}];
       let contentTypes = [];
       let accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       let returnType = Object;
@@ -126,7 +126,7 @@ export default class GeocacheNotesApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = [{type:'oauth2'}];
       let contentTypes = ['application/json', 'text/json', 'application/json-patch+json', 'application/x-www-form-urlencoded'];
       let accepts = ['application/json', 'text/json', 'application/json-patch+json'];
       let returnType = 'String';

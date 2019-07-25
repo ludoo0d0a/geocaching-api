@@ -1,5 +1,11 @@
 {
-  "presets": ["env", "stage-0"],
-  "sourceMaps": "inline",
-  "retainLines": true
+  "presets": [
+    "@babel/preset-env"
+  ],
+  "env": {
+    "debug": {
+      "sourceMaps": "inline",
+      "retainLines": true
+    }
+  }
 }

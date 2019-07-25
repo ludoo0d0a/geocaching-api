@@ -16,10 +16,14 @@
             "request": "launch",
             "name": "Debug sample with babel",
             "program": "${workspaceFolder}/examples/login/app.js",
-            "runtimeExecutable": "/Users/ludoo/.nvm/versions/node/v10.16.0/bin/babel-node",
+            "runtimeExecutable": "${workspaceFolder}/examples/login/node_modules/.bin/babel-node",
             "runtimeArgs": [
                 "--nolazy"
-            ]
+            ],
+            "sourceMaps": true,
+            "env": {
+                "BABEL_ENV": "debug"
+            }
         }
     ]
 }
