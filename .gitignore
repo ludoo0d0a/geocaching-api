@@ -4,3 +4,4 @@ config*.js
 package-lock.json
 yarn.lock
 examples/login/yarn.lock
+scripts/out
