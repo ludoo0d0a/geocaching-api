@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **Number** |  | [optional] 
-**name** | **String** |  | [optional] 
 **imageUrl** | **String** |  | [optional] 
 **isOn** | **Boolean** |  | [optional] 
+**name** | **String** |  | [optional] 
 
 

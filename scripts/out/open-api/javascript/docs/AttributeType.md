@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**hasNoOption** | **Boolean** |  | [optional] 
+**hasYesOption** | **Boolean** |  | [optional] 
 **id** | **Number** |  | [optional] 
 **name** | **String** |  | [optional] 
-**hasYesOption** | **Boolean** |  | [optional] 
-**hasNoOption** | **Boolean** |  | [optional] 
-**yesIconUrl** | **String** |  | [optional] 
 **noIconUrl** | **String** |  | [optional] 
 **notChosenIconUrl** | **String** |  | [optional] 
+**yesIconUrl** | **String** |  | [optional] 
 
 

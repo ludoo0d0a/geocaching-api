@@ -66,7 +66,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Accept**: application/json, application/json-patch+json, text/json
 
 
 ## geocachesGetGeocache
@@ -121,7 +121,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Accept**: application/json, application/json-patch+json, text/json
 
 
 ## geocachesGetGeocaches
@@ -176,7 +176,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Accept**: application/json, application/json-patch+json, text/json
 
 
 ## geocachesGetImages
@@ -231,7 +231,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Accept**: application/json, application/json-patch+json, text/json
 
 
 ## geocachesGetLogs
@@ -288,7 +288,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Accept**: application/json, application/json-patch+json, text/json
 
 
 ## geocachesGetTrackables
@@ -345,7 +345,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Accept**: application/json, application/json-patch+json, text/json
 
 
 ## geocachesSearch
@@ -406,5 +406,5 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Accept**: application/json, application/json-patch+json, text/json
 

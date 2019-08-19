@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**trackingNumber** | **String** |  | [optional] 
-**trackableCode** | **String** |  | [optional] 
+**coordinates** | [**Coordinates**](Coordinates.md) |  | [optional] 
 **geocacheCode** | **String** |  | [optional] 
+**isRot13Encoded** | **Boolean** |  | [optional] 
 **loggedDate** | **Date** |  | 
 **text** | **String** |  | 
-**isRot13Encoded** | **Boolean** |  | [optional] 
-**typeId** | **Number** |  | [optional] 
+**trackableCode** | **String** |  | [optional] 
 **trackableLogType** | [**TrackableLogType**](TrackableLogType.md) |  | [optional] 
-**coordinates** | [**Coordinates**](Coordinates.md) |  | [optional] 
+**trackingNumber** | **String** |  | [optional] 
+**typeId** | **Number** |  | [optional] 
 
 

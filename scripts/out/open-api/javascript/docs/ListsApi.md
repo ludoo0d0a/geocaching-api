@@ -65,8 +65,8 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/json-patch+json, application/x-www-form-urlencoded
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Content-Type**: application/json, application/json-patch+json, application/x-www-form-urlencoded, text/json
+- **Accept**: application/json, application/json-patch+json, text/json
 
 
 ## listsAddGeocaches
@@ -114,8 +114,8 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/json-patch+json, application/x-www-form-urlencoded
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Content-Type**: application/json, application/json-patch+json, application/x-www-form-urlencoded, text/json
+- **Accept**: application/json, application/json-patch+json, text/json
 
 
 ## listsCreateList
@@ -165,8 +165,8 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/json-patch+json, application/x-www-form-urlencoded
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Content-Type**: application/json, application/json-patch+json, application/x-www-form-urlencoded, text/json
+- **Accept**: application/json, application/json-patch+json, text/json
 
 
 ## listsDeleteGeocache
@@ -215,7 +215,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Accept**: application/json, application/json-patch+json, text/json
 
 
 ## listsDeleteList
@@ -262,7 +262,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Accept**: application/json, application/json-patch+json, text/json
 
 
 ## listsGetGeocaches
@@ -321,7 +321,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Accept**: application/json, application/json-patch+json, text/json
 
 
 ## listsGetList
@@ -372,7 +372,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Accept**: application/json, application/json-patch+json, text/json
 
 
 ## listsGetZippedPocketQuery
@@ -419,7 +419,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Accept**: application/json, application/json-patch+json, text/json
 
 
 ## listsUpdateList
@@ -471,6 +471,6 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/json-patch+json, application/x-www-form-urlencoded
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Content-Type**: application/json, application/json-patch+json, application/x-www-form-urlencoded, text/json
+- **Accept**: application/json, application/json-patch+json, text/json
 

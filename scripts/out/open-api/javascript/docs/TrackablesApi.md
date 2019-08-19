@@ -62,7 +62,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Accept**: application/json, application/json-patch+json, text/json
 
 
 ## trackablesGetImages
@@ -117,7 +117,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Accept**: application/json, application/json-patch+json, text/json
 
 
 ## trackablesGetTrackable
@@ -170,7 +170,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Accept**: application/json, application/json-patch+json, text/json
 
 
 ## trackablesGetTrackableLogs
@@ -229,7 +229,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Accept**: application/json, application/json-patch+json, text/json
 
 
 ## trackablesGetUserTrackables
@@ -288,5 +288,5 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Accept**: application/json, application/json-patch+json, text/json
 

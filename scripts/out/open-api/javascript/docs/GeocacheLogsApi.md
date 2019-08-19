@@ -63,8 +63,8 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/json-patch+json, application/x-www-form-urlencoded
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Content-Type**: application/json, application/json-patch+json, application/x-www-form-urlencoded, text/json
+- **Accept**: application/json, application/json-patch+json, text/json
 
 
 ## geocacheLogsCreateGeocacheLog
@@ -114,8 +114,8 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/json-patch+json, application/x-www-form-urlencoded
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Content-Type**: application/json, application/json-patch+json, application/x-www-form-urlencoded, text/json
+- **Accept**: application/json, application/json-patch+json, text/json
 
 
 ## geocacheLogsDeleteGeocacheLog
@@ -162,7 +162,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Accept**: application/json, application/json-patch+json, text/json
 
 
 ## geocacheLogsDeleteGeocacheLogImages
@@ -211,7 +211,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Accept**: application/json, application/json-patch+json, text/json
 
 
 ## geocacheLogsGetGeocacheLog
@@ -264,7 +264,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Accept**: application/json, application/json-patch+json, text/json
 
 
 ## geocacheLogsGetImages
@@ -319,7 +319,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Accept**: application/json, application/json-patch+json, text/json
 
 
 ## geocacheLogsUpdateGeocacheLog
@@ -371,6 +371,6 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/json-patch+json, application/x-www-form-urlencoded
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Content-Type**: application/json, application/json-patch+json, application/x-www-form-urlencoded, text/json
+- **Accept**: application/json, application/json-patch+json, text/json
 

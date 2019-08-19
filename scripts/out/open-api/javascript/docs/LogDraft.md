@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**referenceCode** | **String** |  | [optional] 
-**imageCount** | **Number** |  | [optional] 
-**guid** | **String** |  | [optional] 
 **geocacheCode** | **String** |  | [optional] 
-**logType** | **String** |  | [optional] 
 **geocacheLogType** | [**GeocacheLogType**](GeocacheLogType.md) |  | [optional] 
-**note** | **String** |  | [optional] 
-**loggedDateUtc** | **Date** |  | [optional] 
-**loggedDate** | **Date** |  | [optional] 
-**useFavoritePoint** | **Boolean** |  | [optional] 
 **geocacheName** | **String** |  | [optional] 
+**guid** | **String** |  | [optional] 
+**imageCount** | **Number** |  | [optional] 
+**logType** | **String** |  | [optional] 
+**loggedDate** | **Date** |  | [optional] 
+**loggedDateUtc** | **Date** |  | [optional] 
+**note** | **String** |  | [optional] 
+**referenceCode** | **String** |  | [optional] 
+**useFavoritePoint** | **Boolean** |  | [optional] 
 
 

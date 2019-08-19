@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**referenceCode** | **String** |  | [optional] 
-**ownerCode** | **String** |  | [optional] 
-**owner** | [**User**](User.md) |  | [optional] 
-**imageCount** | **Number** |  | [optional] 
-**url** | **String** |  | [optional] 
-**geocacheName** | **String** |  | [optional] 
-**images** | [**[Image]**](Image.md) |  | [optional] 
-**trackableCode** | **String** |  | [optional] 
-**geocacheCode** | **String** |  | [optional] 
-**loggedDate** | **Date** |  | 
-**text** | **String** |  | 
-**isRot13Encoded** | **Boolean** |  | [optional] 
-**typeId** | **Number** |  | [optional] 
-**trackableLogType** | [**TrackableLogType**](TrackableLogType.md) |  | [optional] 
 **coordinates** | [**Coordinates**](Coordinates.md) |  | [optional] 
+**geocacheCode** | **String** |  | [optional] 
+**geocacheName** | **String** |  | [optional] 
+**imageCount** | **Number** |  | [optional] 
+**images** | [**[Image]**](Image.md) |  | [optional] 
+**isRot13Encoded** | **Boolean** |  | [optional] 
+**loggedDate** | **Date** |  | 
+**owner** | [**User**](User.md) |  | [optional] 
+**ownerCode** | **String** |  | [optional] 
+**referenceCode** | **String** |  | [optional] 
+**text** | **String** |  | 
+**trackableCode** | **String** |  | [optional] 
+**trackableLogType** | [**TrackableLogType**](TrackableLogType.md) |  | [optional] 
+**typeId** | **Number** |  | [optional] 
+**url** | **String** |  | [optional] 
 
 

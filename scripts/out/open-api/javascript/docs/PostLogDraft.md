@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**guid** | **String** |  | [optional] 
 **geocacheCode** | **String** |  | 
-**logType** | **String** |  | [optional] 
 **geocacheLogType** | [**GeocacheLogType**](GeocacheLogType.md) |  | [optional] 
-**note** | **String** |  | [optional] 
-**loggedDateUtc** | **Date** |  | [optional] 
+**guid** | **String** |  | [optional] 
+**logType** | **String** |  | [optional] 
 **loggedDate** | **Date** |  | [optional] 
+**loggedDateUtc** | **Date** |  | [optional] 
+**note** | **String** |  | [optional] 
 **useFavoritePoint** | **Boolean** |  | [optional] 
 
 

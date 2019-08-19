@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**geocacheLog** | [**GeocacheLog**](GeocacheLog.md) |  | [optional] 
-**successfulImages** | [**[Image]**](Image.md) |  | [optional] 
+**draftDeleted** | **Boolean** |  | [optional] 
 **failedImages** | [**[Image]**](Image.md) |  | [optional] 
 **favoritePointApplied** | **Boolean** |  | [optional] 
-**draftDeleted** | **Boolean** |  | [optional] 
+**geocacheLog** | [**GeocacheLog**](GeocacheLog.md) |  | [optional] 
+**successfulImages** | [**[Image]**](Image.md) |  | [optional] 
 
 

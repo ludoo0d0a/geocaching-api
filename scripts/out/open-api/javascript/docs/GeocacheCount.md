@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**geocacheType** | [**GeocacheType**](GeocacheType.md) |  | [optional] 
 **count** | **Number** |  | [optional] 
+**geocacheType** | [**GeocacheType**](GeocacheType.md) |  | [optional] 
 
 

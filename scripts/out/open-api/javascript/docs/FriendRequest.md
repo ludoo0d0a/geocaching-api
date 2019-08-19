@@ -5,12 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **Number** |  | [optional] 
-**requestorUserCode** | **String** |  | [optional] 
-**requestor** | [**UserReference**](UserReference.md) |  | [optional] 
-**requestedUserCode** | **String** |  | 
-**requested** | [**UserReference**](UserReference.md) |  | [optional] 
-**message** | **String** |  | 
 **isOutgoing** | **Boolean** |  | [optional] 
+**message** | **String** |  | 
 **requestDateUtc** | **Date** |  | [optional] 
+**requested** | [**UserReference**](UserReference.md) |  | [optional] 
+**requestedUserCode** | **String** |  | 
+**requestor** | [**UserReference**](UserReference.md) |  | [optional] 
+**requestorUserCode** | **String** |  | [optional] 
 
 

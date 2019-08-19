@@ -61,8 +61,8 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/json-patch+json, application/x-www-form-urlencoded
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Content-Type**: application/json, application/json-patch+json, application/x-www-form-urlencoded, text/json
+- **Accept**: application/json, application/json-patch+json, text/json
 
 
 ## userWaypointsDeleteCorrectedCoordinates
@@ -107,7 +107,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Accept**: application/json, application/json-patch+json, text/json
 
 
 ## userWaypointsDeleteUserWaypoint
@@ -154,7 +154,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Accept**: application/json, application/json-patch+json, text/json
 
 
 ## userWaypointsGetGeocacheUserWaypoints
@@ -211,7 +211,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Accept**: application/json, application/json-patch+json, text/json
 
 
 ## userWaypointsGetUserWaypoints
@@ -266,7 +266,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Accept**: application/json, application/json-patch+json, text/json
 
 
 ## userWaypointsUpdateUserWaypoint
@@ -318,8 +318,8 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/json-patch+json, application/x-www-form-urlencoded
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Content-Type**: application/json, application/json-patch+json, application/x-www-form-urlencoded, text/json
+- **Accept**: application/json, application/json-patch+json, text/json
 
 
 ## userWaypointsUpsertCorrectedCoordinates
@@ -371,6 +371,6 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/json-patch+json, application/x-www-form-urlencoded
-- **Accept**: application/json, text/json, application/json-patch+json
+- **Content-Type**: application/json, application/json-patch+json, application/x-www-form-urlencoded, text/json
+- **Accept**: application/json, application/json-patch+json, text/json
 

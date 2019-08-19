@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**foundDate** | **Date** | The date the user found the Geocache | [optional] 
-**dnfDate** | **Date** |  | [optional] 
 **correctedCoordinates** | [**Coordinates**](Coordinates.md) |  | [optional] 
+**dnfDate** | **Date** |  | [optional] 
+**foundDate** | **Date** | The date the user found the Geocache | [optional] 
 **isFavorited** | **Boolean** |  | [optional] 
 **note** | **String** |  | [optional] 
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**successes** | **[String]** |  | [optional] 
 **failures** | [**[BulkFailure]**](BulkFailure.md) |  | [optional] 
+**successes** | **[String]** |  | [optional] 
 
 

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**referenceCode** | **String** |  | [optional] 
 **message** | **String** |  | [optional] 
+**referenceCode** | **String** |  | [optional] 
 **statusCode** | **Number** |  | [optional] 
 
 

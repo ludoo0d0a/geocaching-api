@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**avatarUrl** | **String** |  | [optional] 
 **referenceCode** | **String** |  | [optional] 
 **username** | **String** |  | [optional] 
-**avatarUrl** | **String** |  | [optional] 
 
 

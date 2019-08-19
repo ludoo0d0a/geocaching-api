@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**trackableType** | [**TrackableType**](TrackableType.md) |  | [optional] 
 **count** | **Number** |  | [optional] 
+**trackableType** | [**TrackableType**](TrackableType.md) |  | [optional] 
 
 
