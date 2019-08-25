@@ -3,5 +3,6 @@
     "groupId": "fr.geoking",
     "artifactId": "geocaching-api",
     "artifactVersion": "1.0.0",
-    "library": "javascript"
+    "library": "javascript",
+    "authMethods": "AccessToken"
 }

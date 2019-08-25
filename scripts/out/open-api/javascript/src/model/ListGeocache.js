@@ -417,24 +417,6 @@ ListGeocache['SizeEnum'] = {
     "Unknown": "Unknown",
 
     /**
-     * value: "Regular"
-     * @const
-     */
-    "Regular": "Regular",
-
-    /**
-     * value: "Large"
-     * @const
-     */
-    "Large": "Large",
-
-    /**
-     * value: "Virtual"
-     * @const
-     */
-    "Virtual": "Virtual",
-
-    /**
      * value: "Other"
      * @const
      */
@@ -444,7 +426,25 @@ ListGeocache['SizeEnum'] = {
      * value: "Small"
      * @const
      */
-    "Small": "Small"
+    "Small": "Small",
+
+    /**
+     * value: "Regular"
+     * @const
+     */
+    "Regular": "Regular",
+
+    /**
+     * value: "Virtual"
+     * @const
+     */
+    "Virtual": "Virtual",
+
+    /**
+     * value: "Large"
+     * @const
+     */
+    "Large": "Large"
 };
 
 

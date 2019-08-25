@@ -84,7 +84,7 @@ export default class TrackableLogsApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['AccessToken'];
       let contentTypes = ['application/json', 'application/json-patch+json', 'application/x-www-form-urlencoded', 'text/json'];
       let accepts = ['application/json', 'application/json-patch+json', 'text/json'];
       let returnType = Image;
@@ -136,7 +136,7 @@ export default class TrackableLogsApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['AccessToken'];
       let contentTypes = ['application/json', 'application/json-patch+json', 'application/x-www-form-urlencoded', 'text/json'];
       let accepts = ['application/json', 'application/json-patch+json', 'text/json'];
       let returnType = TrackableLog;
@@ -185,7 +185,7 @@ export default class TrackableLogsApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['AccessToken'];
       let contentTypes = [];
       let accepts = ['application/json', 'application/json-patch+json', 'text/json'];
       let returnType = Object;
@@ -240,7 +240,7 @@ export default class TrackableLogsApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['AccessToken'];
       let contentTypes = [];
       let accepts = ['application/json', 'application/json-patch+json', 'text/json'];
       let returnType = Object;
@@ -297,7 +297,7 @@ export default class TrackableLogsApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['AccessToken'];
       let contentTypes = [];
       let accepts = ['application/json', 'application/json-patch+json', 'text/json'];
       let returnType = [Image];
@@ -352,7 +352,7 @@ export default class TrackableLogsApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['AccessToken'];
       let contentTypes = [];
       let accepts = ['application/json', 'application/json-patch+json', 'text/json'];
       let returnType = TrackableLog;
@@ -410,7 +410,7 @@ export default class TrackableLogsApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['AccessToken'];
       let contentTypes = ['application/json', 'application/json-patch+json', 'application/x-www-form-urlencoded', 'text/json'];
       let accepts = ['application/json', 'application/json-patch+json', 'text/json'];
       let returnType = TrackableLog;

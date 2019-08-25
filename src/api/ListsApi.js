@@ -86,7 +86,7 @@ export default class ListsApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['AccessToken'];
       let contentTypes = ['application/json', 'application/json-patch+json', 'application/x-www-form-urlencoded', 'text/json'];
       let accepts = ['application/json', 'application/json-patch+json', 'text/json'];
       let returnType = Geocache;
@@ -140,7 +140,7 @@ export default class ListsApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['AccessToken'];
       let contentTypes = ['application/json', 'application/json-patch+json', 'application/x-www-form-urlencoded', 'text/json'];
       let accepts = ['application/json', 'application/json-patch+json', 'text/json'];
       let returnType = BulkResponse;
@@ -192,7 +192,7 @@ export default class ListsApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['AccessToken'];
       let contentTypes = ['application/json', 'application/json-patch+json', 'application/x-www-form-urlencoded', 'text/json'];
       let accepts = ['application/json', 'application/json-patch+json', 'text/json'];
       let returnType = GeocacheList;
@@ -247,7 +247,7 @@ export default class ListsApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['AccessToken'];
       let contentTypes = [];
       let accepts = ['application/json', 'application/json-patch+json', 'text/json'];
       let returnType = Object;
@@ -296,7 +296,7 @@ export default class ListsApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['AccessToken'];
       let contentTypes = [];
       let accepts = ['application/json', 'application/json-patch+json', 'text/json'];
       let returnType = Object;
@@ -357,7 +357,7 @@ export default class ListsApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['AccessToken'];
       let contentTypes = [];
       let accepts = ['application/json', 'application/json-patch+json', 'text/json'];
       let returnType = [ListGeocache];
@@ -410,7 +410,7 @@ export default class ListsApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['AccessToken'];
       let contentTypes = [];
       let accepts = ['application/json', 'application/json-patch+json', 'text/json'];
       let returnType = GeocacheList;
@@ -459,7 +459,7 @@ export default class ListsApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['AccessToken'];
       let contentTypes = [];
       let accepts = ['application/json', 'application/json-patch+json', 'text/json'];
       let returnType = 'Blob';
@@ -517,7 +517,7 @@ export default class ListsApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['AccessToken'];
       let contentTypes = ['application/json', 'application/json-patch+json', 'application/x-www-form-urlencoded', 'text/json'];
       let accepts = ['application/json', 'application/json-patch+json', 'text/json'];
       let returnType = GeocacheList;

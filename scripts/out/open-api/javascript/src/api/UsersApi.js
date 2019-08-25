@@ -94,7 +94,7 @@ export default class UsersApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['AccessToken'];
       let contentTypes = [];
       let accepts = ['application/json', 'application/json-patch+json', 'text/json'];
       let returnType = [GeocacheLog];
@@ -151,7 +151,7 @@ export default class UsersApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['AccessToken'];
       let contentTypes = [];
       let accepts = ['application/json', 'application/json-patch+json', 'text/json'];
       let returnType = [Image];
@@ -210,7 +210,7 @@ export default class UsersApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['AccessToken'];
       let contentTypes = [];
       let accepts = ['application/json', 'application/json-patch+json', 'text/json'];
       let returnType = [GeocacheList];
@@ -267,7 +267,7 @@ export default class UsersApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['AccessToken'];
       let contentTypes = [];
       let accepts = ['application/json', 'application/json-patch+json', 'text/json'];
       let returnType = [Souvenir];
@@ -320,7 +320,7 @@ export default class UsersApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['AccessToken'];
       let contentTypes = [];
       let accepts = ['application/json', 'application/json-patch+json', 'text/json'];
       let returnType = User;
@@ -371,7 +371,7 @@ export default class UsersApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['AccessToken'];
       let contentTypes = [];
       let accepts = ['application/json', 'application/json-patch+json', 'text/json'];
       let returnType = [User];

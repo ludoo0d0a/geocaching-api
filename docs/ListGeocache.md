@@ -53,15 +53,15 @@ Name | Type | Description | Notes
 
 * `Unknown` (value: `"Unknown"`)
 
-* `Regular` (value: `"Regular"`)
-
-* `Large` (value: `"Large"`)
-
-* `Virtual` (value: `"Virtual"`)
-
 * `Other` (value: `"Other"`)
 
 * `Small` (value: `"Small"`)
+
+* `Regular` (value: `"Regular"`)
+
+* `Virtual` (value: `"Virtual"`)
+
+* `Large` (value: `"Large"`)
 
 
 

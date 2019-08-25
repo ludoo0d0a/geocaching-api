@@ -71,7 +71,7 @@ export default class ReferenceDataApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['AccessToken'];
       let contentTypes = [];
       let accepts = ['application/json', 'application/json-patch+json', 'text/json'];
       let returnType = [AttributeType];
@@ -113,7 +113,7 @@ export default class ReferenceDataApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['AccessToken'];
       let contentTypes = [];
       let accepts = ['application/json', 'application/json-patch+json', 'text/json'];
       let returnType = [Country];
@@ -155,7 +155,7 @@ export default class ReferenceDataApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['AccessToken'];
       let contentTypes = [];
       let accepts = ['application/json', 'application/json-patch+json', 'text/json'];
       let returnType = [GeocacheLogType];
@@ -197,7 +197,7 @@ export default class ReferenceDataApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['AccessToken'];
       let contentTypes = [];
       let accepts = ['application/json', 'application/json-patch+json', 'text/json'];
       let returnType = [GeocacheType];
@@ -239,7 +239,7 @@ export default class ReferenceDataApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['AccessToken'];
       let contentTypes = [];
       let accepts = ['application/json', 'application/json-patch+json', 'text/json'];
       let returnType = [MembershipLevel];
@@ -281,7 +281,7 @@ export default class ReferenceDataApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['AccessToken'];
       let contentTypes = [];
       let accepts = ['application/json', 'application/json-patch+json', 'text/json'];
       let returnType = [State];
@@ -329,7 +329,7 @@ export default class ReferenceDataApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['AccessToken'];
       let contentTypes = [];
       let accepts = ['application/json', 'application/json-patch+json', 'text/json'];
       let returnType = [State];
@@ -371,7 +371,7 @@ export default class ReferenceDataApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['AccessToken'];
       let contentTypes = [];
       let accepts = ['application/json', 'application/json-patch+json', 'text/json'];
       let returnType = [TrackableLogType];
