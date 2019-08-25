@@ -1,4 +1,3 @@
-
 {
   "swagger": "2.0",
   "info": {
@@ -6849,13 +6848,13 @@
         "size": {
           "description": "Container or Size of cache",
           "enum": [
-            "Regular",
-            "Other",
             "Small",
-            "Micro",
             "Unknown",
+            "Micro",
+            "Regular",
             "Large",
-            "Virtual"
+            "Virtual",
+            "Other"
           ],
           "type": "string"
         },

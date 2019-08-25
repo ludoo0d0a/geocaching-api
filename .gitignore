@@ -1,6 +1,6 @@
 node_modules
 config*.js
-*.sh
+git_push.sh
 package-lock.json
 yarn.lock
 examples/login/yarn.lock

@@ -600,11 +600,11 @@ components:
           enum:
             - Micro
             - Unknown
-            - Regular
-            - Large
-            - Virtual
             - Other
             - Small
+            - Regular
+            - Virtual
+            - Large
           type: string
         status:
           description: The state of the Geocache
