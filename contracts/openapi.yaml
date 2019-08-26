@@ -1124,6 +1124,7 @@ components:
       in: header
       name: AccessToken
       type: apiKey
+      scheme: Token
 info:
   contact:
     email: apihelp@geocaching.com

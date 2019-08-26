@@ -10,8 +10,11 @@ DIR=out/open-api/javascript
 # npm install replace-x -g
 
 # Un comment these lines if file changed
-wget $SWAGGER_URL -O $SWAGGER_JSON
-api-spec-converter --from=swagger_2 --to=openapi_3 --syntax=yaml --order=alpha $SWAGGER_URL > $SWAGGER_YAML
+#wget $SWAGGER_URL -O $SWAGGER_JSON
+#api-spec-converter --from=swagger_2 --to=openapi_3 --syntax=yaml --order=alpha $SWAGGER_URL > $SWAGGER_YAML
+
+# Fix securityScheme ??? in components/securitySchemes/AccessToken
+#find ../contracts -type f -name 'openapi.yaml' | xargs sed -i "" "s/type\: apiKey/type: apiKey\                scheme: Token/g"
 
 openapi-generator generate -i $SWAGGER_YAML -g javascript -o $DIR/ --auth AccessToken
 mv $DIR/src/index.js $DIR/src/Api-v10.js
