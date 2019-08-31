@@ -20,17 +20,23 @@
  * http://geocaching.vaguelibre.net/api/docs/classes/Geocaching.Api.AbstractGeocachingApi.html#method_getMoreGeocaches
  * 
  * */
-import util from 'util';
-import { Strategy as GeocachingStrategy } from 'passport-geocaching';
 
-// var util = require('util')
-// var GeocachingStrategy = require('passport-geocaching').Strategy;
-// var GeocachingStrategy = require('../../passport-geocaching/lib/index').Strategy,
-// var _ = require('lodash');
-// var GeocachingApiV10 = require('./Api-v10');
-// var ApiClient = require('./ApiClient');
-import GeocachingApiV10, { UsersApi } from './Api-v10';
-import ApiClient from './ApiClient';
+import {GeoToursApi,
+GeocacheLogsApi,
+GeocacheNotesApi,
+GeocachesApi,
+HQPromotionsApi,
+ListsApi,
+LogDraftsApi,
+ReferenceDataApi,
+StatusApi,
+TrackableLogsApi,
+TrackablesApi,
+UserWaypointsApi,
+UsersApi,
+UtilitiesApi,
+FriendsApi,
+ApiClient} from './Api-v10';
 var apiVersion = '1'; // {String} The requested API version
 
 function Exception(msg, e) {
@@ -51,7 +57,6 @@ var required_for_app_auth = [
  * @var string $staging_api_url
  */
 var staging_api_url = 'https://staging.api.groundspeak.com';
-// var staging_api_url = 'https://staging.api.groundspeak.com/%s';
 /**
  * Production URL of Groundspeak API
  *
@@ -59,7 +64,6 @@ var staging_api_url = 'https://staging.api.groundspeak.com';
  * @var string $prod_api_url
  */
 var prod_api_url = 'https://api.groundspeak.com';
-// var prod_api_url = 'https://api.groundspeak.com/%s';
 
 /**
  * Constructor
@@ -108,12 +112,6 @@ var GeocachingApi = function (config) {
     this.apiClient.basePath = this.api_url.replace(/\/+$/, '');
 
     this.strategy = this.config.strategy;
-
-    //Auto define strategy if not available
-    if (typeof this.strategy === 'undefined') {
-        // this.strategy = new GeocachingStrategy(this.config, _.bind(this._verify, this));
-        this.strategy = new GeocachingStrategy(this.config, this._verify.bind(this));
-    }
 }
 
 //Middleware for Express to set user credentails retrieved from storage
@@ -172,12 +170,13 @@ GeocachingApi.prototype._verify = function (token, tokenSecret, profile, done) {
 }
 
 // For internal access to generated Swagger API if required
-GeocachingApi.prototype.GeocachingApiV10 = GeocachingApiV10;
+// GeocachingApi.prototype.GeocachingApiV10 = GeocachingApiV10;
 
-GeocachingApi.prototype.getYourUserProfile = function (params, cb) {
-    var usersApi = new UsersApi(this.apiClient);
-    usersApi.usersGetUser('me', apiVersion, {
-        fields: 'referenceCode,findCount,hideCount,favoritePoints,username,membershipLevelId,avatarUrl,profileText,homeCoordinates'
+GeocachingApi.prototype.getYourUserProfile = function (opts, cb) {
+    opts=opts||{};
+    var usersApi = new UsersApi(opts.apiClient || this.apiClient);
+    return usersApi.usersGetUser('me', apiVersion, {
+        fields: opts.fields || 'referenceCode,findCount,hideCount,favoritePoints,username,membershipLevelId,avatarUrl,profileText,homeCoordinates'
     }, cb);
 };
 
@@ -185,52 +184,52 @@ GeocachingApi.prototype.getYourUserProfile = function (params, cb) {
  * Map all API to wrap apiClient config
 */
 GeocachingApi.prototype.UsersApi = function (opts) {
-    return new UsersApi(this.apiClient);
+    return new UsersApi(opts && opts.apiClient || this.apiClient);
 };
 GeocachingApi.prototype.FriendsApi = function (opts) {
-    return new GeocachingApiV10.UserFriendsApisApi(this.apiClient);
+    return new FriendsApi(opts && opts.apiClient || this.apiClient);
 };
 GeocachingApi.prototype.GeocacheLogsApi = function (opts) {
-    return new GeocachingApiV10.GeocacheLogsApi(this.apiClient);
+    return new GeocacheLogsApi(opts && opts.apiClient || this.apiClient);
 };
 GeocachingApi.prototype.GeocacheNotesApi = function (opts) {
-    return new GeocachingApiV10.GeocacheNotesApi(this.apiClient);
-};
-GeocachingApi.prototype.GeocacheNotesApi = function (opts) {
-    return new GeocachingApiV10.GeocacheNotesApi(this.apiClient);
-};
-GeocachingApi.prototype.GeocacheNotesApi = function (opts) {
-    return new GeocachingApiV10.GeocacheNotesApi(this.apiClient);
+    return new GeocacheNotesApi(opts && opts.apiClient || this.apiClient);
 };
 GeocachingApi.prototype.ListsApi = function (opts) {
-    return new GeocachingApiV10.ListsApi(this.apiClient);
-};
-GeocachingApi.prototype.GeocacheNotesApi = function (opts) {
-    return new GeocachingApiV10.GeocacheNotesApi(this.apiClient);
+    return new ListsApi(opts && opts.apiClient || this.apiClient);
 };
 GeocachingApi.prototype.LogDraftsApi = function (opts) {
-    return new GeocachingApiV10.LogDraftsApi(this.apiClient);
+    return new LogDraftsApi(opts && opts.apiClient || this.apiClient);
 };
 GeocachingApi.prototype.ReferenceDataApi = function (opts) {
-    return new GeocachingApiV10.ReferenceDataApi(this.apiClient);
+    return new ReferenceDataApi(opts && opts.apiClient || this.apiClient);
 };
 GeocachingApi.prototype.StatusApi = function (opts) {
-    return new GeocachingApiV10.StatusApi(this.apiClient);
+    return new StatusApi(opts && opts.apiClient || this.apiClient);
 };
 GeocachingApi.prototype.TrackableLogsApi = function (opts) {
-    return new GeocachingApiV10.TrackableLogsApi(this.apiClient);
+    return new TrackableLogsApi(opts && opts.apiClient || this.apiClient);
 };
 GeocachingApi.prototype.TrackablesApi = function (opts) {
-    return new GeocachingApiV10.TrackablesApi(this.apiClient);
+    return new TrackablesApi(opts && opts.apiClient || this.apiClient);
 };
 GeocachingApi.prototype.UserWaypointsApi = function (opts) {
-    return new GeocachingApiV10.UserWaypointsApi(this.apiClient);
+    return new UserWaypointsApi(opts && opts.apiClient || this.apiClient);
 };
 GeocachingApi.prototype.UsersApi = function (opts) {
-    return new GeocachingApiV10.UsersApi(this.apiClient);
+    return new UsersApi(opts && opts.apiClient || this.apiClient);
 };
 GeocachingApi.prototype.UtilitiesApi = function (opts) {
-    return new GeocachingApiV10.UtilitiesApi(this.apiClient);
+    return new UtilitiesApi(opts && opts.apiClient || this.apiClient);
+};
+GeocachingApi.prototype.GeoToursApi = function (opts) {
+    return new GeoToursApi(opts && opts.apiClient || this.apiClient);
+};
+GeocachingApi.prototype.GeocachesApi = function (opts) {
+    return new GeocachesApi(opts && opts.apiClient || this.apiClient);
+};
+GeocachingApi.prototype.HQPromotionsApi = function (opts) {
+    return new HQPromotionsApi(opts && opts.apiClient || this.apiClient);
 };
 
 /**
@@ -291,11 +290,12 @@ GeocachingApi.prototype._validateConfigOrThrow = function (config) {
     var required_keys = required_for_app_auth
     required_keys.forEach(function (req_key) {
         if (!config[req_key]) {
-            var err_msg = util.format('GeocachingApi config must include `%s`.', req_key)
+            var err_msg = format('GeocachingApi config must include `%s`.', req_key)
             throw new Error(err_msg)
         }
     })
 }
 
 
-exports = module.exports = GeocachingApi
+// exports = module.exports = GeocachingApi
+export default GeocachingApi;

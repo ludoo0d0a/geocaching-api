@@ -1,11 +1,11 @@
 {
   "name": "geocaching-api",
   "version": "2.1.0",
-  "description": "",
+  "description": "Node.js client for Geocaching API",
   "main": "dist/index.js",
   "scripts": {
     "build": "babel src -d dist",
-    "prepack": "npm run build",
+    "prepare": "npm run build",
     "test": "mocha --compilers js:babel-core/register --recursive"
   },
   "keywords": [
@@ -13,7 +13,7 @@
     "live",
     "gc",
     "geoking",
-    "pitaso"
+    "ludoo"
   ],
   "author": {
     "name": "Ludovic Valente",
@@ -34,16 +34,17 @@
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
     "lodash": "^4.17.15",
-    "passport-geocaching": "^0.2.0",
+    "passport-geocaching": "^0.2.1",
     "superagent": "5.1.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
+    "@babel/node": "^7.5.5",
     "expect.js": "~0.3.1",
     "mocha": "^6.2.0",
-    "sinon": "7.3.2"
+    "sinon": "7.4.1"
   },
   "files": [
     "dist"

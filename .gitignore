@@ -1,5 +1,6 @@
 node_modules
 config*.js
+config/config*.js
 git_push.sh
 package-lock.json
 yarn.lock
