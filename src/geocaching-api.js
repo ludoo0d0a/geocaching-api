@@ -114,6 +114,8 @@ var GeocachingApi = function (config) {
     this.strategy = this.config.strategy;
 }
 
+GeocachingApi.prototype.apiVersion=apiVersion;
+
 //Middleware for Express to set user credentails retrieved from storage
 GeocachingApi.prototype.securized = function (req, res, next) {
     if (!req.app.geoapi) {
@@ -150,6 +152,7 @@ GeocachingApi.prototype.setAuth = function (token, tokenSecret) {
 GeocachingApi.prototype._verify = function (token, tokenSecret, profile, done) {
     //Saved for later usage on REST calls
     // this.strategy.api.setAuth(token, tokenSecret);
+    profile.token = token;
     this.setAuth(token, tokenSecret);
 
     // asynchronous verification, for effect...
@@ -296,6 +299,14 @@ GeocachingApi.prototype._validateConfigOrThrow = function (config) {
     })
 }
 
+GeocachingApi.prototype.getFields = function (obj) {
+  //input an object to be inspected
+  if (typeof obj !== 'object') {
+    throw new TypeError('obj must be object ');
+  }
 
-// exports = module.exports = GeocachingApi
+  return Object.keys(Object.getPrototypeOf(obj)).join(',');
+};
+
+
 export default GeocachingApi;
