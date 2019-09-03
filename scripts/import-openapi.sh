@@ -16,15 +16,19 @@ DIR=out/open-api/javascript
 # Fix securityScheme ??? in components/securitySchemes/AccessToken
 #find ../contracts -type f -name 'openapi.yaml' | xargs sed -i "" "s/type\: apiKey/type: apiKey\                scheme: Token/g"
 
-openapi-generator generate -i $SWAGGER_YAML -g javascript -o $DIR/ --auth AccessToken
+openapi-generator generate -i $SWAGGER_YAML -g javascript -o $DIR/ --additional-properties usePromises=true
+# openapi-generator generate -i $SWAGGER_YAML -g javascript -o $DIR/ --auth AccessToken --additional-properties=\"usePromises=true\" 
+
 mv $DIR/src/index.js $DIR/src/Api-v10.js
-mv $DIR/package.json  $DIR/api-package.json
+mv $DIR/package.json $DIR/api-package.json.old
 rm $DIR/git_push.sh
 
 # replace-x "let authNames = [];" "let authNames = ['AccessToken'];" $DIR -r --include="*.js"
 find . -type f -name '*.js' | xargs sed -i "" "s/let authNames = \[\]/let authNames = \['AccessToken'\]/g"
 
 cp -r $DIR/ ..
+
+# Typescript version
 #openapi-generator generate -i $SWAGGER_URL -g typescript-fetch -o out/open-api/typescript-fetch/
 #openapi-generator generate -i $SWAGGER_YAML -g typescript-node -o out/open-api/typescript-node/
 

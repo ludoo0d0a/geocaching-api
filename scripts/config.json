@@ -4,5 +4,6 @@
     "artifactId": "geocaching-api",
     "artifactVersion": "1.0.0",
     "library": "javascript",
-    "authMethods": "AccessToken"
+    "authMethods": "AccessToken",
+    "usePromises": true
 }
