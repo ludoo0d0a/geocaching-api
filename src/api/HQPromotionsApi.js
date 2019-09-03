@@ -34,21 +34,13 @@ export default class HQPromotionsApi {
     }
 
 
-    /**
-     * Callback function to receive the result of the hQPromotionsGet operation.
-     * @callback module:api/HQPromotionsApi~hQPromotionsGetCallback
-     * @param {String} error Error message, if any.
-     * @param {Array.<module:model/HQPromotionMetadata>} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Returns a list of metadata for currently visible and upcoming Geocaching HQ promotions
      * @param {String} apiVersion The requested API version
-     * @param {module:api/HQPromotionsApi~hQPromotionsGetCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Array.<module:model/HQPromotionMetadata>}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/HQPromotionMetadata>} and HTTP response
      */
-    hQPromotionsGet(apiVersion, callback) {
+    hQPromotionsGetWithHttpInfo(apiVersion) {
       let postBody = null;
       // verify the required parameter 'apiVersion' is set
       if (apiVersion === undefined || apiVersion === null) {
@@ -72,8 +64,20 @@ export default class HQPromotionsApi {
       return this.apiClient.callApi(
         '/v{api-version}/HQPromotions/metadata', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
+    }
+
+    /**
+     * Returns a list of metadata for currently visible and upcoming Geocaching HQ promotions
+     * @param {String} apiVersion The requested API version
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/HQPromotionMetadata>}
+     */
+    hQPromotionsGet(apiVersion) {
+      return this.hQPromotionsGetWithHttpInfo(apiVersion)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
     }
 
 

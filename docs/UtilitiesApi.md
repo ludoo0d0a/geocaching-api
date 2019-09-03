@@ -23,13 +23,12 @@ let apiInstance = new ApiV10.UtilitiesApi();
 let id = 789; // Number | the id to get the reference code for
 let codePrefix = "codePrefix_example"; // String | the prefix of the reference code (e.g. GC)
 let apiVersion = "'1.0'"; // String | The requested API version
-apiInstance.utilitiesGetReferenceCode(id, codePrefix, apiVersion, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.utilitiesGetReferenceCode(id, codePrefix, apiVersion).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters

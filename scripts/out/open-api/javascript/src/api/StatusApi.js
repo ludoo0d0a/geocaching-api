@@ -33,21 +33,14 @@ export default class StatusApi {
     }
 
 
-    /**
-     * Callback function to receive the result of the statusPingAsync operation.
-     * @callback module:api/StatusApi~statusPingAsyncCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Returns Ok.
      * This method return Ok.
      * @param {String} apiVersion The requested API version
-     * @param {module:api/StatusApi~statusPingAsyncCallback} callback The callback function, accepting three arguments: error, data, response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    statusPingAsync(apiVersion, callback) {
+    statusPingAsyncWithHttpInfo(apiVersion) {
       let postBody = null;
       // verify the required parameter 'apiVersion' is set
       if (apiVersion === undefined || apiVersion === null) {
@@ -71,8 +64,21 @@ export default class StatusApi {
       return this.apiClient.callApi(
         '/status/ping', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
+    }
+
+    /**
+     * Returns Ok.
+     * This method return Ok.
+     * @param {String} apiVersion The requested API version
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+     */
+    statusPingAsync(apiVersion) {
+      return this.statusPingAsyncWithHttpInfo(apiVersion)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
     }
 
 

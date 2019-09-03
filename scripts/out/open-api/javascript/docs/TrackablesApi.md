@@ -32,13 +32,12 @@ let opts = {
   'take': 10, // Number | Amount of types to include in results. Defaults to 10.
   'fields': "'id'" // String | Properties you want to return. Defaults to id.
 };
-apiInstance.trackablesGetGeocoinTypes(apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.trackablesGetGeocoinTypes(apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -86,13 +85,12 @@ let opts = {
   'take': 10, // Number | Amount of images to include in results. Defaults to 10.
   'fields': "'url'" // String | Properties you want to return. Defaults to url.
 };
-apiInstance.trackablesGetImages(referenceCode, apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.trackablesGetImages(referenceCode, apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -140,13 +138,12 @@ let opts = {
   'fields': "'referenceCode'", // String | fields you want to return, defaults to referenceCode
   'expand': "''" // String | 
 };
-apiInstance.trackablesGetTrackable(referenceCode, apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.trackablesGetTrackable(referenceCode, apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -196,13 +193,12 @@ let opts = {
   'expand': "''", // String | 
   'logTypes': "logTypes_example" // String | what log types to include with results. defaults to all
 };
-apiInstance.trackablesGetTrackableLogs(referenceCode, apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.trackablesGetTrackableLogs(referenceCode, apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -255,13 +251,12 @@ let opts = {
   'fields': "'referenceCode'", // String | fields you want to return, defaults to referenceCode
   'expand': "''" // String | 
 };
-apiInstance.trackablesGetUserTrackables(apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.trackablesGetUserTrackables(apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters

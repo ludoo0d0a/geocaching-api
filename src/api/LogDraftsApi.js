@@ -38,13 +38,6 @@ export default class LogDraftsApi {
     }
 
 
-    /**
-     * Callback function to receive the result of the logDraftsAddImage operation.
-     * @callback module:api/LogDraftsApi~logDraftsAddImageCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/Image} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Add image to log draft
@@ -54,10 +47,9 @@ export default class LogDraftsApi {
      * @param {module:model/PostImage} postImage The image to upload and add
      * @param {Object} opts Optional parameters
      * @param {String} opts.fields Properties you want to return, defaults to url (default to 'url')
-     * @param {module:api/LogDraftsApi~logDraftsAddImageCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/Image}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Image} and HTTP response
      */
-    logDraftsAddImage(referenceCode, apiVersion, postImage, opts, callback) {
+    logDraftsAddImageWithHttpInfo(referenceCode, apiVersion, postImage, opts) {
       opts = opts || {};
       let postBody = postImage;
       // verify the required parameter 'referenceCode' is set
@@ -92,17 +84,27 @@ export default class LogDraftsApi {
       return this.apiClient.callApi(
         '/v{api-version}/logdrafts/{referenceCode}/images', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the logDraftsCreateDraft operation.
-     * @callback module:api/LogDraftsApi~logDraftsCreateDraftCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/LogDraft} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Add image to log draft
+     * This method will return the image created.
+     * @param {String} referenceCode identifier of the log draft
+     * @param {String} apiVersion The requested API version
+     * @param {module:model/PostImage} postImage The image to upload and add
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.fields Properties you want to return, defaults to url (default to 'url')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Image}
      */
+    logDraftsAddImage(referenceCode, apiVersion, postImage, opts) {
+      return this.logDraftsAddImageWithHttpInfo(referenceCode, apiVersion, postImage, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Create a log draft
@@ -111,10 +113,9 @@ export default class LogDraftsApi {
      * @param {module:model/PostLogDraft} postLogDraft The log draft to create.
      * @param {Object} opts Optional parameters
      * @param {String} opts.fields Properties you want to return, defaults to referenceCode (default to 'referenceCode')
-     * @param {module:api/LogDraftsApi~logDraftsCreateDraftCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/LogDraft}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/LogDraft} and HTTP response
      */
-    logDraftsCreateDraft(apiVersion, postLogDraft, opts, callback) {
+    logDraftsCreateDraftWithHttpInfo(apiVersion, postLogDraft, opts) {
       opts = opts || {};
       let postBody = postLogDraft;
       // verify the required parameter 'apiVersion' is set
@@ -144,27 +145,35 @@ export default class LogDraftsApi {
       return this.apiClient.callApi(
         '/v{api-version}/logdrafts', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the logDraftsDeleteDraft operation.
-     * @callback module:api/LogDraftsApi~logDraftsDeleteDraftCallback
-     * @param {String} error Error message, if any.
-     * @param {Object} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Create a log draft
+     * This method will return the log draft created.
+     * @param {String} apiVersion The requested API version
+     * @param {module:model/PostLogDraft} postLogDraft The log draft to create.
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.fields Properties you want to return, defaults to referenceCode (default to 'referenceCode')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/LogDraft}
      */
+    logDraftsCreateDraft(apiVersion, postLogDraft, opts) {
+      return this.logDraftsCreateDraftWithHttpInfo(apiVersion, postLogDraft, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Delete a log draft
      * This method will return no content.
      * @param {String} referenceCode The identifier of the log draft (ex: LD25)
      * @param {String} apiVersion The requested API version
-     * @param {module:api/LogDraftsApi~logDraftsDeleteDraftCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Object}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
      */
-    logDraftsDeleteDraft(referenceCode, apiVersion, callback) {
+    logDraftsDeleteDraftWithHttpInfo(referenceCode, apiVersion) {
       let postBody = null;
       // verify the required parameter 'referenceCode' is set
       if (referenceCode === undefined || referenceCode === null) {
@@ -193,17 +202,24 @@ export default class LogDraftsApi {
       return this.apiClient.callApi(
         '/v{api-version}/logdrafts/{referenceCode}', 'DELETE',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the logDraftsGetDraft operation.
-     * @callback module:api/LogDraftsApi~logDraftsGetDraftCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/LogDraft} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Delete a log draft
+     * This method will return no content.
+     * @param {String} referenceCode The identifier of the log draft (ex: LD25)
+     * @param {String} apiVersion The requested API version
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
+    logDraftsDeleteDraft(referenceCode, apiVersion) {
+      return this.logDraftsDeleteDraftWithHttpInfo(referenceCode, apiVersion)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get a single log draft for the calling user
@@ -212,10 +228,9 @@ export default class LogDraftsApi {
      * @param {String} apiVersion The requested API version
      * @param {Object} opts Optional parameters
      * @param {String} opts.fields Properties you want to return, defaults to referenceCode (default to 'referenceCode')
-     * @param {module:api/LogDraftsApi~logDraftsGetDraftCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/LogDraft}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/LogDraft} and HTTP response
      */
-    logDraftsGetDraft(referenceCode, apiVersion, opts, callback) {
+    logDraftsGetDraftWithHttpInfo(referenceCode, apiVersion, opts) {
       opts = opts || {};
       let postBody = null;
       // verify the required parameter 'referenceCode' is set
@@ -246,17 +261,26 @@ export default class LogDraftsApi {
       return this.apiClient.callApi(
         '/v{api-version}/logdrafts/{referenceCode}', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the logDraftsGetUserDrafts operation.
-     * @callback module:api/LogDraftsApi~logDraftsGetUserDraftsCallback
-     * @param {String} error Error message, if any.
-     * @param {Array.<module:model/LogDraft>} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get a single log draft for the calling user
+     * This method will return a single draft log.
+     * @param {String} referenceCode The reference code of the log draft (example: LD25).
+     * @param {String} apiVersion The requested API version
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.fields Properties you want to return, defaults to referenceCode (default to 'referenceCode')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/LogDraft}
      */
+    logDraftsGetDraft(referenceCode, apiVersion, opts) {
+      return this.logDraftsGetDraftWithHttpInfo(referenceCode, apiVersion, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get a list of log drafts for the calling user
@@ -267,10 +291,9 @@ export default class LogDraftsApi {
      * @param {Number} opts.take How many drafts to return (default = 10) (default to 10)
      * @param {String} opts.sort How to sort the drafts (default = loggeddateutc) (default to 'dateloggedutc')
      * @param {String} opts.fields Properties you want to return, defaults to referenceCode (default to 'referenceCode')
-     * @param {module:api/LogDraftsApi~logDraftsGetUserDraftsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Array.<module:model/LogDraft>}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/LogDraft>} and HTTP response
      */
-    logDraftsGetUserDrafts(apiVersion, opts, callback) {
+    logDraftsGetUserDraftsWithHttpInfo(apiVersion, opts) {
       opts = opts || {};
       let postBody = null;
       // verify the required parameter 'apiVersion' is set
@@ -299,17 +322,28 @@ export default class LogDraftsApi {
       return this.apiClient.callApi(
         '/v{api-version}/logdrafts', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the logDraftsPromoteToGeocacheLog operation.
-     * @callback module:api/LogDraftsApi~logDraftsPromoteToGeocacheLogCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/PromotedDraft} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get a list of log drafts for the calling user
+     * This method will return a page (list + total) of log drafts.
+     * @param {String} apiVersion The requested API version
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.skip How many drafts to skip (default = 0) (default to 0)
+     * @param {Number} opts.take How many drafts to return (default = 10) (default to 10)
+     * @param {String} opts.sort How to sort the drafts (default = loggeddateutc) (default to 'dateloggedutc')
+     * @param {String} opts.fields Properties you want to return, defaults to referenceCode (default to 'referenceCode')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/LogDraft>}
      */
+    logDraftsGetUserDrafts(apiVersion, opts) {
+      return this.logDraftsGetUserDraftsWithHttpInfo(apiVersion, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Promote Log Draft to Geocache Log
@@ -317,10 +351,9 @@ export default class LogDraftsApi {
      * @param {String} referenceCode identifier of the log draft
      * @param {String} apiVersion The requested API version
      * @param {module:model/LogDraft} logDraft The draft to promote to log
-     * @param {module:api/LogDraftsApi~logDraftsPromoteToGeocacheLogCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/PromotedDraft}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/PromotedDraft} and HTTP response
      */
-    logDraftsPromoteToGeocacheLog(referenceCode, apiVersion, logDraft, callback) {
+    logDraftsPromoteToGeocacheLogWithHttpInfo(referenceCode, apiVersion, logDraft) {
       let postBody = logDraft;
       // verify the required parameter 'referenceCode' is set
       if (referenceCode === undefined || referenceCode === null) {
@@ -353,17 +386,25 @@ export default class LogDraftsApi {
       return this.apiClient.callApi(
         '/v{api-version}/logdrafts/{referenceCode}/promote', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the logDraftsUpdateDraft operation.
-     * @callback module:api/LogDraftsApi~logDraftsUpdateDraftCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/LogDraft} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Promote Log Draft to Geocache Log
+     * This method will return the promoted draft info.
+     * @param {String} referenceCode identifier of the log draft
+     * @param {String} apiVersion The requested API version
+     * @param {module:model/LogDraft} logDraft The draft to promote to log
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/PromotedDraft}
      */
+    logDraftsPromoteToGeocacheLog(referenceCode, apiVersion, logDraft) {
+      return this.logDraftsPromoteToGeocacheLogWithHttpInfo(referenceCode, apiVersion, logDraft)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Update a log draft
@@ -373,10 +414,9 @@ export default class LogDraftsApi {
      * @param {module:model/LogDraft} logDraft The log draft to edit.
      * @param {Object} opts Optional parameters
      * @param {String} opts.fields Properties you want to return, defaults to referenceCode (default to 'referenceCode')
-     * @param {module:api/LogDraftsApi~logDraftsUpdateDraftCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/LogDraft}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/LogDraft} and HTTP response
      */
-    logDraftsUpdateDraft(referenceCode, apiVersion, logDraft, opts, callback) {
+    logDraftsUpdateDraftWithHttpInfo(referenceCode, apiVersion, logDraft, opts) {
       opts = opts || {};
       let postBody = logDraft;
       // verify the required parameter 'referenceCode' is set
@@ -411,8 +451,25 @@ export default class LogDraftsApi {
       return this.apiClient.callApi(
         '/v{api-version}/logdrafts/{referenceCode}', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
+    }
+
+    /**
+     * Update a log draft
+     * This method will return the log draft edited.
+     * @param {String} referenceCode The identifier of the log draft (ex: LD25)
+     * @param {String} apiVersion The requested API version
+     * @param {module:model/LogDraft} logDraft The log draft to edit.
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.fields Properties you want to return, defaults to referenceCode (default to 'referenceCode')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/LogDraft}
+     */
+    logDraftsUpdateDraft(referenceCode, apiVersion, logDraft, opts) {
+      return this.logDraftsUpdateDraftWithHttpInfo(referenceCode, apiVersion, logDraft, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
     }
 
 

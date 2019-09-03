@@ -105,14 +105,12 @@ var ApiV10 = require('api_v1_0');
 var api = new ApiV10.FriendsApi()
 var requestId = 56; // {Number} friend request identifier
 var apiVersion = "'1.0'"; // {String} The requested API version
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-api.friendsAcceptFriendRequest(requestId, apiVersion, callback);
+api.friendsAcceptFriendRequest(requestId, apiVersion).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
+
 
 ```
 

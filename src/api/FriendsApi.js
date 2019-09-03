@@ -35,21 +35,14 @@ export default class FriendsApi {
     }
 
 
-    /**
-     * Callback function to receive the result of the friendsAcceptFriendRequest operation.
-     * @callback module:api/FriendsApi~friendsAcceptFriendRequestCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Accept a friend request
      * @param {Number} requestId friend request identifier
      * @param {String} apiVersion The requested API version
-     * @param {module:api/FriendsApi~friendsAcceptFriendRequestCallback} callback The callback function, accepting three arguments: error, data, response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    friendsAcceptFriendRequest(requestId, apiVersion, callback) {
+    friendsAcceptFriendRequestWithHttpInfo(requestId, apiVersion) {
       let postBody = null;
       // verify the required parameter 'requestId' is set
       if (requestId === undefined || requestId === null) {
@@ -78,17 +71,23 @@ export default class FriendsApi {
       return this.apiClient.callApi(
         '/v{api-version}/friendrequests/{requestId}/accept', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the friendsCreateFriendRequest operation.
-     * @callback module:api/FriendsApi~friendsCreateFriendRequestCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/FriendRequest} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Accept a friend request
+     * @param {Number} requestId friend request identifier
+     * @param {String} apiVersion The requested API version
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    friendsAcceptFriendRequest(requestId, apiVersion) {
+      return this.friendsAcceptFriendRequestWithHttpInfo(requestId, apiVersion)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Create a friend request
@@ -97,10 +96,9 @@ export default class FriendsApi {
      * @param {module:model/FriendRequest} friendRequest The friend request to create.
      * @param {Object} opts Optional parameters
      * @param {String} opts.fields Properties you want to return, defaults to id (default to 'id')
-     * @param {module:api/FriendsApi~friendsCreateFriendRequestCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/FriendRequest}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/FriendRequest} and HTTP response
      */
-    friendsCreateFriendRequest(apiVersion, friendRequest, opts, callback) {
+    friendsCreateFriendRequestWithHttpInfo(apiVersion, friendRequest, opts) {
       opts = opts || {};
       let postBody = friendRequest;
       // verify the required parameter 'apiVersion' is set
@@ -130,27 +128,35 @@ export default class FriendsApi {
       return this.apiClient.callApi(
         '/v{api-version}/friendrequests', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the friendsDeleteFriendRequest operation.
-     * @callback module:api/FriendsApi~friendsDeleteFriendRequestCallback
-     * @param {String} error Error message, if any.
-     * @param {Object} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Create a friend request
+     * This method will return the friend request created.
+     * @param {String} apiVersion The requested API version
+     * @param {module:model/FriendRequest} friendRequest The friend request to create.
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.fields Properties you want to return, defaults to id (default to 'id')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/FriendRequest}
      */
+    friendsCreateFriendRequest(apiVersion, friendRequest, opts) {
+      return this.friendsCreateFriendRequestWithHttpInfo(apiVersion, friendRequest, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Delete a friend request
      * This method will return no content.
      * @param {Number} requestId The identifier of the friend request
      * @param {String} apiVersion The requested API version
-     * @param {module:api/FriendsApi~friendsDeleteFriendRequestCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Object}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
      */
-    friendsDeleteFriendRequest(requestId, apiVersion, callback) {
+    friendsDeleteFriendRequestWithHttpInfo(requestId, apiVersion) {
       let postBody = null;
       // verify the required parameter 'requestId' is set
       if (requestId === undefined || requestId === null) {
@@ -179,17 +185,24 @@ export default class FriendsApi {
       return this.apiClient.callApi(
         '/v{api-version}/friendrequests/{requestId}', 'DELETE',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the friendsGetFriendRequests operation.
-     * @callback module:api/FriendsApi~friendsGetFriendRequestsCallback
-     * @param {String} error Error message, if any.
-     * @param {Array.<module:model/FriendRequest>} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Delete a friend request
+     * This method will return no content.
+     * @param {Number} requestId The identifier of the friend request
+     * @param {String} apiVersion The requested API version
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
+    friendsDeleteFriendRequest(requestId, apiVersion) {
+      return this.friendsDeleteFriendRequestWithHttpInfo(requestId, apiVersion)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get a list of friend requests for the calling user
@@ -199,10 +212,9 @@ export default class FriendsApi {
      * @param {Number} opts.skip How many requests to skip (default = 0) (default to 0)
      * @param {Number} opts.take How many requests to return (default = 10, max = 50) (default to 10)
      * @param {String} opts.fields Properties you want to return, defaults to id (default to 'id')
-     * @param {module:api/FriendsApi~friendsGetFriendRequestsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Array.<module:model/FriendRequest>}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/FriendRequest>} and HTTP response
      */
-    friendsGetFriendRequests(apiVersion, opts, callback) {
+    friendsGetFriendRequestsWithHttpInfo(apiVersion, opts) {
       opts = opts || {};
       let postBody = null;
       // verify the required parameter 'apiVersion' is set
@@ -230,17 +242,27 @@ export default class FriendsApi {
       return this.apiClient.callApi(
         '/v{api-version}/friendrequests', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the friendsGetFriends operation.
-     * @callback module:api/FriendsApi~friendsGetFriendsCallback
-     * @param {String} error Error message, if any.
-     * @param {Array.<module:model/User>} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get a list of friend requests for the calling user
+     * This method will return a list of requests including both inbound and outbound requests.
+     * @param {String} apiVersion The requested API version
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.skip How many requests to skip (default = 0) (default to 0)
+     * @param {Number} opts.take How many requests to return (default = 10, max = 50) (default to 10)
+     * @param {String} opts.fields Properties you want to return, defaults to id (default to 'id')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/FriendRequest>}
      */
+    friendsGetFriendRequests(apiVersion, opts) {
+      return this.friendsGetFriendRequestsWithHttpInfo(apiVersion, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get a list of friends for the calling user
@@ -250,10 +272,9 @@ export default class FriendsApi {
      * @param {Number} opts.skip How many friends to skip (default = 0) (default to 0)
      * @param {Number} opts.take How many friends to return (default = 10, max = 50) (default to 10)
      * @param {String} opts.fields Properties you want to return, defaults to referenceCode (default to 'referenceCode')
-     * @param {module:api/FriendsApi~friendsGetFriendsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Array.<module:model/User>}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/User>} and HTTP response
      */
-    friendsGetFriends(apiVersion, opts, callback) {
+    friendsGetFriendsWithHttpInfo(apiVersion, opts) {
       opts = opts || {};
       let postBody = null;
       // verify the required parameter 'apiVersion' is set
@@ -281,27 +302,36 @@ export default class FriendsApi {
       return this.apiClient.callApi(
         '/v{api-version}/friends', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the friendsRemoveFriend operation.
-     * @callback module:api/FriendsApi~friendsRemoveFriendCallback
-     * @param {String} error Error message, if any.
-     * @param {Object} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get a list of friends for the calling user
+     * This method will return a list of Users.
+     * @param {String} apiVersion The requested API version
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.skip How many friends to skip (default = 0) (default to 0)
+     * @param {Number} opts.take How many friends to return (default = 10, max = 50) (default to 10)
+     * @param {String} opts.fields Properties you want to return, defaults to referenceCode (default to 'referenceCode')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/User>}
      */
+    friendsGetFriends(apiVersion, opts) {
+      return this.friendsGetFriendsWithHttpInfo(apiVersion, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Removes a friend
      * This method will return no content.
      * @param {String} userCode The identifier of the friend (their user reference code)
      * @param {String} apiVersion The requested API version
-     * @param {module:api/FriendsApi~friendsRemoveFriendCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Object}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
      */
-    friendsRemoveFriend(userCode, apiVersion, callback) {
+    friendsRemoveFriendWithHttpInfo(userCode, apiVersion) {
       let postBody = null;
       // verify the required parameter 'userCode' is set
       if (userCode === undefined || userCode === null) {
@@ -330,8 +360,22 @@ export default class FriendsApi {
       return this.apiClient.callApi(
         '/v{api-version}/friends/{userCode}', 'DELETE',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
+    }
+
+    /**
+     * Removes a friend
+     * This method will return no content.
+     * @param {String} userCode The identifier of the friend (their user reference code)
+     * @param {String} apiVersion The requested API version
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
+     */
+    friendsRemoveFriend(userCode, apiVersion) {
+      return this.friendsRemoveFriendWithHttpInfo(userCode, apiVersion)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
     }
 
 

@@ -34,13 +34,12 @@ let postImage = new ApiV10.PostImage(); // PostImage |
 let opts = {
   'fields': "'url'" // String | fields to return on the response object, defaults to \"url\"
 };
-apiInstance.geocacheLogsAddImage(referenceCode, apiVersion, postImage, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.geocacheLogsAddImage(referenceCode, apiVersion, postImage, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -86,13 +85,12 @@ let postGeocacheLog = new ApiV10.PostGeocacheLog(); // PostGeocacheLog | The log
 let opts = {
   'fields': "'referencecode'" // String | the fields to return in the response body, defaults to referencecode
 };
-apiInstance.geocacheLogsCreateGeocacheLog(apiVersion, postGeocacheLog, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.geocacheLogsCreateGeocacheLog(apiVersion, postGeocacheLog, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -134,13 +132,12 @@ import ApiV10 from 'api_v1_0';
 let apiInstance = new ApiV10.GeocacheLogsApi();
 let referenceCode = "referenceCode_example"; // String | The reference code of the geocache log (example: GL100).
 let apiVersion = "'1.0'"; // String | The requested API version
-apiInstance.geocacheLogsDeleteGeocacheLog(referenceCode, apiVersion, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.geocacheLogsDeleteGeocacheLog(referenceCode, apiVersion).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -182,13 +179,12 @@ let apiInstance = new ApiV10.GeocacheLogsApi();
 let referenceCode = "referenceCode_example"; // String | The reference code of the geocache log (example: GL100).
 let imageGuid = null; // String | the guid of the image
 let apiVersion = "'1.0'"; // String | The requested API version
-apiInstance.geocacheLogsDeleteGeocacheLogImages(referenceCode, imageGuid, apiVersion, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.geocacheLogsDeleteGeocacheLogImages(referenceCode, imageGuid, apiVersion).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -234,13 +230,12 @@ let opts = {
   'expand': "''", // String | fields to include with base geocache log object
   'fields': "'referencecode'" // String | Property fields you want to return, defaults to referencecode
 };
-apiInstance.geocacheLogsGetGeocacheLog(referenceCode, apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.geocacheLogsGetGeocacheLog(referenceCode, apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -288,13 +283,12 @@ let opts = {
   'take': 10, // Number | Amount of images to include in results. Defaults to 10.
   'fields': "'url'" // String | Properties you want to return. Defaults to \"url\".
 };
-apiInstance.geocacheLogsGetImages(referenceCode, apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.geocacheLogsGetImages(referenceCode, apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -342,13 +336,12 @@ let geocacheLog = new ApiV10.GeocacheLog(); // GeocacheLog | An instance of the 
 let opts = {
   'fields': "'referencecode'" // String | Property fields you want to return, defaults to referencecode
 };
-apiInstance.geocacheLogsUpdateGeocacheLog(referenceCode, apiVersion, geocacheLog, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.geocacheLogsUpdateGeocacheLog(referenceCode, apiVersion, geocacheLog, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters

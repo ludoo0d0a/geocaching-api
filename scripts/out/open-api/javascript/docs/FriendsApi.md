@@ -27,13 +27,12 @@ import ApiV10 from 'api_v1_0';
 let apiInstance = new ApiV10.FriendsApi();
 let requestId = 56; // Number | friend request identifier
 let apiVersion = "'1.0'"; // String | The requested API version
-apiInstance.friendsAcceptFriendRequest(requestId, apiVersion, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
+apiInstance.friendsAcceptFriendRequest(requestId, apiVersion).then(() => {
+  console.log('API called successfully.');
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -77,13 +76,12 @@ let friendRequest = new ApiV10.FriendRequest(); // FriendRequest | The friend re
 let opts = {
   'fields': "'id'" // String | Properties you want to return, defaults to id
 };
-apiInstance.friendsCreateFriendRequest(apiVersion, friendRequest, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.friendsCreateFriendRequest(apiVersion, friendRequest, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -125,13 +123,12 @@ import ApiV10 from 'api_v1_0';
 let apiInstance = new ApiV10.FriendsApi();
 let requestId = 56; // Number | The identifier of the friend request
 let apiVersion = "'1.0'"; // String | The requested API version
-apiInstance.friendsDeleteFriendRequest(requestId, apiVersion, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.friendsDeleteFriendRequest(requestId, apiVersion).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -176,13 +173,12 @@ let opts = {
   'take': 10, // Number | How many requests to return (default = 10, max = 50)
   'fields': "'id'" // String | Properties you want to return, defaults to id
 };
-apiInstance.friendsGetFriendRequests(apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.friendsGetFriendRequests(apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -229,13 +225,12 @@ let opts = {
   'take': 10, // Number | How many friends to return (default = 10, max = 50)
   'fields': "'referenceCode'" // String | Properties you want to return, defaults to referenceCode
 };
-apiInstance.friendsGetFriends(apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.friendsGetFriends(apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -278,13 +273,12 @@ import ApiV10 from 'api_v1_0';
 let apiInstance = new ApiV10.FriendsApi();
 let userCode = "userCode_example"; // String | The identifier of the friend (their user reference code)
 let apiVersion = "'1.0'"; // String | The requested API version
-apiInstance.friendsRemoveFriend(userCode, apiVersion, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.friendsRemoveFriend(userCode, apiVersion).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters

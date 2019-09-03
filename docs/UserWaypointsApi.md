@@ -33,13 +33,12 @@ let postUserWaypoint = new ApiV10.PostUserWaypoint(); // PostUserWaypoint | The 
 let opts = {
   'fields': "'referencecode'" // String | Properties you want to return (default = referenceCode)
 };
-apiInstance.userWaypointsCreateUserWaypoint(apiVersion, postUserWaypoint, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.userWaypointsCreateUserWaypoint(apiVersion, postUserWaypoint, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -79,13 +78,12 @@ import ApiV10 from 'api_v1_0';
 let apiInstance = new ApiV10.UserWaypointsApi();
 let referenceCode = "referenceCode_example"; // String | geocache identifier
 let apiVersion = "'1.0'"; // String | The requested API version
-apiInstance.userWaypointsDeleteCorrectedCoordinates(referenceCode, apiVersion, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.userWaypointsDeleteCorrectedCoordinates(referenceCode, apiVersion).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -126,13 +124,12 @@ import ApiV10 from 'api_v1_0';
 let apiInstance = new ApiV10.UserWaypointsApi();
 let referenceCode = "referenceCode_example"; // String | The identifier of the user waypoint
 let apiVersion = "'1.0'"; // String | The requested API version
-apiInstance.userWaypointsDeleteUserWaypoint(referenceCode, apiVersion, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.userWaypointsDeleteUserWaypoint(referenceCode, apiVersion).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -179,13 +176,12 @@ let opts = {
   'includeCorrectedCoordinates': false, // Boolean | Include corrected coordinates in the results. default = false
   'fields': "'referencecode'" // String | Properties you want to return. default = referencecode
 };
-apiInstance.userWaypointsGetGeocacheUserWaypoints(referenceCode, apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.userWaypointsGetGeocacheUserWaypoints(referenceCode, apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -235,13 +231,12 @@ let opts = {
   'includeCorrectedCoordinates': false, // Boolean | Include corrected coordinates in the results. default = false
   'fields': "'referencecode'" // String | Properties you want to return (default = referenceCode)
 };
-apiInstance.userWaypointsGetUserWaypoints(apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.userWaypointsGetUserWaypoints(apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -289,13 +284,12 @@ let userWaypoint = new ApiV10.UserWaypoint(); // UserWaypoint | The user waypoin
 let opts = {
   'fields': "'referencecode'" // String | Properties you want to return (default = referenceCode)
 };
-apiInstance.userWaypointsUpdateUserWaypoint(referenceCode, apiVersion, userWaypoint, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.userWaypointsUpdateUserWaypoint(referenceCode, apiVersion, userWaypoint, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -342,13 +336,12 @@ let coordinates = new ApiV10.Coordinates(); // Coordinates | The corrected coord
 let opts = {
   'fields': "'referencecode'" // String | Properties you want to return (default = referenceCode)
 };
-apiInstance.userWaypointsUpsertCorrectedCoordinates(referenceCode, apiVersion, coordinates, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.userWaypointsUpsertCorrectedCoordinates(referenceCode, apiVersion, coordinates, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters

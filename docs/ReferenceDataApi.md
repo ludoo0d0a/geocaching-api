@@ -28,13 +28,12 @@ import ApiV10 from 'api_v1_0';
 
 let apiInstance = new ApiV10.ReferenceDataApi();
 let apiVersion = "'1.0'"; // String | The requested API version
-apiInstance.referenceDataGetAttributes(apiVersion, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.referenceDataGetAttributes(apiVersion).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -71,13 +70,12 @@ import ApiV10 from 'api_v1_0';
 
 let apiInstance = new ApiV10.ReferenceDataApi();
 let apiVersion = "'1.0'"; // String | The requested API version
-apiInstance.referenceDataGetCountries(apiVersion, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.referenceDataGetCountries(apiVersion).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -114,13 +112,12 @@ import ApiV10 from 'api_v1_0';
 
 let apiInstance = new ApiV10.ReferenceDataApi();
 let apiVersion = "'1.0'"; // String | The requested API version
-apiInstance.referenceDataGetGeocacheLogTypes(apiVersion, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.referenceDataGetGeocacheLogTypes(apiVersion).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -157,13 +154,12 @@ import ApiV10 from 'api_v1_0';
 
 let apiInstance = new ApiV10.ReferenceDataApi();
 let apiVersion = "'1.0'"; // String | The requested API version
-apiInstance.referenceDataGetGeocacheTypes(apiVersion, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.referenceDataGetGeocacheTypes(apiVersion).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -200,13 +196,12 @@ import ApiV10 from 'api_v1_0';
 
 let apiInstance = new ApiV10.ReferenceDataApi();
 let apiVersion = "'1.0'"; // String | The requested API version
-apiInstance.referenceDataGetMembershipLevels(apiVersion, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.referenceDataGetMembershipLevels(apiVersion).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -243,13 +238,12 @@ import ApiV10 from 'api_v1_0';
 
 let apiInstance = new ApiV10.ReferenceDataApi();
 let apiVersion = "'1.0'"; // String | The requested API version
-apiInstance.referenceDataGetStates(apiVersion, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.referenceDataGetStates(apiVersion).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -287,13 +281,12 @@ import ApiV10 from 'api_v1_0';
 let apiInstance = new ApiV10.ReferenceDataApi();
 let countryId = 56; // Number | 
 let apiVersion = "'1.0'"; // String | The requested API version
-apiInstance.referenceDataGetStatesByCountry(countryId, apiVersion, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.referenceDataGetStatesByCountry(countryId, apiVersion).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -331,13 +324,12 @@ import ApiV10 from 'api_v1_0';
 
 let apiInstance = new ApiV10.ReferenceDataApi();
 let apiVersion = "'1.0'"; // String | The requested API version
-apiInstance.referenceDataGetTrackableLogTypes(apiVersion, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.referenceDataGetTrackableLogTypes(apiVersion).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters

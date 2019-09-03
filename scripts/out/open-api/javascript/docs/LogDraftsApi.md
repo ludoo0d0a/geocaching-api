@@ -34,13 +34,12 @@ let postImage = new ApiV10.PostImage(); // PostImage | The image to upload and a
 let opts = {
   'fields': "'url'" // String | Properties you want to return, defaults to url
 };
-apiInstance.logDraftsAddImage(referenceCode, apiVersion, postImage, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.logDraftsAddImage(referenceCode, apiVersion, postImage, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -86,13 +85,12 @@ let postLogDraft = new ApiV10.PostLogDraft(); // PostLogDraft | The log draft to
 let opts = {
   'fields': "'referenceCode'" // String | Properties you want to return, defaults to referenceCode
 };
-apiInstance.logDraftsCreateDraft(apiVersion, postLogDraft, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.logDraftsCreateDraft(apiVersion, postLogDraft, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -134,13 +132,12 @@ import ApiV10 from 'api_v1_0';
 let apiInstance = new ApiV10.LogDraftsApi();
 let referenceCode = "referenceCode_example"; // String | The identifier of the log draft (ex: LD25)
 let apiVersion = "'1.0'"; // String | The requested API version
-apiInstance.logDraftsDeleteDraft(referenceCode, apiVersion, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.logDraftsDeleteDraft(referenceCode, apiVersion).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -184,13 +181,12 @@ let apiVersion = "'1.0'"; // String | The requested API version
 let opts = {
   'fields': "'referenceCode'" // String | Properties you want to return, defaults to referenceCode
 };
-apiInstance.logDraftsGetDraft(referenceCode, apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.logDraftsGetDraft(referenceCode, apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -237,13 +233,12 @@ let opts = {
   'sort': "'dateloggedutc'", // String | How to sort the drafts (default = loggeddateutc)
   'fields': "'referenceCode'" // String | Properties you want to return, defaults to referenceCode
 };
-apiInstance.logDraftsGetUserDrafts(apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.logDraftsGetUserDrafts(apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -288,13 +283,12 @@ let apiInstance = new ApiV10.LogDraftsApi();
 let referenceCode = "referenceCode_example"; // String | identifier of the log draft
 let apiVersion = "'1.0'"; // String | The requested API version
 let logDraft = new ApiV10.LogDraft(); // LogDraft | The draft to promote to log
-apiInstance.logDraftsPromoteToGeocacheLog(referenceCode, apiVersion, logDraft, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.logDraftsPromoteToGeocacheLog(referenceCode, apiVersion, logDraft).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -340,13 +334,12 @@ let logDraft = new ApiV10.LogDraft(); // LogDraft | The log draft to edit.
 let opts = {
   'fields': "'referenceCode'" // String | Properties you want to return, defaults to referenceCode
 };
-apiInstance.logDraftsUpdateDraft(referenceCode, apiVersion, logDraft, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.logDraftsUpdateDraft(referenceCode, apiVersion, logDraft, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters

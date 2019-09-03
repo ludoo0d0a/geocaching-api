@@ -39,13 +39,6 @@ export default class ListsApi {
     }
 
 
-    /**
-     * Callback function to receive the result of the listsAddGeocache operation.
-     * @callback module:api/ListsApi~listsAddGeocacheCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/Geocache} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Add a geocache to a list
@@ -55,10 +48,9 @@ export default class ListsApi {
      * @param {module:model/PostListGeocache} postListGeocache geocache to add to the list
      * @param {Object} opts Optional parameters
      * @param {String} opts.fields Property fields you want to return, defaults to referenceCode (default to 'referenceCode')
-     * @param {module:api/ListsApi~listsAddGeocacheCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/Geocache}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Geocache} and HTTP response
      */
-    listsAddGeocache(referenceCode, apiVersion, postListGeocache, opts, callback) {
+    listsAddGeocacheWithHttpInfo(referenceCode, apiVersion, postListGeocache, opts) {
       opts = opts || {};
       let postBody = postListGeocache;
       // verify the required parameter 'referenceCode' is set
@@ -93,17 +85,27 @@ export default class ListsApi {
       return this.apiClient.callApi(
         '/v{api-version}/lists/{referenceCode}/geocaches', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the listsAddGeocaches operation.
-     * @callback module:api/ListsApi~listsAddGeocachesCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/BulkResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Add a geocache to a list
+     * This method will return the geocache added.
+     * @param {String} referenceCode unique identifier of the list
+     * @param {String} apiVersion The requested API version
+     * @param {module:model/PostListGeocache} postListGeocache geocache to add to the list
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.fields Property fields you want to return, defaults to referenceCode (default to 'referenceCode')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Geocache}
      */
+    listsAddGeocache(referenceCode, apiVersion, postListGeocache, opts) {
+      return this.listsAddGeocacheWithHttpInfo(referenceCode, apiVersion, postListGeocache, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Add multiple geocaches to a list
@@ -111,10 +113,9 @@ export default class ListsApi {
      * @param {String} referenceCode unique identifier of the list
      * @param {String} apiVersion The requested API version
      * @param {Array.<String>} requestBody geocache reference codes to add to the list
-     * @param {module:api/ListsApi~listsAddGeocachesCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/BulkResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/BulkResponse} and HTTP response
      */
-    listsAddGeocaches(referenceCode, apiVersion, requestBody, callback) {
+    listsAddGeocachesWithHttpInfo(referenceCode, apiVersion, requestBody) {
       let postBody = requestBody;
       // verify the required parameter 'referenceCode' is set
       if (referenceCode === undefined || referenceCode === null) {
@@ -147,17 +148,25 @@ export default class ListsApi {
       return this.apiClient.callApi(
         '/v{api-version}/lists/{referenceCode}/bulkgeocaches', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the listsCreateList operation.
-     * @callback module:api/ListsApi~listsCreateListCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GeocacheList} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Add multiple geocaches to a list
+     * This method will return the successful and failed geocache codes.
+     * @param {String} referenceCode unique identifier of the list
+     * @param {String} apiVersion The requested API version
+     * @param {Array.<String>} requestBody geocache reference codes to add to the list
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/BulkResponse}
      */
+    listsAddGeocaches(referenceCode, apiVersion, requestBody) {
+      return this.listsAddGeocachesWithHttpInfo(referenceCode, apiVersion, requestBody)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Create a list
@@ -166,10 +175,9 @@ export default class ListsApi {
      * @param {module:model/PostGeocacheList} postGeocacheList The list to add
      * @param {Object} opts Optional parameters
      * @param {String} opts.fields Property fields you want to return, defaults to referenceCode (default to 'referenceCode')
-     * @param {module:api/ListsApi~listsCreateListCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GeocacheList}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GeocacheList} and HTTP response
      */
-    listsCreateList(apiVersion, postGeocacheList, opts, callback) {
+    listsCreateListWithHttpInfo(apiVersion, postGeocacheList, opts) {
       opts = opts || {};
       let postBody = postGeocacheList;
       // verify the required parameter 'apiVersion' is set
@@ -199,17 +207,26 @@ export default class ListsApi {
       return this.apiClient.callApi(
         '/v{api-version}/lists', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the listsDeleteGeocache operation.
-     * @callback module:api/ListsApi~listsDeleteGeocacheCallback
-     * @param {String} error Error message, if any.
-     * @param {Object} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Create a list
+     * This method will return the created geocache list.
+     * @param {String} apiVersion The requested API version
+     * @param {module:model/PostGeocacheList} postGeocacheList The list to add
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.fields Property fields you want to return, defaults to referenceCode (default to 'referenceCode')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GeocacheList}
      */
+    listsCreateList(apiVersion, postGeocacheList, opts) {
+      return this.listsCreateListWithHttpInfo(apiVersion, postGeocacheList, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Remove a geocache from a list
@@ -217,10 +234,9 @@ export default class ListsApi {
      * @param {String} referenceCode unique identifier of the list
      * @param {String} geocacheReferenceCode unique identifier of the geocache to remove
      * @param {String} apiVersion The requested API version
-     * @param {module:api/ListsApi~listsDeleteGeocacheCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Object}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
      */
-    listsDeleteGeocache(referenceCode, geocacheReferenceCode, apiVersion, callback) {
+    listsDeleteGeocacheWithHttpInfo(referenceCode, geocacheReferenceCode, apiVersion) {
       let postBody = null;
       // verify the required parameter 'referenceCode' is set
       if (referenceCode === undefined || referenceCode === null) {
@@ -254,27 +270,34 @@ export default class ListsApi {
       return this.apiClient.callApi(
         '/v{api-version}/lists/{referenceCode}/geocaches/{geocacheReferenceCode}', 'DELETE',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the listsDeleteList operation.
-     * @callback module:api/ListsApi~listsDeleteListCallback
-     * @param {String} error Error message, if any.
-     * @param {Object} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Remove a geocache from a list
+     * This method will not return anything.
+     * @param {String} referenceCode unique identifier of the list
+     * @param {String} geocacheReferenceCode unique identifier of the geocache to remove
+     * @param {String} apiVersion The requested API version
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
+    listsDeleteGeocache(referenceCode, geocacheReferenceCode, apiVersion) {
+      return this.listsDeleteGeocacheWithHttpInfo(referenceCode, geocacheReferenceCode, apiVersion)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Remove a list
      * This method will not return anything.
      * @param {String} referenceCode unique identifier of the list
      * @param {String} apiVersion The requested API version
-     * @param {module:api/ListsApi~listsDeleteListCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Object}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
      */
-    listsDeleteList(referenceCode, apiVersion, callback) {
+    listsDeleteListWithHttpInfo(referenceCode, apiVersion) {
       let postBody = null;
       // verify the required parameter 'referenceCode' is set
       if (referenceCode === undefined || referenceCode === null) {
@@ -303,17 +326,24 @@ export default class ListsApi {
       return this.apiClient.callApi(
         '/v{api-version}/lists/{referenceCode}', 'DELETE',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the listsGetGeocaches operation.
-     * @callback module:api/ListsApi~listsGetGeocachesCallback
-     * @param {String} error Error message, if any.
-     * @param {Array.<module:model/ListGeocache>} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Remove a list
+     * This method will not return anything.
+     * @param {String} referenceCode unique identifier of the list
+     * @param {String} apiVersion The requested API version
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
+    listsDeleteList(referenceCode, apiVersion) {
+      return this.listsDeleteListWithHttpInfo(referenceCode, apiVersion)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get a list of geocaches for a specified list
@@ -326,10 +356,9 @@ export default class ListsApi {
      * @param {Boolean} opts.lite whether to return lite geocaches or not (default to true)
      * @param {String} opts.fields fields you want to return, defaults to \"referenceCode\" (default to 'referenceCode')
      * @param {String} opts.expand fields to include with base geocache object (default to '')
-     * @param {module:api/ListsApi~listsGetGeocachesCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Array.<module:model/ListGeocache>}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/ListGeocache>} and HTTP response
      */
-    listsGetGeocaches(referenceCode, apiVersion, opts, callback) {
+    listsGetGeocachesWithHttpInfo(referenceCode, apiVersion, opts) {
       opts = opts || {};
       let postBody = null;
       // verify the required parameter 'referenceCode' is set
@@ -364,17 +393,30 @@ export default class ListsApi {
       return this.apiClient.callApi(
         '/v{api-version}/lists/{referenceCode}/geocaches', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the listsGetList operation.
-     * @callback module:api/ListsApi~listsGetListCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GeocacheList} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get a list of geocaches for a specified list
+     * This method will return a list of geocaches.
+     * @param {String} referenceCode identifier of the list
+     * @param {String} apiVersion The requested API version
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.skip how many geocaches to skip over (default to 0)
+     * @param {Number} opts.take how many geocaches to retrieve (default to 10)
+     * @param {Boolean} opts.lite whether to return lite geocaches or not (default to true)
+     * @param {String} opts.fields fields you want to return, defaults to \"referenceCode\" (default to 'referenceCode')
+     * @param {String} opts.expand fields to include with base geocache object (default to '')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/ListGeocache>}
      */
+    listsGetGeocaches(referenceCode, apiVersion, opts) {
+      return this.listsGetGeocachesWithHttpInfo(referenceCode, apiVersion, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get a list
@@ -383,10 +425,9 @@ export default class ListsApi {
      * @param {String} apiVersion The requested API version
      * @param {Object} opts Optional parameters
      * @param {String} opts.fields Property fields you want to return, defaults to referenceCode (default to 'referenceCode')
-     * @param {module:api/ListsApi~listsGetListCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GeocacheList}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GeocacheList} and HTTP response
      */
-    listsGetList(referenceCode, apiVersion, opts, callback) {
+    listsGetListWithHttpInfo(referenceCode, apiVersion, opts) {
       opts = opts || {};
       let postBody = null;
       // verify the required parameter 'referenceCode' is set
@@ -417,27 +458,35 @@ export default class ListsApi {
       return this.apiClient.callApi(
         '/v{api-version}/lists/{referenceCode}', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the listsGetZippedPocketQuery operation.
-     * @callback module:api/ListsApi~listsGetZippedPocketQueryCallback
-     * @param {String} error Error message, if any.
-     * @param {Blob} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get a list
+     * This method will return a list.
+     * @param {String} referenceCode The reference code of the list (example: BM25).
+     * @param {String} apiVersion The requested API version
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.fields Property fields you want to return, defaults to referenceCode (default to 'referenceCode')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GeocacheList}
      */
+    listsGetList(referenceCode, apiVersion, opts) {
+      return this.listsGetListWithHttpInfo(referenceCode, apiVersion, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Gets a zipped file for a pocket query
      * This method will return a zipped file.
      * @param {String} referenceCode identifier of the pocket query
      * @param {String} apiVersion The requested API version
-     * @param {module:api/ListsApi~listsGetZippedPocketQueryCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Blob}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Blob} and HTTP response
      */
-    listsGetZippedPocketQuery(referenceCode, apiVersion, callback) {
+    listsGetZippedPocketQueryWithHttpInfo(referenceCode, apiVersion) {
       let postBody = null;
       // verify the required parameter 'referenceCode' is set
       if (referenceCode === undefined || referenceCode === null) {
@@ -466,17 +515,24 @@ export default class ListsApi {
       return this.apiClient.callApi(
         '/v{api-version}/lists/{referenceCode}/geocaches/zipped', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the listsUpdateList operation.
-     * @callback module:api/ListsApi~listsUpdateListCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GeocacheList} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Gets a zipped file for a pocket query
+     * This method will return a zipped file.
+     * @param {String} referenceCode identifier of the pocket query
+     * @param {String} apiVersion The requested API version
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Blob}
      */
+    listsGetZippedPocketQuery(referenceCode, apiVersion) {
+      return this.listsGetZippedPocketQueryWithHttpInfo(referenceCode, apiVersion)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Edit a list
@@ -486,10 +542,9 @@ export default class ListsApi {
      * @param {module:model/GeocacheList} geocacheList The list to update
      * @param {Object} opts Optional parameters
      * @param {String} opts.fields Property fields you want to return, defaults to referenceCode (default to 'referenceCode')
-     * @param {module:api/ListsApi~listsUpdateListCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GeocacheList}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GeocacheList} and HTTP response
      */
-    listsUpdateList(referenceCode, apiVersion, geocacheList, opts, callback) {
+    listsUpdateListWithHttpInfo(referenceCode, apiVersion, geocacheList, opts) {
       opts = opts || {};
       let postBody = geocacheList;
       // verify the required parameter 'referenceCode' is set
@@ -524,8 +579,25 @@ export default class ListsApi {
       return this.apiClient.callApi(
         '/v{api-version}/lists/{referenceCode}', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
+    }
+
+    /**
+     * Edit a list
+     * This method will return the updated geocache list.
+     * @param {String} referenceCode the unique identifier of the list (ex: BM100)
+     * @param {String} apiVersion The requested API version
+     * @param {module:model/GeocacheList} geocacheList The list to update
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.fields Property fields you want to return, defaults to referenceCode (default to 'referenceCode')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GeocacheList}
+     */
+    listsUpdateList(referenceCode, apiVersion, geocacheList, opts) {
+      return this.listsUpdateListWithHttpInfo(referenceCode, apiVersion, geocacheList, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
     }
 
 

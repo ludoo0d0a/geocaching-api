@@ -33,23 +33,15 @@ export default class UtilitiesApi {
     }
 
 
-    /**
-     * Callback function to receive the result of the utilitiesGetReferenceCode operation.
-     * @callback module:api/UtilitiesApi~utilitiesGetReferenceCodeCallback
-     * @param {String} error Error message, if any.
-     * @param {String} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Returns the reference code from an id
      * @param {Number} id the id to get the reference code for
      * @param {String} codePrefix the prefix of the reference code (e.g. GC)
      * @param {String} apiVersion The requested API version
-     * @param {module:api/UtilitiesApi~utilitiesGetReferenceCodeCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link String}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link String} and HTTP response
      */
-    utilitiesGetReferenceCode(id, codePrefix, apiVersion, callback) {
+    utilitiesGetReferenceCodeWithHttpInfo(id, codePrefix, apiVersion) {
       let postBody = null;
       // verify the required parameter 'id' is set
       if (id === undefined || id === null) {
@@ -83,8 +75,22 @@ export default class UtilitiesApi {
       return this.apiClient.callApi(
         '/v{api-version}/utilities/referencecode', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
+    }
+
+    /**
+     * Returns the reference code from an id
+     * @param {Number} id the id to get the reference code for
+     * @param {String} codePrefix the prefix of the reference code (e.g. GC)
+     * @param {String} apiVersion The requested API version
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link String}
+     */
+    utilitiesGetReferenceCode(id, codePrefix, apiVersion) {
+      return this.utilitiesGetReferenceCodeWithHttpInfo(id, codePrefix, apiVersion)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
     }
 
 

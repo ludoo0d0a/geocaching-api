@@ -36,13 +36,12 @@ let postListGeocache = new ApiV10.PostListGeocache(); // PostListGeocache | geoc
 let opts = {
   'fields': "'referenceCode'" // String | Property fields you want to return, defaults to referenceCode
 };
-apiInstance.listsAddGeocache(referenceCode, apiVersion, postListGeocache, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.listsAddGeocache(referenceCode, apiVersion, postListGeocache, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -86,13 +85,12 @@ let apiInstance = new ApiV10.ListsApi();
 let referenceCode = "referenceCode_example"; // String | unique identifier of the list
 let apiVersion = "'1.0'"; // String | The requested API version
 let requestBody = ["null"]; // [String] | geocache reference codes to add to the list
-apiInstance.listsAddGeocaches(referenceCode, apiVersion, requestBody, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.listsAddGeocaches(referenceCode, apiVersion, requestBody).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -137,13 +135,12 @@ let postGeocacheList = new ApiV10.PostGeocacheList(); // PostGeocacheList | The 
 let opts = {
   'fields': "'referenceCode'" // String | Property fields you want to return, defaults to referenceCode
 };
-apiInstance.listsCreateList(apiVersion, postGeocacheList, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.listsCreateList(apiVersion, postGeocacheList, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -186,13 +183,12 @@ let apiInstance = new ApiV10.ListsApi();
 let referenceCode = "referenceCode_example"; // String | unique identifier of the list
 let geocacheReferenceCode = "geocacheReferenceCode_example"; // String | unique identifier of the geocache to remove
 let apiVersion = "'1.0'"; // String | The requested API version
-apiInstance.listsDeleteGeocache(referenceCode, geocacheReferenceCode, apiVersion, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.listsDeleteGeocache(referenceCode, geocacheReferenceCode, apiVersion).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -234,13 +230,12 @@ import ApiV10 from 'api_v1_0';
 let apiInstance = new ApiV10.ListsApi();
 let referenceCode = "referenceCode_example"; // String | unique identifier of the list
 let apiVersion = "'1.0'"; // String | The requested API version
-apiInstance.listsDeleteList(referenceCode, apiVersion, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.listsDeleteList(referenceCode, apiVersion).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -288,13 +283,12 @@ let opts = {
   'fields': "'referenceCode'", // String | fields you want to return, defaults to \"referenceCode\"
   'expand': "''" // String | fields to include with base geocache object
 };
-apiInstance.listsGetGeocaches(referenceCode, apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.listsGetGeocaches(referenceCode, apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -343,13 +337,12 @@ let apiVersion = "'1.0'"; // String | The requested API version
 let opts = {
   'fields': "'referenceCode'" // String | Property fields you want to return, defaults to referenceCode
 };
-apiInstance.listsGetList(referenceCode, apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.listsGetList(referenceCode, apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -391,13 +384,12 @@ import ApiV10 from 'api_v1_0';
 let apiInstance = new ApiV10.ListsApi();
 let referenceCode = "referenceCode_example"; // String | identifier of the pocket query
 let apiVersion = "'1.0'"; // String | The requested API version
-apiInstance.listsGetZippedPocketQuery(referenceCode, apiVersion, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.listsGetZippedPocketQuery(referenceCode, apiVersion).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -442,13 +434,12 @@ let geocacheList = new ApiV10.GeocacheList(); // GeocacheList | The list to upda
 let opts = {
   'fields': "'referenceCode'" // String | Property fields you want to return, defaults to referenceCode
 };
-apiInstance.listsUpdateList(referenceCode, apiVersion, geocacheList, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.listsUpdateList(referenceCode, apiVersion, geocacheList, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters

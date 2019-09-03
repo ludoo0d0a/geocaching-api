@@ -34,13 +34,12 @@ let postImage = new ApiV10.PostImage(); // PostImage | image to add
 let opts = {
   'fields': "'url'" // String | Property fields you want to return, defaults to url
 };
-apiInstance.trackableLogsAddImage(referenceCode, apiVersion, postImage, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.trackableLogsAddImage(referenceCode, apiVersion, postImage, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -86,13 +85,12 @@ let postTrackableLog = new ApiV10.PostTrackableLog(); // PostTrackableLog | The 
 let opts = {
   'fields': "'referenceCode'" // String | Property fields you want to return, defaults to referencecode
 };
-apiInstance.trackableLogsCreateTrackableLog(apiVersion, postTrackableLog, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.trackableLogsCreateTrackableLog(apiVersion, postTrackableLog, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -134,13 +132,12 @@ import ApiV10 from 'api_v1_0';
 let apiInstance = new ApiV10.TrackableLogsApi();
 let referenceCode = "referenceCode_example"; // String | The reference code of the trackable log (example: TL100).
 let apiVersion = "'1.0'"; // String | The requested API version
-apiInstance.trackableLogsDeleteTrackableLog(referenceCode, apiVersion, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.trackableLogsDeleteTrackableLog(referenceCode, apiVersion).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -182,13 +179,12 @@ let apiInstance = new ApiV10.TrackableLogsApi();
 let referenceCode = "referenceCode_example"; // String | The reference code of the trackable log (example: TL100).
 let imageGuid = null; // String | the guid of the image
 let apiVersion = "'1.0'"; // String | The requested API version
-apiInstance.trackableLogsDeleteTrackableLogImages(referenceCode, imageGuid, apiVersion, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.trackableLogsDeleteTrackableLogImages(referenceCode, imageGuid, apiVersion).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -235,13 +231,12 @@ let opts = {
   'take': 10, // Number | Amount of images to include in results. Defaults to 10.
   'fields': "'referencecode'" // String | Properties you want to return. Defaults to referencecode.
 };
-apiInstance.trackableLogsGetImages(referenceCode, apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.trackableLogsGetImages(referenceCode, apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -289,13 +284,12 @@ let opts = {
   'fields': "'referencecode'", // String | Property fields you want to return, defaults to referencecode
   'expand': "''" // String | 
 };
-apiInstance.trackableLogsGetTrackableLog(referenceCode, apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.trackableLogsGetTrackableLog(referenceCode, apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -342,13 +336,12 @@ let trackableLog = new ApiV10.TrackableLog(); // TrackableLog | An instance of t
 let opts = {
   'fields': "'referencecode'" // String | Property fields you want to return, defaults to referencecode
 };
-apiInstance.trackableLogsUpdateTrackableLog(referenceCode, apiVersion, trackableLog, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.trackableLogsUpdateTrackableLog(referenceCode, apiVersion, trackableLog, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters

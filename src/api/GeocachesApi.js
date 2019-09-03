@@ -38,13 +38,6 @@ export default class GeocachesApi {
     }
 
 
-    /**
-     * Callback function to receive the result of the geocachesGetFavoritedBy operation.
-     * @callback module:api/GeocachesApi~geocachesGetFavoritedByCallback
-     * @param {String} error Error message, if any.
-     * @param {Array.<module:model/User>} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Get a list of Users that have favorited a geocache
@@ -55,10 +48,9 @@ export default class GeocachesApi {
      * @param {Number} opts.skip how many users to skip (default to 0)
      * @param {Number} opts.take how many users to retrieve (default to 10)
      * @param {String} opts.fields fields you want to return, defaults to \"referenceCode\" (default to 'referenceCode')
-     * @param {module:api/GeocachesApi~geocachesGetFavoritedByCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Array.<module:model/User>}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/User>} and HTTP response
      */
-    geocachesGetFavoritedBy(referenceCode, apiVersion, opts, callback) {
+    geocachesGetFavoritedByWithHttpInfo(referenceCode, apiVersion, opts) {
       opts = opts || {};
       let postBody = null;
       // verify the required parameter 'referenceCode' is set
@@ -91,17 +83,28 @@ export default class GeocachesApi {
       return this.apiClient.callApi(
         '/v{api-version}/geocaches/{referenceCode}/favoritedby', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the geocachesGetGeocache operation.
-     * @callback module:api/GeocachesApi~geocachesGetGeocacheCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/Geocache} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get a list of Users that have favorited a geocache
+     * This method will return a list of users.
+     * @param {String} referenceCode The reference code of the geocache (example: GC25)
+     * @param {String} apiVersion The requested API version
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.skip how many users to skip (default to 0)
+     * @param {Number} opts.take how many users to retrieve (default to 10)
+     * @param {String} opts.fields fields you want to return, defaults to \"referenceCode\" (default to 'referenceCode')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/User>}
      */
+    geocachesGetFavoritedBy(referenceCode, apiVersion, opts) {
+      return this.geocachesGetFavoritedByWithHttpInfo(referenceCode, apiVersion, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get a single Geocache
@@ -112,10 +115,9 @@ export default class GeocachesApi {
      * @param {Boolean} opts.lite Select to return a geocache object without the description and hints (default to false)
      * @param {String} opts.expand fields to include with base geocache object (default to '')
      * @param {String} opts.fields fields you want to return, defaults to \"referenceCode\" (default to 'referenceCode')
-     * @param {module:api/GeocachesApi~geocachesGetGeocacheCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/Geocache}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Geocache} and HTTP response
      */
-    geocachesGetGeocache(referenceCode, apiVersion, opts, callback) {
+    geocachesGetGeocacheWithHttpInfo(referenceCode, apiVersion, opts) {
       opts = opts || {};
       let postBody = null;
       // verify the required parameter 'referenceCode' is set
@@ -148,17 +150,28 @@ export default class GeocachesApi {
       return this.apiClient.callApi(
         '/v{api-version}/geocaches/{referenceCode}', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the geocachesGetGeocaches operation.
-     * @callback module:api/GeocachesApi~geocachesGetGeocachesCallback
-     * @param {String} error Error message, if any.
-     * @param {Array.<module:model/Geocache>} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get a single Geocache
+     * This method will return a single Geocache.
+     * @param {String} referenceCode The reference code of the geocache (example: GC25).
+     * @param {String} apiVersion The requested API version
+     * @param {Object} opts Optional parameters
+     * @param {Boolean} opts.lite Select to return a geocache object without the description and hints (default to false)
+     * @param {String} opts.expand fields to include with base geocache object (default to '')
+     * @param {String} opts.fields fields you want to return, defaults to \"referenceCode\" (default to 'referenceCode')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Geocache}
      */
+    geocachesGetGeocache(referenceCode, apiVersion, opts) {
+      return this.geocachesGetGeocacheWithHttpInfo(referenceCode, apiVersion, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get a list of geocaches
@@ -169,10 +182,9 @@ export default class GeocachesApi {
      * @param {Boolean} opts.lite Select to return a geocache object without the description and hints (default to false)
      * @param {String} opts.expand fields to include with base geocache object (default to '')
      * @param {String} opts.fields fields you want to return, defaults to \"referenceCode\" (default to 'referenceCode')
-     * @param {module:api/GeocachesApi~geocachesGetGeocachesCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Array.<module:model/Geocache>}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/Geocache>} and HTTP response
      */
-    geocachesGetGeocaches(referenceCodes, apiVersion, opts, callback) {
+    geocachesGetGeocachesWithHttpInfo(referenceCodes, apiVersion, opts) {
       opts = opts || {};
       let postBody = null;
       // verify the required parameter 'referenceCodes' is set
@@ -205,17 +217,28 @@ export default class GeocachesApi {
       return this.apiClient.callApi(
         '/v{api-version}/geocaches', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the geocachesGetImages operation.
-     * @callback module:api/GeocachesApi~geocachesGetImagesCallback
-     * @param {String} error Error message, if any.
-     * @param {Array.<module:model/Image>} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get a list of geocaches
+     * This method will return a list of geocaches.
+     * @param {String} referenceCodes comma delimited list of geocache reference codes to retrieve (example: GC25,GC26,GC27).
+     * @param {String} apiVersion The requested API version
+     * @param {Object} opts Optional parameters
+     * @param {Boolean} opts.lite Select to return a geocache object without the description and hints (default to false)
+     * @param {String} opts.expand fields to include with base geocache object (default to '')
+     * @param {String} opts.fields fields you want to return, defaults to \"referenceCode\" (default to 'referenceCode')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/Geocache>}
      */
+    geocachesGetGeocaches(referenceCodes, apiVersion, opts) {
+      return this.geocachesGetGeocachesWithHttpInfo(referenceCodes, apiVersion, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get a list of images for a geocache
@@ -226,10 +249,9 @@ export default class GeocachesApi {
      * @param {Number} opts.skip how many images to skip (default to 0)
      * @param {Number} opts.take how many images to retrieve (default to 10)
      * @param {String} opts.fields fields you want to return, defaults to \"url\" (default to 'url')
-     * @param {module:api/GeocachesApi~geocachesGetImagesCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Array.<module:model/Image>}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/Image>} and HTTP response
      */
-    geocachesGetImages(referenceCode, apiVersion, opts, callback) {
+    geocachesGetImagesWithHttpInfo(referenceCode, apiVersion, opts) {
       opts = opts || {};
       let postBody = null;
       // verify the required parameter 'referenceCode' is set
@@ -262,17 +284,28 @@ export default class GeocachesApi {
       return this.apiClient.callApi(
         '/v{api-version}/geocaches/{referenceCode}/images', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the geocachesGetLogs operation.
-     * @callback module:api/GeocachesApi~geocachesGetLogsCallback
-     * @param {String} error Error message, if any.
-     * @param {Array.<module:model/GeocacheLog>} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get a list of images for a geocache
+     * This method will return a list of images.
+     * @param {String} referenceCode The reference code of the geocache (example: GC25).
+     * @param {String} apiVersion The requested API version
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.skip how many images to skip (default to 0)
+     * @param {Number} opts.take how many images to retrieve (default to 10)
+     * @param {String} opts.fields fields you want to return, defaults to \"url\" (default to 'url')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/Image>}
      */
+    geocachesGetImages(referenceCode, apiVersion, opts) {
+      return this.geocachesGetImagesWithHttpInfo(referenceCode, apiVersion, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get a list of geocache logs for the specified geocache
@@ -284,10 +317,9 @@ export default class GeocachesApi {
      * @param {Number} opts.take how many logs to retrieve (default to 10)
      * @param {String} opts.expand fields to include with base geocache object (default to '')
      * @param {String} opts.fields fields you want to return, defaults to referenceCode (default to 'referenceCode')
-     * @param {module:api/GeocachesApi~geocachesGetLogsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Array.<module:model/GeocacheLog>}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/GeocacheLog>} and HTTP response
      */
-    geocachesGetLogs(referenceCode, apiVersion, opts, callback) {
+    geocachesGetLogsWithHttpInfo(referenceCode, apiVersion, opts) {
       opts = opts || {};
       let postBody = null;
       // verify the required parameter 'referenceCode' is set
@@ -321,17 +353,29 @@ export default class GeocachesApi {
       return this.apiClient.callApi(
         '/v{api-version}/geocaches/{referenceCode}/geocachelogs', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the geocachesGetTrackables operation.
-     * @callback module:api/GeocachesApi~geocachesGetTrackablesCallback
-     * @param {String} error Error message, if any.
-     * @param {Array.<module:model/Trackable>} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get a list of geocache logs for the specified geocache
+     * This method will return a list of geocache logs.
+     * @param {String} referenceCode The reference code of the geocache (example: GC25).
+     * @param {String} apiVersion The requested API version
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.skip how many logs to skip over (default to 0)
+     * @param {Number} opts.take how many logs to retrieve (default to 10)
+     * @param {String} opts.expand fields to include with base geocache object (default to '')
+     * @param {String} opts.fields fields you want to return, defaults to referenceCode (default to 'referenceCode')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/GeocacheLog>}
      */
+    geocachesGetLogs(referenceCode, apiVersion, opts) {
+      return this.geocachesGetLogsWithHttpInfo(referenceCode, apiVersion, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get a list of trackables in a geocache
@@ -343,10 +387,9 @@ export default class GeocachesApi {
      * @param {Number} opts.take how many trackables to retrieve (default to 10)
      * @param {String} opts.fields fields you want to return, defaults to referenceCode (default to 'referenceCode')
      * @param {String} opts.expand  (default to '')
-     * @param {module:api/GeocachesApi~geocachesGetTrackablesCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Array.<module:model/Trackable>}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/Trackable>} and HTTP response
      */
-    geocachesGetTrackables(referenceCode, apiVersion, opts, callback) {
+    geocachesGetTrackablesWithHttpInfo(referenceCode, apiVersion, opts) {
       opts = opts || {};
       let postBody = null;
       // verify the required parameter 'referenceCode' is set
@@ -380,17 +423,29 @@ export default class GeocachesApi {
       return this.apiClient.callApi(
         '/v{api-version}/geocaches/{referenceCode}/trackables', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the geocachesSearch operation.
-     * @callback module:api/GeocachesApi~geocachesSearchCallback
-     * @param {String} error Error message, if any.
-     * @param {Array.<module:model/Geocache>} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get a list of trackables in a geocache
+     * This method will return a list of trackables.
+     * @param {String} referenceCode The reference code of the geocache (example: GC25).
+     * @param {String} apiVersion The requested API version
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.skip how many trackables to skip (default to 0)
+     * @param {Number} opts.take how many trackables to retrieve (default to 10)
+     * @param {String} opts.fields fields you want to return, defaults to referenceCode (default to 'referenceCode')
+     * @param {String} opts.expand  (default to '')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/Trackable>}
      */
+    geocachesGetTrackables(referenceCode, apiVersion, opts) {
+      return this.geocachesGetTrackablesWithHttpInfo(referenceCode, apiVersion, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Search for Geocaches
@@ -404,10 +459,9 @@ export default class GeocachesApi {
      * @param {Number} opts.take Defaults to 20, how many geocaches to return (default to 50)
      * @param {String} opts.expand fields to include with base geocache object (default to '')
      * @param {String} opts.fields Properties you want to return, defaults to \"referencecode\" (default to 'referenceCode')
-     * @param {module:api/GeocachesApi~geocachesSearchCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Array.<module:model/Geocache>}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/Geocache>} and HTTP response
      */
-    geocachesSearch(q, apiVersion, opts, callback) {
+    geocachesSearchWithHttpInfo(q, apiVersion, opts) {
       opts = opts || {};
       let postBody = null;
       // verify the required parameter 'q' is set
@@ -443,8 +497,29 @@ export default class GeocachesApi {
       return this.apiClient.callApi(
         '/v{api-version}/geocaches/search', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
+    }
+
+    /**
+     * Search for Geocaches
+     * This method will return search results.
+     * @param {String} q The query used on the geocaches
+     * @param {String} apiVersion The requested API version
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.sort Defaults to distance if coords are provided otherwise favoritepoints (distance, favorites, cachename, size, difficulty, terrain, founddate, placeddate, id) (default to '')
+     * @param {Boolean} opts.lite Return a lite version of geocache (no description, hint, or (default to true)
+     * @param {Number} opts.skip Defaults to 0, how many geocaches to skip (default to 0)
+     * @param {Number} opts.take Defaults to 20, how many geocaches to return (default to 50)
+     * @param {String} opts.expand fields to include with base geocache object (default to '')
+     * @param {String} opts.fields Properties you want to return, defaults to \"referencecode\" (default to 'referenceCode')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/Geocache>}
+     */
+    geocachesSearch(q, apiVersion, opts) {
+      return this.geocachesSearchWithHttpInfo(q, apiVersion, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
     }
 
 

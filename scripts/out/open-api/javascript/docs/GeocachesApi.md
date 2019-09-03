@@ -35,13 +35,12 @@ let opts = {
   'take': 10, // Number | how many users to retrieve
   'fields': "'referenceCode'" // String | fields you want to return, defaults to \"referenceCode\"
 };
-apiInstance.geocachesGetFavoritedBy(referenceCode, apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.geocachesGetFavoritedBy(referenceCode, apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -90,13 +89,12 @@ let opts = {
   'expand': "''", // String | fields to include with base geocache object
   'fields': "'referenceCode'" // String | fields you want to return, defaults to \"referenceCode\"
 };
-apiInstance.geocachesGetGeocache(referenceCode, apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.geocachesGetGeocache(referenceCode, apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -145,13 +143,12 @@ let opts = {
   'expand': "''", // String | fields to include with base geocache object
   'fields': "'referenceCode'" // String | fields you want to return, defaults to \"referenceCode\"
 };
-apiInstance.geocachesGetGeocaches(referenceCodes, apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.geocachesGetGeocaches(referenceCodes, apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -200,13 +197,12 @@ let opts = {
   'take': 10, // Number | how many images to retrieve
   'fields': "'url'" // String | fields you want to return, defaults to \"url\"
 };
-apiInstance.geocachesGetImages(referenceCode, apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.geocachesGetImages(referenceCode, apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -256,13 +252,12 @@ let opts = {
   'expand': "''", // String | fields to include with base geocache object
   'fields': "'referenceCode'" // String | fields you want to return, defaults to referenceCode
 };
-apiInstance.geocachesGetLogs(referenceCode, apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.geocachesGetLogs(referenceCode, apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -313,13 +308,12 @@ let opts = {
   'fields': "'referenceCode'", // String | fields you want to return, defaults to referenceCode
   'expand': "''" // String | 
 };
-apiInstance.geocachesGetTrackables(referenceCode, apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.geocachesGetTrackables(referenceCode, apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -372,13 +366,12 @@ let opts = {
   'expand': "''", // String | fields to include with base geocache object
   'fields': "'referenceCode'" // String | Properties you want to return, defaults to \"referencecode\"
 };
-apiInstance.geocachesSearch(q, apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.geocachesSearch(q, apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters

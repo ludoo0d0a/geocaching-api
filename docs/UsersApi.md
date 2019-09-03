@@ -39,13 +39,12 @@ let opts = {
   'logTypes': "logTypes_example", // String | log types to include in response, defaults to all
   'expand': "''" // String | fields to include with base geocache log object
 };
-apiInstance.usersGetGeocacheLogs(referenceCode, apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.usersGetGeocacheLogs(referenceCode, apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -99,13 +98,12 @@ let opts = {
   'take': 10, // Number | Amount of images to include in results. Defaults to 10.
   'fields': "'url'" // String | Properties you want to return. Defaults to url.
 };
-apiInstance.usersGetImages(referenceCode, apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.usersGetImages(referenceCode, apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -155,13 +153,12 @@ let opts = {
   'take': 10, // Number | how many lists to retrieve
   'fields': "'referenceCode'" // String | fields you want to return, defaults to referenceCode
 };
-apiInstance.usersGetLists(referenceCode, apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.usersGetLists(referenceCode, apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -211,13 +208,12 @@ let opts = {
   'take': 20, // Number | 
   'fields': "'title'" // String | Property fields you want to return, defaults to title
 };
-apiInstance.usersGetSouvenirs(referenceCode, apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.usersGetSouvenirs(referenceCode, apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -264,13 +260,12 @@ let apiVersion = "'1.0'"; // String | The requested API version
 let opts = {
   'fields': "'referenceCode'" // String | Property fields you want to return, defaults to referenceCode
 };
-apiInstance.usersGetUser(referenceCode, apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.usersGetUser(referenceCode, apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -316,13 +311,12 @@ let opts = {
   'usernames': "usernames_example", // String | comma delimited list of usernames to retrieve
   'fields': "'referenceCode'" // String | fields you want to return, defaults to \"referenceCode\"
 };
-apiInstance.usersGetUsers(apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.usersGetUsers(apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters

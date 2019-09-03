@@ -23,13 +23,12 @@ import ApiV10 from 'api_v1_0';
 
 let apiInstance = new ApiV10.StatusApi();
 let apiVersion = "'1.0'"; // String | The requested API version
-apiInstance.statusPingAsync(apiVersion, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
+apiInstance.statusPingAsync(apiVersion).then(() => {
+  console.log('API called successfully.');
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters

@@ -37,13 +37,6 @@ export default class TrackableLogsApi {
     }
 
 
-    /**
-     * Callback function to receive the result of the trackableLogsAddImage operation.
-     * @callback module:api/TrackableLogsApi~trackableLogsAddImageCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/Image} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Add an image to a trackable log
@@ -53,10 +46,9 @@ export default class TrackableLogsApi {
      * @param {module:model/PostImage} postImage image to add
      * @param {Object} opts Optional parameters
      * @param {String} opts.fields Property fields you want to return, defaults to url (default to 'url')
-     * @param {module:api/TrackableLogsApi~trackableLogsAddImageCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/Image}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Image} and HTTP response
      */
-    trackableLogsAddImage(referenceCode, apiVersion, postImage, opts, callback) {
+    trackableLogsAddImageWithHttpInfo(referenceCode, apiVersion, postImage, opts) {
       opts = opts || {};
       let postBody = postImage;
       // verify the required parameter 'referenceCode' is set
@@ -91,17 +83,27 @@ export default class TrackableLogsApi {
       return this.apiClient.callApi(
         '/v{api-version}/trackablelogs/{referenceCode}/images', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the trackableLogsCreateTrackableLog operation.
-     * @callback module:api/TrackableLogsApi~trackableLogsCreateTrackableLogCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/TrackableLog} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Add an image to a trackable log
+     * This method will return a single image.
+     * @param {String} referenceCode The reference code of the trackable log (example: TL100).
+     * @param {String} apiVersion The requested API version
+     * @param {module:model/PostImage} postImage image to add
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.fields Property fields you want to return, defaults to url (default to 'url')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Image}
      */
+    trackableLogsAddImage(referenceCode, apiVersion, postImage, opts) {
+      return this.trackableLogsAddImageWithHttpInfo(referenceCode, apiVersion, postImage, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Add a log to a trackable
@@ -110,10 +112,9 @@ export default class TrackableLogsApi {
      * @param {module:model/PostTrackableLog} postTrackableLog The log to add
      * @param {Object} opts Optional parameters
      * @param {String} opts.fields Property fields you want to return, defaults to referencecode (default to 'referenceCode')
-     * @param {module:api/TrackableLogsApi~trackableLogsCreateTrackableLogCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/TrackableLog}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/TrackableLog} and HTTP response
      */
-    trackableLogsCreateTrackableLog(apiVersion, postTrackableLog, opts, callback) {
+    trackableLogsCreateTrackableLogWithHttpInfo(apiVersion, postTrackableLog, opts) {
       opts = opts || {};
       let postBody = postTrackableLog;
       // verify the required parameter 'apiVersion' is set
@@ -143,27 +144,35 @@ export default class TrackableLogsApi {
       return this.apiClient.callApi(
         '/v{api-version}/trackablelogs', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the trackableLogsDeleteTrackableLog operation.
-     * @callback module:api/TrackableLogsApi~trackableLogsDeleteTrackableLogCallback
-     * @param {String} error Error message, if any.
-     * @param {Object} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Add a log to a trackable
+     * This method will return the created trackable log.
+     * @param {String} apiVersion The requested API version
+     * @param {module:model/PostTrackableLog} postTrackableLog The log to add
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.fields Property fields you want to return, defaults to referencecode (default to 'referenceCode')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/TrackableLog}
      */
+    trackableLogsCreateTrackableLog(apiVersion, postTrackableLog, opts) {
+      return this.trackableLogsCreateTrackableLogWithHttpInfo(apiVersion, postTrackableLog, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Deletes a trackable log
      * This method will not return anything in the body.
      * @param {String} referenceCode The reference code of the trackable log (example: TL100).
      * @param {String} apiVersion The requested API version
-     * @param {module:api/TrackableLogsApi~trackableLogsDeleteTrackableLogCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Object}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
      */
-    trackableLogsDeleteTrackableLog(referenceCode, apiVersion, callback) {
+    trackableLogsDeleteTrackableLogWithHttpInfo(referenceCode, apiVersion) {
       let postBody = null;
       // verify the required parameter 'referenceCode' is set
       if (referenceCode === undefined || referenceCode === null) {
@@ -192,17 +201,24 @@ export default class TrackableLogsApi {
       return this.apiClient.callApi(
         '/v{api-version}/trackablelogs/{referenceCode}', 'DELETE',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the trackableLogsDeleteTrackableLogImages operation.
-     * @callback module:api/TrackableLogsApi~trackableLogsDeleteTrackableLogImagesCallback
-     * @param {String} error Error message, if any.
-     * @param {Object} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Deletes a trackable log
+     * This method will not return anything in the body.
+     * @param {String} referenceCode The reference code of the trackable log (example: TL100).
+     * @param {String} apiVersion The requested API version
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
+    trackableLogsDeleteTrackableLog(referenceCode, apiVersion) {
+      return this.trackableLogsDeleteTrackableLogWithHttpInfo(referenceCode, apiVersion)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Deletes a trackable log image
@@ -210,10 +226,9 @@ export default class TrackableLogsApi {
      * @param {String} referenceCode The reference code of the trackable log (example: TL100).
      * @param {String} imageGuid the guid of the image
      * @param {String} apiVersion The requested API version
-     * @param {module:api/TrackableLogsApi~trackableLogsDeleteTrackableLogImagesCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Object}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
      */
-    trackableLogsDeleteTrackableLogImages(referenceCode, imageGuid, apiVersion, callback) {
+    trackableLogsDeleteTrackableLogImagesWithHttpInfo(referenceCode, imageGuid, apiVersion) {
       let postBody = null;
       // verify the required parameter 'referenceCode' is set
       if (referenceCode === undefined || referenceCode === null) {
@@ -247,17 +262,25 @@ export default class TrackableLogsApi {
       return this.apiClient.callApi(
         '/v{api-version}/trackablelogs/{referenceCode}/images/{imageGuid}', 'DELETE',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the trackableLogsGetImages operation.
-     * @callback module:api/TrackableLogsApi~trackableLogsGetImagesCallback
-     * @param {String} error Error message, if any.
-     * @param {Array.<module:model/Image>} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Deletes a trackable log image
+     * This method will not return anything in the body.
+     * @param {String} referenceCode The reference code of the trackable log (example: TL100).
+     * @param {String} imageGuid the guid of the image
+     * @param {String} apiVersion The requested API version
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
+    trackableLogsDeleteTrackableLogImages(referenceCode, imageGuid, apiVersion) {
+      return this.trackableLogsDeleteTrackableLogImagesWithHttpInfo(referenceCode, imageGuid, apiVersion)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get a the images attached to a trackable log
@@ -268,10 +291,9 @@ export default class TrackableLogsApi {
      * @param {Number} opts.skip Amount of images to skip over used for pagination. Defaults to 0. (default to 0)
      * @param {Number} opts.take Amount of images to include in results. Defaults to 10. (default to 10)
      * @param {String} opts.fields Properties you want to return. Defaults to referencecode. (default to 'referencecode')
-     * @param {module:api/TrackableLogsApi~trackableLogsGetImagesCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Array.<module:model/Image>}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/Image>} and HTTP response
      */
-    trackableLogsGetImages(referenceCode, apiVersion, opts, callback) {
+    trackableLogsGetImagesWithHttpInfo(referenceCode, apiVersion, opts) {
       opts = opts || {};
       let postBody = null;
       // verify the required parameter 'referenceCode' is set
@@ -304,17 +326,28 @@ export default class TrackableLogsApi {
       return this.apiClient.callApi(
         '/v{api-version}/trackablelogs/{referenceCode}/images', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the trackableLogsGetTrackableLog operation.
-     * @callback module:api/TrackableLogsApi~trackableLogsGetTrackableLogCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/TrackableLog} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get a the images attached to a trackable log
+     * This method will return a list of images.
+     * @param {String} referenceCode The reference code of the trackable log (example: TL100).
+     * @param {String} apiVersion The requested API version
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.skip Amount of images to skip over used for pagination. Defaults to 0. (default to 0)
+     * @param {Number} opts.take Amount of images to include in results. Defaults to 10. (default to 10)
+     * @param {String} opts.fields Properties you want to return. Defaults to referencecode. (default to 'referencecode')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/Image>}
      */
+    trackableLogsGetImages(referenceCode, apiVersion, opts) {
+      return this.trackableLogsGetImagesWithHttpInfo(referenceCode, apiVersion, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get a single trackable log
@@ -324,10 +357,9 @@ export default class TrackableLogsApi {
      * @param {Object} opts Optional parameters
      * @param {String} opts.fields Property fields you want to return, defaults to referencecode (default to 'referencecode')
      * @param {String} opts.expand  (default to '')
-     * @param {module:api/TrackableLogsApi~trackableLogsGetTrackableLogCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/TrackableLog}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/TrackableLog} and HTTP response
      */
-    trackableLogsGetTrackableLog(referenceCode, apiVersion, opts, callback) {
+    trackableLogsGetTrackableLogWithHttpInfo(referenceCode, apiVersion, opts) {
       opts = opts || {};
       let postBody = null;
       // verify the required parameter 'referenceCode' is set
@@ -359,17 +391,27 @@ export default class TrackableLogsApi {
       return this.apiClient.callApi(
         '/v{api-version}/trackablelogs/{referenceCode}', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the trackableLogsUpdateTrackableLog operation.
-     * @callback module:api/TrackableLogsApi~trackableLogsUpdateTrackableLogCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/TrackableLog} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get a single trackable log
+     * This method will return a single trackable log.
+     * @param {String} referenceCode The reference code of the trackable log (example: TL100).
+     * @param {String} apiVersion The requested API version
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.fields Property fields you want to return, defaults to referencecode (default to 'referencecode')
+     * @param {String} opts.expand  (default to '')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/TrackableLog}
      */
+    trackableLogsGetTrackableLog(referenceCode, apiVersion, opts) {
+      return this.trackableLogsGetTrackableLogWithHttpInfo(referenceCode, apiVersion, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Update a trackable log
@@ -379,10 +421,9 @@ export default class TrackableLogsApi {
      * @param {module:model/TrackableLog} trackableLog An instance of the log that is being modified. Text is the only modified parameter
      * @param {Object} opts Optional parameters
      * @param {String} opts.fields Property fields you want to return, defaults to referencecode (default to 'referencecode')
-     * @param {module:api/TrackableLogsApi~trackableLogsUpdateTrackableLogCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/TrackableLog}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/TrackableLog} and HTTP response
      */
-    trackableLogsUpdateTrackableLog(referenceCode, apiVersion, trackableLog, opts, callback) {
+    trackableLogsUpdateTrackableLogWithHttpInfo(referenceCode, apiVersion, trackableLog, opts) {
       opts = opts || {};
       let postBody = trackableLog;
       // verify the required parameter 'referenceCode' is set
@@ -417,8 +458,25 @@ export default class TrackableLogsApi {
       return this.apiClient.callApi(
         '/v{api-version}/trackablelogs/{referenceCode}', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
+    }
+
+    /**
+     * Update a trackable log
+     * This method will return a trackable log.
+     * @param {String} referenceCode The log reference code (example: TL100).
+     * @param {String} apiVersion The requested API version
+     * @param {module:model/TrackableLog} trackableLog An instance of the log that is being modified. Text is the only modified parameter
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.fields Property fields you want to return, defaults to referencecode (default to 'referencecode')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/TrackableLog}
+     */
+    trackableLogsUpdateTrackableLog(referenceCode, apiVersion, trackableLog, opts) {
+      return this.trackableLogsUpdateTrackableLogWithHttpInfo(referenceCode, apiVersion, trackableLog, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
     }
 
 

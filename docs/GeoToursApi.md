@@ -27,13 +27,12 @@ let apiVersion = "'1.0'"; // String | The requested API version
 let opts = {
   'fields': "'referenceCode'" // String | Properties you want to return, defaults to \"referencecode\"
 };
-apiInstance.geoToursGetGeoTour(referenceCode, apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.geoToursGetGeoTour(referenceCode, apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -78,13 +77,12 @@ let opts = {
   'take': 20, // Number | Defaults to 20, how many geocaches to return
   'fields': "'referenceCode'" // String | Properties you want to return, defaults to \"referencecode\"
 };
-apiInstance.geoToursGetGeoTours(apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.geoToursGetGeoTours(apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -136,13 +134,12 @@ let opts = {
   'expand': "''", // String | fields to include with base geocache object
   'fields': "'referenceCode'" // String | fields you want to return, defaults to \"referencecode\"
 };
-apiInstance.geoToursGetGeocachesByGeoTour(referenceCode, apiVersion, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.geoToursGetGeocachesByGeoTour(referenceCode, apiVersion, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters

@@ -35,13 +35,6 @@ export default class GeoToursApi {
     }
 
 
-    /**
-     * Callback function to receive the result of the geoToursGetGeoTour operation.
-     * @callback module:api/GeoToursApi~geoToursGetGeoTourCallback
-     * @param {String} error Error message, if any.
-     * @param {Array.<module:model/GeoTour>} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Get a GeoTour
@@ -49,10 +42,9 @@ export default class GeoToursApi {
      * @param {String} apiVersion The requested API version
      * @param {Object} opts Optional parameters
      * @param {String} opts.fields Properties you want to return, defaults to \"referencecode\" (default to 'referenceCode')
-     * @param {module:api/GeoToursApi~geoToursGetGeoTourCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Array.<module:model/GeoTour>}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/GeoTour>} and HTTP response
      */
-    geoToursGetGeoTour(referenceCode, apiVersion, opts, callback) {
+    geoToursGetGeoTourWithHttpInfo(referenceCode, apiVersion, opts) {
       opts = opts || {};
       let postBody = null;
       // verify the required parameter 'referenceCode' is set
@@ -83,17 +75,25 @@ export default class GeoToursApi {
       return this.apiClient.callApi(
         '/v{api-version}/geotours/{referenceCode}', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the geoToursGetGeoTours operation.
-     * @callback module:api/GeoToursApi~geoToursGetGeoToursCallback
-     * @param {String} error Error message, if any.
-     * @param {Array.<module:model/GeoTour>} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get a GeoTour
+     * @param {String} referenceCode Identifier of the GeoTour (e.g. GT7)
+     * @param {String} apiVersion The requested API version
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.fields Properties you want to return, defaults to \"referencecode\" (default to 'referenceCode')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/GeoTour>}
      */
+    geoToursGetGeoTour(referenceCode, apiVersion, opts) {
+      return this.geoToursGetGeoTourWithHttpInfo(referenceCode, apiVersion, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get GeoTours
@@ -103,10 +103,9 @@ export default class GeoToursApi {
      * @param {Number} opts.skip Defaults to 0, how many geocaches to skip (default to 0)
      * @param {Number} opts.take Defaults to 20, how many geocaches to return (default to 20)
      * @param {String} opts.fields Properties you want to return, defaults to \"referencecode\" (default to 'referenceCode')
-     * @param {module:api/GeoToursApi~geoToursGetGeoToursCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Array.<module:model/GeoTour>}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/GeoTour>} and HTTP response
      */
-    geoToursGetGeoTours(apiVersion, opts, callback) {
+    geoToursGetGeoToursWithHttpInfo(apiVersion, opts) {
       opts = opts || {};
       let postBody = null;
       // verify the required parameter 'apiVersion' is set
@@ -135,17 +134,27 @@ export default class GeoToursApi {
       return this.apiClient.callApi(
         '/v{api-version}/geotours', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the geoToursGetGeocachesByGeoTour operation.
-     * @callback module:api/GeoToursApi~geoToursGetGeocachesByGeoTourCallback
-     * @param {String} error Error message, if any.
-     * @param {Array.<module:model/Geocache>} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get GeoTours
+     * @param {String} apiVersion The requested API version
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.sort Defaults to unsorted (distance, name). If using distance sorting, must provide latitude and longitude (e.g. dist+:[47,-122]) (default to '')
+     * @param {Number} opts.skip Defaults to 0, how many geocaches to skip (default to 0)
+     * @param {Number} opts.take Defaults to 20, how many geocaches to return (default to 20)
+     * @param {String} opts.fields Properties you want to return, defaults to \"referencecode\" (default to 'referenceCode')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/GeoTour>}
      */
+    geoToursGetGeoTours(apiVersion, opts) {
+      return this.geoToursGetGeoToursWithHttpInfo(apiVersion, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get the geocaches on the GeoTour
@@ -159,10 +168,9 @@ export default class GeoToursApi {
      * @param {String} opts.sort Options are distance (must provide lat/lng), name (of the geocache), favorites, and geotour (order defined by GeoTour). Defaults to geotour. (default to 'gt+')
      * @param {String} opts.expand fields to include with base geocache object (default to '')
      * @param {String} opts.fields fields you want to return, defaults to \"referencecode\" (default to 'referenceCode')
-     * @param {module:api/GeoToursApi~geoToursGetGeocachesByGeoTourCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Array.<module:model/Geocache>}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/Geocache>} and HTTP response
      */
-    geoToursGetGeocachesByGeoTour(referenceCode, apiVersion, opts, callback) {
+    geoToursGetGeocachesByGeoTourWithHttpInfo(referenceCode, apiVersion, opts) {
       opts = opts || {};
       let postBody = null;
       // verify the required parameter 'referenceCode' is set
@@ -198,8 +206,29 @@ export default class GeoToursApi {
       return this.apiClient.callApi(
         '/v{api-version}/geotours/{referenceCode}/geocaches', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
+    }
+
+    /**
+     * Get the geocaches on the GeoTour
+     * This method will return a list of geocaches.
+     * @param {String} referenceCode Identifier of the GeoTour (e.g. GT7)
+     * @param {String} apiVersion The requested API version
+     * @param {Object} opts Optional parameters
+     * @param {Boolean} opts.lite Select to return a geocache object without the description and hints (default to false)
+     * @param {Number} opts.skip Defaults to 0, how many geocaches to skip (default to 0)
+     * @param {Number} opts.take Defaults to 20, how many geocaches to return (default to 20)
+     * @param {String} opts.sort Options are distance (must provide lat/lng), name (of the geocache), favorites, and geotour (order defined by GeoTour). Defaults to geotour. (default to 'gt+')
+     * @param {String} opts.expand fields to include with base geocache object (default to '')
+     * @param {String} opts.fields fields you want to return, defaults to \"referencecode\" (default to 'referenceCode')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/Geocache>}
+     */
+    geoToursGetGeocachesByGeoTour(referenceCode, apiVersion, opts) {
+      return this.geoToursGetGeocachesByGeoTourWithHttpInfo(referenceCode, apiVersion, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
     }
 
 

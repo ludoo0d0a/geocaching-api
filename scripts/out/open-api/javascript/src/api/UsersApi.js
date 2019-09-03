@@ -38,13 +38,6 @@ export default class UsersApi {
     }
 
 
-    /**
-     * Callback function to receive the result of the usersGetGeocacheLogs operation.
-     * @callback module:api/UsersApi~usersGetGeocacheLogsCallback
-     * @param {String} error Error message, if any.
-     * @param {Array.<module:model/GeocacheLog>} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Get a list of a user's geocache logs
@@ -60,10 +53,9 @@ export default class UsersApi {
      * @param {Boolean} opts.includeArchived flag to include archived logs (default to false)
      * @param {String} opts.logTypes log types to include in response, defaults to all
      * @param {String} opts.expand fields to include with base geocache log object (default to '')
-     * @param {module:api/UsersApi~usersGetGeocacheLogsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Array.<module:model/GeocacheLog>}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/GeocacheLog>} and HTTP response
      */
-    usersGetGeocacheLogs(referenceCode, apiVersion, opts, callback) {
+    usersGetGeocacheLogsWithHttpInfo(referenceCode, apiVersion, opts) {
       opts = opts || {};
       let postBody = null;
       // verify the required parameter 'referenceCode' is set
@@ -101,17 +93,33 @@ export default class UsersApi {
       return this.apiClient.callApi(
         '/v{api-version}/users/{referenceCode}/geocachelogs', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the usersGetImages operation.
-     * @callback module:api/UsersApi~usersGetImagesCallback
-     * @param {String} error Error message, if any.
-     * @param {Array.<module:model/Image>} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get a list of a user's geocache logs
+     * This method will return a list of geocache lists.
+     * @param {String} referenceCode user identifier, use \"me\" to get lists for calling user
+     * @param {String} apiVersion The requested API version
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.skip how many lists to skip over (default to 0)
+     * @param {Number} opts.take how many lists to retrieve (default to 10)
+     * @param {Date} opts.afterDate filters results to logs with logdates after this date (inclusive)
+     * @param {Date} opts.beforeDate filters results to logs with logdates before this date (inclusive)
+     * @param {String} opts.fields fields you want to return, defaults to referenceCode (default to 'referenceCode')
+     * @param {Boolean} opts.includeArchived flag to include archived logs (default to false)
+     * @param {String} opts.logTypes log types to include in response, defaults to all
+     * @param {String} opts.expand fields to include with base geocache log object (default to '')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/GeocacheLog>}
      */
+    usersGetGeocacheLogs(referenceCode, apiVersion, opts) {
+      return this.usersGetGeocacheLogsWithHttpInfo(referenceCode, apiVersion, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get the images attached to a user profile
@@ -122,10 +130,9 @@ export default class UsersApi {
      * @param {Number} opts.skip Amount of images to skip over used for pagination. Defaults to 0. (default to 0)
      * @param {Number} opts.take Amount of images to include in results. Defaults to 10. (default to 10)
      * @param {String} opts.fields Properties you want to return. Defaults to url. (default to 'url')
-     * @param {module:api/UsersApi~usersGetImagesCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Array.<module:model/Image>}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/Image>} and HTTP response
      */
-    usersGetImages(referenceCode, apiVersion, opts, callback) {
+    usersGetImagesWithHttpInfo(referenceCode, apiVersion, opts) {
       opts = opts || {};
       let postBody = null;
       // verify the required parameter 'referenceCode' is set
@@ -158,17 +165,28 @@ export default class UsersApi {
       return this.apiClient.callApi(
         '/v{api-version}/users/{referenceCode}/images', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the usersGetLists operation.
-     * @callback module:api/UsersApi~usersGetListsCallback
-     * @param {String} error Error message, if any.
-     * @param {Array.<module:model/GeocacheList>} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get the images attached to a user profile
+     * This method will return a list of images.
+     * @param {String} referenceCode The reference code of the user (example: PR18).
+     * @param {String} apiVersion The requested API version
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.skip Amount of images to skip over used for pagination. Defaults to 0. (default to 0)
+     * @param {Number} opts.take Amount of images to include in results. Defaults to 10. (default to 10)
+     * @param {String} opts.fields Properties you want to return. Defaults to url. (default to 'url')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/Image>}
      */
+    usersGetImages(referenceCode, apiVersion, opts) {
+      return this.usersGetImagesWithHttpInfo(referenceCode, apiVersion, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get a list of user's geocache lists
@@ -180,10 +198,9 @@ export default class UsersApi {
      * @param {Number} opts.skip how many lists to skip over (default to 0)
      * @param {Number} opts.take how many lists to retrieve (default to 10)
      * @param {String} opts.fields fields you want to return, defaults to referenceCode (default to 'referenceCode')
-     * @param {module:api/UsersApi~usersGetListsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Array.<module:model/GeocacheList>}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/GeocacheList>} and HTTP response
      */
-    usersGetLists(referenceCode, apiVersion, opts, callback) {
+    usersGetListsWithHttpInfo(referenceCode, apiVersion, opts) {
       opts = opts || {};
       let postBody = null;
       // verify the required parameter 'referenceCode' is set
@@ -217,17 +234,29 @@ export default class UsersApi {
       return this.apiClient.callApi(
         '/v{api-version}/users/{referenceCode}/lists', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the usersGetSouvenirs operation.
-     * @callback module:api/UsersApi~usersGetSouvenirsCallback
-     * @param {String} error Error message, if any.
-     * @param {Array.<module:model/Souvenir>} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get a list of user's geocache lists
+     * This method will return a list of geocache lists.
+     * @param {String} referenceCode user identifier, use \"me\" to get lists for calling user
+     * @param {String} apiVersion The requested API version
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.types comma delimited list of list types to return (fl, wl, il, bm, pq). Defaults to \"bm\" (default to 'bm')
+     * @param {Number} opts.skip how many lists to skip over (default to 0)
+     * @param {Number} opts.take how many lists to retrieve (default to 10)
+     * @param {String} opts.fields fields you want to return, defaults to referenceCode (default to 'referenceCode')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/GeocacheList>}
      */
+    usersGetLists(referenceCode, apiVersion, opts) {
+      return this.usersGetListsWithHttpInfo(referenceCode, apiVersion, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get an account's souvenirs
@@ -238,10 +267,9 @@ export default class UsersApi {
      * @param {Number} opts.skip  (default to 0)
      * @param {Number} opts.take  (default to 20)
      * @param {String} opts.fields Property fields you want to return, defaults to title (default to 'title')
-     * @param {module:api/UsersApi~usersGetSouvenirsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Array.<module:model/Souvenir>}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/Souvenir>} and HTTP response
      */
-    usersGetSouvenirs(referenceCode, apiVersion, opts, callback) {
+    usersGetSouvenirsWithHttpInfo(referenceCode, apiVersion, opts) {
       opts = opts || {};
       let postBody = null;
       // verify the required parameter 'referenceCode' is set
@@ -274,17 +302,28 @@ export default class UsersApi {
       return this.apiClient.callApi(
         '/v{api-version}/users/{referenceCode}/souvenirs', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the usersGetUser operation.
-     * @callback module:api/UsersApi~usersGetUserCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/User} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get an account's souvenirs
+     * This method will return a list of souvenirs.
+     * @param {String} referenceCode The reference code of the user (example: PR18).
+     * @param {String} apiVersion The requested API version
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.skip  (default to 0)
+     * @param {Number} opts.take  (default to 20)
+     * @param {String} opts.fields Property fields you want to return, defaults to title (default to 'title')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/Souvenir>}
      */
+    usersGetSouvenirs(referenceCode, apiVersion, opts) {
+      return this.usersGetSouvenirsWithHttpInfo(referenceCode, apiVersion, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get a user
@@ -293,10 +332,9 @@ export default class UsersApi {
      * @param {String} apiVersion The requested API version
      * @param {Object} opts Optional parameters
      * @param {String} opts.fields Property fields you want to return, defaults to referenceCode (default to 'referenceCode')
-     * @param {module:api/UsersApi~usersGetUserCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/User}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/User} and HTTP response
      */
-    usersGetUser(referenceCode, apiVersion, opts, callback) {
+    usersGetUserWithHttpInfo(referenceCode, apiVersion, opts) {
       opts = opts || {};
       let postBody = null;
       // verify the required parameter 'referenceCode' is set
@@ -327,17 +365,26 @@ export default class UsersApi {
       return this.apiClient.callApi(
         '/v{api-version}/users/{referenceCode}', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the usersGetUsers operation.
-     * @callback module:api/UsersApi~usersGetUsersCallback
-     * @param {String} error Error message, if any.
-     * @param {Array.<module:model/User>} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get a user
+     * This method will return a user.
+     * @param {String} referenceCode The reference code of the user (example: PR18).
+     * @param {String} apiVersion The requested API version
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.fields Property fields you want to return, defaults to referenceCode (default to 'referenceCode')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/User}
      */
+    usersGetUser(referenceCode, apiVersion, opts) {
+      return this.usersGetUserWithHttpInfo(referenceCode, apiVersion, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get a list of users
@@ -347,10 +394,9 @@ export default class UsersApi {
      * @param {String} opts.referenceCodes comma delimited list of user reference codes to retrieve (example: PR1,PR2,PR3)
      * @param {String} opts.usernames comma delimited list of usernames to retrieve
      * @param {String} opts.fields fields you want to return, defaults to \"referenceCode\" (default to 'referenceCode')
-     * @param {module:api/UsersApi~usersGetUsersCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Array.<module:model/User>}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/User>} and HTTP response
      */
-    usersGetUsers(apiVersion, opts, callback) {
+    usersGetUsersWithHttpInfo(apiVersion, opts) {
       opts = opts || {};
       let postBody = null;
       // verify the required parameter 'apiVersion' is set
@@ -378,8 +424,25 @@ export default class UsersApi {
       return this.apiClient.callApi(
         '/v{api-version}/users', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
+    }
+
+    /**
+     * Get a list of users
+     * This method will return a list of users.
+     * @param {String} apiVersion The requested API version
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.referenceCodes comma delimited list of user reference codes to retrieve (example: PR1,PR2,PR3)
+     * @param {String} opts.usernames comma delimited list of usernames to retrieve
+     * @param {String} opts.fields fields you want to return, defaults to \"referenceCode\" (default to 'referenceCode')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/User>}
+     */
+    usersGetUsers(apiVersion, opts) {
+      return this.usersGetUsersWithHttpInfo(apiVersion, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
     }
 
 

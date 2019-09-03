@@ -25,13 +25,12 @@ import ApiV10 from 'api_v1_0';
 let apiInstance = new ApiV10.GeocacheNotesApi();
 let referenceCode = "referenceCode_example"; // String | The identifier of the geocache (ex: GC25)
 let apiVersion = "'1.0'"; // String | The requested API version
-apiInstance.geocacheNotesDeleteNote(referenceCode, apiVersion, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.geocacheNotesDeleteNote(referenceCode, apiVersion).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters
@@ -73,13 +72,12 @@ let apiInstance = new ApiV10.GeocacheNotesApi();
 let referenceCode = "referenceCode_example"; // String | The identifier of the geocache (ex: GC25)
 let apiVersion = "'1.0'"; // String | The requested API version
 let geocacheNote = new ApiV10.GeocacheNote(); // GeocacheNote | The geocache note text.
-apiInstance.geocacheNotesUpsertNote(referenceCode, apiVersion, geocacheNote, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
+apiInstance.geocacheNotesUpsertNote(referenceCode, apiVersion, geocacheNote).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
 });
+
 ```
 
 ### Parameters

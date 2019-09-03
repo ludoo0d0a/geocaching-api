@@ -34,23 +34,15 @@ export default class GeocacheNotesApi {
     }
 
 
-    /**
-     * Callback function to receive the result of the geocacheNotesDeleteNote operation.
-     * @callback module:api/GeocacheNotesApi~geocacheNotesDeleteNoteCallback
-     * @param {String} error Error message, if any.
-     * @param {Object} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Delete a geocache note for the calling user
      * This method will return no content.
      * @param {String} referenceCode The identifier of the geocache (ex: GC25)
      * @param {String} apiVersion The requested API version
-     * @param {module:api/GeocacheNotesApi~geocacheNotesDeleteNoteCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Object}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
      */
-    geocacheNotesDeleteNote(referenceCode, apiVersion, callback) {
+    geocacheNotesDeleteNoteWithHttpInfo(referenceCode, apiVersion) {
       let postBody = null;
       // verify the required parameter 'referenceCode' is set
       if (referenceCode === undefined || referenceCode === null) {
@@ -79,17 +71,24 @@ export default class GeocacheNotesApi {
       return this.apiClient.callApi(
         '/v{api-version}/geocaches/{referenceCode}/notes', 'DELETE',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the geocacheNotesUpsertNote operation.
-     * @callback module:api/GeocacheNotesApi~geocacheNotesUpsertNoteCallback
-     * @param {String} error Error message, if any.
-     * @param {String} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Delete a geocache note for the calling user
+     * This method will return no content.
+     * @param {String} referenceCode The identifier of the geocache (ex: GC25)
+     * @param {String} apiVersion The requested API version
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
+    geocacheNotesDeleteNote(referenceCode, apiVersion) {
+      return this.geocacheNotesDeleteNoteWithHttpInfo(referenceCode, apiVersion)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Upsert a geocache note for the calling user
@@ -97,10 +96,9 @@ export default class GeocacheNotesApi {
      * @param {String} referenceCode The identifier of the geocache (ex: GC25)
      * @param {String} apiVersion The requested API version
      * @param {module:model/GeocacheNote} geocacheNote The geocache note text.
-     * @param {module:api/GeocacheNotesApi~geocacheNotesUpsertNoteCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link String}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link String} and HTTP response
      */
-    geocacheNotesUpsertNote(referenceCode, apiVersion, geocacheNote, callback) {
+    geocacheNotesUpsertNoteWithHttpInfo(referenceCode, apiVersion, geocacheNote) {
       let postBody = geocacheNote;
       // verify the required parameter 'referenceCode' is set
       if (referenceCode === undefined || referenceCode === null) {
@@ -133,8 +131,23 @@ export default class GeocacheNotesApi {
       return this.apiClient.callApi(
         '/v{api-version}/geocaches/{referenceCode}/notes', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
+    }
+
+    /**
+     * Upsert a geocache note for the calling user
+     * This method will return the upserted text.
+     * @param {String} referenceCode The identifier of the geocache (ex: GC25)
+     * @param {String} apiVersion The requested API version
+     * @param {module:model/GeocacheNote} geocacheNote The geocache note text.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link String}
+     */
+    geocacheNotesUpsertNote(referenceCode, apiVersion, geocacheNote) {
+      return this.geocacheNotesUpsertNoteWithHttpInfo(referenceCode, apiVersion, geocacheNote)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
     }
 
 
