@@ -1,6 +1,6 @@
 {
   "name": "geocaching-api",
-  "version": "2.1.0-beta2",
+  "version": "2.1.0",
   "description": "Node.js client for Geocaching API",
   "main": "dist/geocaching-api.js",
   "scripts": {
@@ -32,19 +32,19 @@
   },
   "license": "ISC",
   "dependencies": {
-    "@babel/polyfill": "^7.4.4",
+    "@babel/polyfill": "^7.6.0",
     "lodash": "^4.17.15",
     "passport-geocaching": "^0.2.1",
     "superagent": "5.1.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.5.5",
-    "@babel/core": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "@babel/node": "^7.5.5",
+    "@babel/cli": "^7.6.0",
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/node": "^7.6.1",
     "expect.js": "~0.3.1",
     "mocha": "^6.2.0",
-    "sinon": "7.4.1"
+    "sinon": "7.4.2"
   },
   "files": [
     "dist"
