@@ -308,5 +308,27 @@ GeocachingApi.prototype.getFields = function (obj) {
   return Object.keys(Object.getPrototypeOf(obj)).join(',');
 };
 
+function serializeQueryValue(v){
+    if (typeof v === 'array'){
+        return JSON.stringify(v)
+    }else{
+        return v;
+    }
+}
+/*
+* Generate query serialization for query search
+* sample: 'location:[47,122]+radius:30mi';
+*/
+GeocachingApi.prototype.serializeQuery = function (filters) {
+  if (typeof filters !== 'object') {
+    throw new TypeError('filters must be object ');
+  }
+  return Object.keys(filters)
+    .map(k => k+':'+serializeQueryValue(filters[k]))
+    .join('+');
+};
+
+
+
 
 export default GeocachingApi;
