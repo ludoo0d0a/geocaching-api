@@ -444,6 +444,7 @@ class ApiClient {
             request.end((error, response) => {
                 if (error) {
                     var err = {};
+                    response=response || {}; //+
                     err.status = response.status;
                     err.statusText = response.statusText;
                     err.body = response.body;

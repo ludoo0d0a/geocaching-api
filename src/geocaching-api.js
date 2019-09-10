@@ -309,8 +309,9 @@ GeocachingApi.prototype.getFields = function (obj) {
 };
 
 function serializeQueryValue(v){
-    if (typeof v === 'array'){
-        return JSON.stringify(v)
+    //TODO : may be return JSON.stringify(v) is enough...
+    if (Array.isArray(v)){
+        return JSON.stringify(v);
     }else{
         return v;
     }
