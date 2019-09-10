@@ -1,6 +1,6 @@
 {
   "name": "geocaching-api",
-  "version": "2.1.1-develop",
+  "version": "2.1.1",
   "description": "Node.js client for Geocaching API",
   "main": "dist/geocaching-api.js",
   "scripts": {
